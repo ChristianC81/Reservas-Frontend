@@ -158,6 +158,7 @@ export class FormComponentPubli implements OnInit {
           `Salon ${salon.nombre} guardado con exito`,
           'success'
         );
+        this.router.navigate(['/mis-salones']);
         // this.salonService
         //   .postImage(this.selectedImage, salon.idSalon)
         //   .subscribe(

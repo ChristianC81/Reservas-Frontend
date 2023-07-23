@@ -309,6 +309,8 @@ export class LoginRegisComponent {
               );
 
               //si ya esta registrado el correo
+            }else{
+              Swal.fire('Atención', 'Su correo ya se encuentra registrado', 'warning');
             }
           },
           error: (error) => {
