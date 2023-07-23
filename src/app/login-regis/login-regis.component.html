@@ -1,0 +1,142 @@
+<div class="comPrincipal">
+  <div class="cont" #cont>
+    <div class="form sign-in">
+      <h2>Bienvenido!</h2>
+      <label>
+        <span>Correo</span>
+        <input type="email" [(ngModel)]="modeloUsuarioSesPc.email" name="usuGmaSesPc"/>
+      </label>
+
+      <label>
+        <span>Contraseña</span>
+        <input type="password"  [(ngModel)]="modeloUsuarioSesPc.contrasenia" name="usuPassSesPc" />
+        <label class="alertIni" *ngIf="bolUsuPassErr">Contraseña o Gmail incorrecto</label>
+
+      </label>
+      
+      <button type="button" class="submit" (click)="verificarSesioPc()">Iniciar Sesion</button>
+      <label class="alertCamVac" *ngIf="bolCamVacSesPc">Llene todos los campos</label>
+      <p class="forgot-pass">Forgot password? Proximamente ヽ(^o^)丿</p>
+      <div class="cajaImgGen">
+        <div class="cajaImg">
+          <img src="/assets/img/facebook.png" *ngIf="!loggedIn" (click)="signInWithFB()" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img__text m--up">
+          <h2>Eres Nuevo?</h2>
+          <p>Resgistrate y descubre la bellesa de cuenca</p>
+        </div>
+        <div class="img__text m--in">
+          <h2>Ya tienes una cuenta?</h2>
+          <p>Inicia sesión y sigue disfrutando de nuestros servicios</p>
+        </div>
+        <div class="img__btn" #imgBtn>
+          <span class="m--up">Sign Up</span>
+          <span class="m--in">Sign In</span>
+        </div>
+      </div>
+
+      <div class="form sign-up">
+        <h2>Registrate!</h2>
+      
+        <label>
+          <span>Usuario</span>
+          <input type="text" [(ngModel)]="usuarioReg" name="usuReg" />
+          <label class="alertReg" *ngIf="bolUsuReg">Usuario Registrado</label>
+          <label class="alertReg" *ngIf="bolValiUser">Debe contener de 5 a 15 caracteres</label>
+        </label>
+
+        <label>
+          <span>Correo</span>
+          <input type="text" [(ngModel)]="emailReg" name="emaReg"/>
+          <label class="alertReg" *ngIf="bolEmaReg">Correo Registrado</label>
+          <label class="alertReg" *ngIf="bolValiGmail">Correo no valido</label>
+        </label>
+        <button type="button" class="submit" (click)="validarRegistroSinFac()">Registrate</button>
+        <label class="alertCamVac" *ngIf="bolRegVac" >Llene todos los campos</label>
+        <div class="cajaImgGen">
+          <div class="cajaImg">
+            <img src="/assets/img/facebook.png" *ngIf="!loggedIn" (click)="signInWithFB()" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conRespon">
+    <div class="flex-container responIni" #conIni>
+      <form action="" class="form ">
+        <div class="form__section">
+          <span class="lblMovil">Gmail</span>
+          <input type="text" class="form__input" [(ngModel)]="modeloUsuarioSesPc.nombreUsuario" name="usuSesMov">
+
+        </div>
+        <div class="form__section">
+          <span class="lblMovil">Password</span>
+          <input type="password" class="form__input"  [(ngModel)]="modeloUsuarioSesPc.contrasenia" name="usuPassMov">
+
+        </div>
+        <span class="lblAlertMovil" *ngIf="bolUsuPassMov">Contraseña o Gmail incorrecto</span>
+        <span class="lblAlertMovil" *ngIf="bolUsuVacMov">Campos vacios</span>
+        <div class="from__section">
+          
+          <button type="button" class="submit" (click)="verificarSesioPc()">Iniciar Sesión</button>
+        </div>
+        
+        <p>No tienes una cuenta <span class="rediReIni" #btnDesIni>Crear Cuenta</span> </p>
+      </form>
+
+
+      <div class="form-img">
+        <div class="img-container">
+          <img src="/assets/img/condor.svg" alt="">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="flex-container responReg" #conRegi>
+      <form action="" class="form ">
+        <div class="form__section">
+          <span class="lblMovil">Usuario</span>
+          <input type="text" class="form__input" [(ngModel)]="usuarioReg" name="usuReg">
+          <label  *ngIf="bolUsuRegMov">Usuario Registrado</label>
+          <label  *ngIf="bolValiUserMov">Debe contener de 5 a 15 caracteres</label>
+        </div>
+        <div class="form__section">
+          <span class="lblMovil">Correo</span>
+          <input type="email" class="form__input" [(ngModel)]="emailReg" name="emaReg">
+          <label  *ngIf="bolEmaRegMov">Correo Registrado</label>
+          <label  *ngIf="bolValiGmailMov">Correo no valido</label>
+        </div>
+        <span  *ngIf="bolRegVacMov" class="alertCamVacReg" >Llene todos los campos</span>
+        <div class="from__section">
+
+          <button type="button" class="submit" (click)="validarRegistroSinFac()">Registrarse</button>
+        </div>
+        <p>Tienes una cuenta <span class="rediReIni" #btnDesReg (click)="verificarSesioPc()">Iniciar Sesión</span> </p>
+      </form>
+
+      <div class="form-img">
+        <div class="img-container">
+          <img src="/assets/img/condor.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+<div  *ngIf="loggedIn">
+  <img src="{{ user.response.picture.data.url }}" referrerpolicy="no-referrer">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+</div>

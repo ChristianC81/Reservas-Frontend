@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container formulario-container">
+  <form ngNativeValidate (ngSubmit)="create()">
+    <div class="form-group">
+      <h5><label for="" class="custom-file-label">Fecha Inicio:</label></h5>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="pedido.pedFechaInicio"
+        name="pedFechaInicio"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <h5><label for="" class="custom-file-label">Fecha Fin:</label></h5>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="pedido.pedFechaFin"
+        name="pedFechaFin"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <h5>
+        <label for="" class="custom-file-label"
+          >Cantidad requerida de servicio:</label
+        >
+      </h5>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="pedido.pedCantidad"
+        name="pedCantidad"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-sm" role="button">
+        Reservar
+      </button>
+    </div>
+  </form>
+</div>

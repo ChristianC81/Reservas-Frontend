@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<div class="container">
+  <h1>Salones de Eventos</h1>
+  <br>
+  <br>
+  
+  <div>
+    <div class="carousel-container">
+      <carousel class="carousel" [interval]="3000">
+        <ng-template ngFor let-salon [ngForOf]="salones">
+          <slide>
+            <div class="card">
+              <img src="https://www.bodaencuenca.com/directorio/miembros/50.jpg" alt="Salón de eventos">
+              <div class="card-content">
+                <h1>{{ salon.salonNombre}}</h1>
+                <p>Descripción: {{ salon.salonDescripcion}}</p>
+                <p>Dirección: {{ salon.salonDireccion}}</p>
+              </div>
+            </div>
+          </slide>
+        </ng-template>
+      </carousel>
+    </div>
+    <br><br>
+    <br><br>

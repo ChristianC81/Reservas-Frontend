@@ -1,0 +1,77 @@
+<div _ngcontent-ygo-c128 class="container">
+    <div _ngcontent-ygo-c128 class="modal-body">
+        <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
+            <div class="modal-header text-center">
+                <h3 class="text-center"><b>Detalle del Salón {{salon.nombre}}</b></h3>
+            </div>
+            <div class="card-footer">
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Dirección: </b>{{salon.direccion}}</li>
+                    <li class="list-group-item"><b>Capacidad: </b>{{salon.capacidad}}</li>
+                    <li class="list-group-item"><b>Descripción: </b>{{salon.descripcion}}</li>
+                    <li class="list-group-item">
+                        <b>Disponibilidad: </b>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                *ngIf="!salon.disponibilidad" />
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                *ngIf="salon.disponibilidad" checked />
+                        </div>
+                    </li>
+                    <li class="list-group-item"><b>Precio: </b>{{salon.precioSalon}}</li>
+                    <li class="list-group-item"><b>Calificacion: </b>{{salon.calificacion}}</li>
+                    <li class="list-group-item"><b>Garantía: </b>{{salon.garantiaDanos}}</li>
+                </ul>
+                <div class="card text-center">
+                    <div class="modal-header text-center">
+                        <h3 class="text-center"><b>Listado de Complementos</b></h3>
+                    </div>
+                    <br />
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>CANTIDAD BASE</th>
+                                <th>CANTIDAD RESTANTE</th>
+                                <th>PRECIO UNITARIO</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let group of salon.complementos">
+                                <td>{{group.nombre }}</td>
+                                <td>{{ group.descripcion }}</td>
+                                <td>{{ group.cantidadBase }}</td>
+                                <td>{{ group.cantidadRestante }}</td>
+                                <td>{{ group.precioUnitario }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="card-footer">
+                <div class="botones">
+                    <div class="row">
+                        <div class="col d-grid gap-2">
+                            <button type="button" class="btn btn-success" (click)="verReservas()">
+                                Ver Reservas <i class="pi pi-check"></i>
+                            </button>
+                        </div>
+                        <div class="col d-grid gap-2">
+                            <button type="button" class="btn btn-primary" (click)="cancel()">Volver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+        </div>
+    </div>
+
+    <div class="container" *ngIf="publicacionSelect !== null && showReservas">
+        <app-modal-reservas [publicacionSelect]="publicacionSelect" (close)="close($event)"></app-modal-reservas>
+    </div>

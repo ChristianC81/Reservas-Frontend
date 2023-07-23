@@ -1,0 +1,25 @@
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.5s;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    margin-right: 15px;
+  }
+  
+  .card {
+    width: 300px;
+  }
+  
+  .card-content {
+    padding: 10px;
+  }
+  
+ 

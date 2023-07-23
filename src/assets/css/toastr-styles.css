@@ -1,0 +1,6 @@
+/* Ejemplo de estilos personalizados para los toasts */
+.toast-custom {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: 1px solid #000000;
+  }

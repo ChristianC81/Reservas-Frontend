@@ -1,0 +1,42 @@
+
+h3 {
+    text-align: center;
+    font-size: 21px;
+}
+
+.ventana-emergente {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 999;
+  }
+  
+  .ventana-emergente.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%
+  }
+  
+  .contenido h2 {
+    margin-top: 0;
+  }
+  
+  .contenido button {
+    margin-top: 10px;
+  }
+  h5{
+    font-size: 30px;
+    font-weight: 500;
+  }

@@ -1,0 +1,17 @@
+.action-buttons button {
+    margin-right: 8px;
+    /* Ajusta el valor según tus necesidades */
+}
+
+.action-buttons {
+    width: 150px;
+    /* Ajusta el ancho según tus necesidades */
+}
+.textRes{
+    position: relative;
+    left: 17%;
+    width: 300px;
+}
+.cuadroUsuarios{
+    
+}

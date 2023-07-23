@@ -1,0 +1,83 @@
+<div class="container">
+  <br /><br />
+  <div class="row">
+    <h4 class="card-title">REGISTRO DE PERSONAS</h4>
+    <br />
+
+    <div class="col-sm">
+      <form ngNativeValidate (ngSubmit)="create()">
+        <div class="form-group">
+          <h5>
+            <label for="" class="custom-file-label">Cédula o Pasaporte:</label>
+          </h5>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="persona"
+            name="codigo"
+            required
+            pattern="[ A-Za-z0-9]+"
+            placeholder="Cedula"
+            title="Cedula o pasaporte incorrecto"
+          />
+        </div>
+        <br />
+
+        <div class="form-group">
+          <h5><label for="" class="custom-file-label">Nombre:</label></h5>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            [(ngModel)]="persona"
+            name="nombre"
+            required
+            pattern="[ A-Za-z0-9]+"
+            placeholder="Nombre"
+            title="Nombre incorrecto"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <h5><label for="" class="custom-file-label">Apellido:</label></h5>
+          <input
+            type="text"
+            id="nombre"
+            class="form-control"
+            [(ngModel)]="persona"
+            name="nombre"
+            required
+            pattern="[ A-Za-z0-9]+"
+            placeholder="Apellido"
+            title="Apellido incorrecto"
+          />
+        </div>
+        <br />
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-sm" role="button">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm">
+      <h5>
+        <label for="" class="custom-file-label">Seleccione una imagen:</label>
+      </h5>
+      <br /><br />
+      <div class="row mt-2">
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+          <div
+            class="text-center"
+            style="border: 3px solid rgb(6, 16, 102)"
+            class="row rounded"
+            style="box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5)"
+          ></div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>

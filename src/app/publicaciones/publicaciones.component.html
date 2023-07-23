@@ -1,0 +1,46 @@
+<div class="container" *ngIf="!detalle && publicacionSelect == null">
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">SALONES</h1>
+                    <p>
+                        Para rentar un salon seleccione el salon y realice la resercación, en lo posterior el propietario del salón le dará respuesta.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones">
+                    <div class="card h-100">
+                        <a (click)="seleccionarPublicacion(publicacion)">
+                            <img src="./assets/images/salon7.jpg" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">${{publicacion.salonDto.precioSalon}}</li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark">{{publicacion.salonDto.nombre}}</a>
+                            <p class="card-text">
+                                {{publicacion.salonDto.descripcion}}
+                            </p>
+                            <p class="text-muted">Reviews (24)</p>
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="container" *ngIf="detalle && publicacionSelect !== null">
+    <app-publicaciones-detalle  [publicacionSelect]="publicacionSelect" (close)="close($event)"></app-publicaciones-detalle>
+</div>

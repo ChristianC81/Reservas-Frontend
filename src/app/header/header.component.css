@@ -1,0 +1,27 @@
+   /* Estilos del botón */
+   .user-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos del menú (oculto inicialmente) */
+.user-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+/* Estilos de los elementos del menú */
+.user-menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
