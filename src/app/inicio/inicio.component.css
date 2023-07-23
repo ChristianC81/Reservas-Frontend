@@ -344,22 +344,22 @@ body {
 }
 
 .box .content:hover .text3 {
-    left: 30%;
+    left: 20%;
     opacity: 1;
-    font-size: 70px;
+    font-size: 65px;
 
 }
 
 .box .content:hover .text4 {
-    left: 32%;
+    left: 22%;
     opacity: 1;
-    font-size: 70px;
+    font-size: 65px;
 
 }
 
 .box .content .text3 {
     color: #fff;
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'Oswald', cursive;
     position: absolute;
     top: 250px;
@@ -380,7 +380,7 @@ body {
 
 .box .content .text4 {
     color: #fff;
-    font-size: 20px;
+    font-size: 15px;
     font-family: 'Oswald', cursive;
     position: absolute;
     left: -100px;
