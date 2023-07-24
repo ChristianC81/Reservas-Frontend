@@ -20,7 +20,6 @@ export class HeaderComponent {
 
   async ngOnInit() {
     this.validateUserLoged();
-    this.validateUserLogedAd();
   }
 
   elementoHabilitado(): boolean {
@@ -51,17 +50,7 @@ export class HeaderComponent {
       this.userLoged = false;
     }
   }
-  validateUserLogedAd() {
-    var email = localStorage.getItem('emailUserLogedAd');
-    console.log("email", email)
-    if (
-      email !== null 
-    ) {
-      this.userLoged = true;
-    } else {
-      this.userLoged = false;
-    }
-  }
+
 
   validateUserLogedAndRedirect() {
     if(this.userLoged){

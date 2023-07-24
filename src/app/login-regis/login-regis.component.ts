@@ -169,16 +169,15 @@ export class LoginRegisComponent {
       if (this.modeloUsuarioSesPc.email == 'admin' && this.modeloUsuarioSesPc.contrasenia == 'admin') {
         this.bolUsuPassErr = false;
         this.bolUsuPassMov = false;
-        localStorage.setItem('emailUserLogedAd', this.modeloUsuarioSesPc.email);
-
+      
         Swal.fire({
           title: 'Inicio de sesión exitoso',
           text: `Bienvenido Administrador`,
           icon: 'success',
           showCancelButton: false,
           confirmButtonText: 'Continuar',
-        }).then((result) => {
-          this.router.navigate(['/admininicio']).then(val => {
+        }).then((resulta) => {
+          this.router.navigate(['/admininicio']).then(valt => {
             location.reload();
           });
         });
