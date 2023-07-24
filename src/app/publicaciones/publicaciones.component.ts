@@ -19,9 +19,7 @@ export class PublicacionesComponent {
   constructor(private salonService: SalonService,private router: Router) { }
 
   ngOnInit() {
-    if(!localStorage.getItem('username')){
-      this.router.navigate(['loginReg']);
-    }
+ 
     this.getPublicaciones();
   }
 
