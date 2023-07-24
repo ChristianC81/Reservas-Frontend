@@ -127,4 +127,13 @@ export class AdminusuarioComponent implements OnInit {
       );
     }
   }
+
+  estadoSt(estado: boolean): string {
+    if (estado) {
+      return 'Activo';
+    } else {
+      return 'Inactivo';
+    }
+  }
+  
 }
