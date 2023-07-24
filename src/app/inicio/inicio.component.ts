@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -12,7 +12,19 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent {
+export class InicioComponent  implements OnInit{
   constructor(private appModule: AppModule) { }
+  ngOnInit(): void {
+  }
+  ventanaEmergenteVisible: boolean = false;
+
+  mostrarVentanaEmergente() {
+    this.ventanaEmergenteVisible = true;
+  }
+
+  ocultarVentanaEmergente() {
+    this.ventanaEmergenteVisible = false;
+  }
+  
 
 }
