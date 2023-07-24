@@ -49,7 +49,9 @@ export class PublicacionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
     // this.cargarGrupoComplemento()
     // this.grupocomplementoService.getGrupoComplementos().subscribe(
     //   grupocomplemento => this.grupocomplemento2 = grupocomplemento

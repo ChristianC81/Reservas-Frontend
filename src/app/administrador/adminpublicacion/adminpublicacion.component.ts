@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Salon } from 'src/app/modelo/Salon';
 import { SalonService } from 'src/service/salon.service';
 import Swal from 'sweetalert2';
@@ -13,9 +14,12 @@ export class AdminpublicacionComponent implements OnInit {
   salonesActivos: Salon[] = [];
   salonesInactivos: Salon[] = [];
 
-  constructor(private salonService: SalonService) { }
+  constructor(private salonService: SalonService,private router: Router) { }
   
   ngOnInit(): void {
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
     this.salonService.getSalonesActivos().subscribe(
       salones => this.salonesActivos = salones
     );

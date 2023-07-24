@@ -3,6 +3,7 @@ import { SalonService } from 'src/service/salon.service';
 import { Salon } from '../modelo/Salon';
 import { PublicacionDto } from '../modelo/dto/PublicacionDto';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publicaciones',
@@ -15,9 +16,12 @@ export class PublicacionesComponent {
   detalle  = false;
   publicacionSelect :any = null;
 
-  constructor(private salonService: SalonService) { }
+  constructor(private salonService: SalonService,private router: Router) { }
 
   ngOnInit() {
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
     this.getPublicaciones();
   }
 

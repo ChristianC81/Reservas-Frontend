@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PublicacionDto } from '../modelo/dto/PublicacionDto';
 import { SalonService } from 'src/service/salon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-salones',
@@ -13,9 +14,12 @@ export class MisSalonesComponent {
   detalle  = false;
   publicacionSelect :any = null;
 
-  constructor(private salonService: SalonService) { }
+  constructor(private salonService: SalonService,private router: Router) { }
 
   ngOnInit() {
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
     this.getPublicacionesByUser();
   }
 

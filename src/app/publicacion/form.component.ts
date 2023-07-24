@@ -16,6 +16,8 @@ import { ComplementoDto } from '../modelo/dto/ComplementoDto';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponentPubli implements OnInit {
+
+  
   SalonDto: SalonDto = {
     idSalon: 0,
     nombre: '',
@@ -66,6 +68,9 @@ export class FormComponentPubli implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
     this.cargarSalon();
     this.ListCategoria();
   }

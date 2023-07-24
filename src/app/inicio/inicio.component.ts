@@ -7,14 +7,18 @@ import { AppComponent } from 'src/app/app.component';
 import { AppModule } from 'src/app/app.module';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent  implements OnInit{
-  constructor(private appModule: AppModule) { }
+  constructor(private appModule: AppModule,private router: Router) { }
   ngOnInit(): void {
+    if(!localStorage.getItem('username')){
+      this.router.navigate(['loginReg']);
+    }
   }
   ventanaEmergenteVisible: boolean = false;
 
