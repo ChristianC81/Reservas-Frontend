@@ -172,7 +172,7 @@
                     <input type="number" class="form-control" id="inputPrecio" [(ngModel)]="SalonDto.precioSalon" name="precioSalon">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputCapacidad" class="form-label">Garantia Daños</label>
+                    <label for="inputCapacidad" class="form-label">Garantía Daños</label>
                     <input type="number" class="form-control" id="inputCapacidad" [(ngModel)]="SalonDto.garantiaDanos" name="garantiaDanos">
                 </div>
                 <div class="col-md-6">
@@ -203,6 +203,7 @@
                                 (click)="mostrarVentanaEmergente()"><i class="bi bi-file-earmark-plus"></i></button>
                             <button class="btn btn-danger btn-sm" type="button"><i class="bi bi-trash"></i></button>
                         </div>
+                        <br/><br/>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -222,6 +223,7 @@
                                     <td>{{ complemento.precioUnitario }}</td>
                                 </tr>
                             </tbody>
+                            <br/><br/>
                             <div class="col-md-12">
                                     <button type="submit" class="btn btn-success btn-sm" role="button">PUBLICAR SALÓN</button>
                             </div>
