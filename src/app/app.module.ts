@@ -28,8 +28,6 @@ import { AdminfooterComponent } from './administrador/adminfooter/adminfooter.co
 import { AdmininicioComponent } from './administrador/admininicio/admininicio.component';
 import { FormComponentPubli } from './publicacion/form.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
-import { ReservaComponent } from './reserva/reserva.component';
-import { FormComponentPedido } from './reserva/form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -57,8 +55,6 @@ import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reser
     AdminfooterComponent,
     AdmininicioComponent,
     RegistroUsuarioComponent,
-    ReservaComponent,
-    FormComponentPedido,
     PublicacionesComponent,
     MisSalonesComponent,
     PublicacionesDetalleComponent,
