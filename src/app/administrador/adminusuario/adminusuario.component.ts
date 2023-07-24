@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/modelo/Usuario';
 import { UsuarioService } from 'src/service/usuario.service';
 import Swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-adminusuario',
   templateUrl: './adminusuario.component.html',
@@ -23,9 +23,10 @@ export class AdminusuarioComponent implements OnInit {
   usuariosActivos: Usuario[] = [];
   usuariosInactivos: Usuario[] = [];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, private router: Router ) { }
 
   ngOnInit(): void {
+   
     this.usuarioService.getUsuariosActivos().subscribe(
       usuarios => {
         this.usuariosActivos = usuarios;

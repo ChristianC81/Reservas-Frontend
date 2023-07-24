@@ -17,9 +17,7 @@ export class AdminpublicacionComponent implements OnInit {
   constructor(private salonService: SalonService,private router: Router) { }
   
   ngOnInit(): void {
-    if(!localStorage.getItem('username')){
-      this.router.navigate(['loginReg']);
-    }
+    
     this.salonService.getSalonesActivos().subscribe(
       salones => this.salonesActivos = salones
     );
