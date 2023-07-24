@@ -214,6 +214,7 @@ export class RegistroUsuarioComponent implements OnInit {
             .subscribe((data) => {
               console.log("data", data);
               Swal.fire('REGISTRO', 'USUARIO CREADO EXITOSAMENTE', 'success');
+              this.router.navigate(['/loginReg']);
             }, (err) => {
               console.log("error", err);
               Swal.fire('REGISTRO', 'ERROR AL CREAR USUARIO', 'error');

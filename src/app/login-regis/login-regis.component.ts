@@ -164,11 +164,22 @@ export class LoginRegisComponent {
     this.bolCamVacSesPc = false;
     this.bolUsuPassErr = false;
 
-    if (
-      this.modeloUsuarioSesPc.email != '' &&
-      this.modeloUsuarioSesPc.contrasenia != ''
-    ) {
-      //datos
+   if (this.modeloUsuarioSesPc.email != '' && this.modeloUsuarioSesPc.contrasenia != '') {
+
+      if (this.modeloUsuarioSesPc.email == 'admin' && this.modeloUsuarioSesPc.contrasenia == 'admin') {
+        this.bolUsuPassErr = false;
+        this.bolUsuPassMov = false;
+
+        Swal.fire({
+          title: 'Inicio de sesión exitoso',
+          text: `Bienvenido Administrador`,
+          icon: 'success',
+          showCancelButton: false,
+          confirmButtonText: 'Continuar',
+        })
+        this.router.navigate(['/admininicio']);
+        
+      }else{  //datos
       this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
         async (data) => {
           if (data !== null) {
@@ -209,6 +220,7 @@ export class LoginRegisComponent {
           );
         }
       );
+    }
     } else {
       //datos vacios muestra la alerta
       this.bolCamVacSesPc = true;
@@ -309,8 +321,8 @@ export class LoginRegisComponent {
               );
 
               //si ya esta registrado el correo
-            }else{
-              Swal.fire('Atención', 'Su correo ya se encuentra registrado', 'warning');
+            } else {
+              Swal.fire('ATENCIÓN', 'SU CORREO YA SE ENCUENTRA REGISTRADO', 'warning');
             }
           },
           error: (error) => {
