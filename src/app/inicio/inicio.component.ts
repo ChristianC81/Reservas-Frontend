@@ -16,9 +16,7 @@ import { Router } from '@angular/router';
 export class InicioComponent  implements OnInit{
   constructor(private appModule: AppModule,private router: Router) { }
   ngOnInit(): void {
-    if(!localStorage.getItem('username')){
-      this.router.navigate(['loginReg']);
-    }
+    
   }
   ventanaEmergenteVisible: boolean = false;
 
