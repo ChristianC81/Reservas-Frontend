@@ -209,8 +209,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Descripción</th>
-                                    <th scope="col">Cant. Base</th>
-                                    <th scope="col">Cant. Restante</th>
+                                    <th scope="col">Cantidad</th>
                                     <th scope="col">Prec. Unitario</th>
                                 </tr>
                             </thead>
@@ -220,7 +219,6 @@
                                     <td>{{ complemento.nombre }}</td>
                                     <td>{{ complemento.descripcion }}</td>
                                     <td>{{ complemento.cantidadBase }}</td>
-                                    <td>{{ complemento.cantidadRestante }}</td>
                                     <td>{{ complemento.precioUnitario }}</td>
                                 </tr>
                             </tbody>
@@ -258,16 +256,10 @@
                         name="capacidad" placeholder="Ingrese la descripción" title="Descripción incorrecto" />
                 </div>
                 <div class="form-group">
-                    <label for="" class="custom-file-label">Cantidad Base:</label>
+                    <label for="" class="custom-file-label">Cantidad:</label>
                     <input type="number" id="cantidadbase" class="form-control"
                         [(ngModel)]="complementoDto.cantidadBase" name="cantidadbase"
                         placeholder="Ingrese la cantidad base" />
-                </div>
-                <div class="form-group">
-                    <label for="" class="custom-file-label">Cantidad Restante:</label>
-                    <input type="number" id="cantidadrestante" class="form-control"
-                        [(ngModel)]="complementoDto.cantidadRestante" name="cantidadrestante"
-                        placeholder="Ingrese la cantidad restante" />
                 </div>
                 <div class="form-group">
                     <label for="" class="custom-file-label">Precio Unitario:</label>
