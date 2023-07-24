@@ -56,7 +56,7 @@ export class LoginRegisComponent {
     private serviLoginRegService: ServiLoginRegService,
     private authService: SocialAuthService,
     private usuarioService: UsuarioService,
-  ) {}
+  ) { }
 
   /* sirve para poner las animaciones  */
   /* en el html hay que agregar un #idname */
@@ -164,11 +164,12 @@ export class LoginRegisComponent {
     this.bolCamVacSesPc = false;
     this.bolUsuPassErr = false;
 
-   if (this.modeloUsuarioSesPc.email != '' && this.modeloUsuarioSesPc.contrasenia != '') {
+    if (this.modeloUsuarioSesPc.email != '' && this.modeloUsuarioSesPc.contrasenia != '') {
 
       if (this.modeloUsuarioSesPc.email == 'admin' && this.modeloUsuarioSesPc.contrasenia == 'admin') {
         this.bolUsuPassErr = false;
         this.bolUsuPassMov = false;
+        localStorage.setItem('emailUserLogedAd', this.modeloUsuarioSesPc.email);
 
         Swal.fire({
           title: 'Inicio de sesión exitoso',
@@ -176,51 +177,53 @@ export class LoginRegisComponent {
           icon: 'success',
           showCancelButton: false,
           confirmButtonText: 'Continuar',
-        })
-        this.router.navigate(['/admininicio']);
-        
-      }else{  //datos
-      this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
-        async (data) => {
-          if (data !== null) {
-            localStorage.setItem('emailUserLoged', data.email);
-            localStorage.setItem('username', data.nombreUsuario);
-            Swal.fire({
-              title: 'Inicio de sesión exitoso',
-              text: `Bienvenido ${data.nombreUsuario}`,
-              icon: 'success',
-              showCancelButton: false,
-              confirmButtonText: 'Continuar',
-            }).then((result) => {
-              this.router.navigate(['/home']).then( val => {
-                location.reload();
+        }).then((result) => {
+          this.router.navigate(['/admininicio']).then(val => {
+            location.reload();
+          });
+        });
+      } else {  //datos
+        this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
+          async (data) => {
+            if (data !== null) {
+              localStorage.setItem('emailUserLoged', data.email);
+              localStorage.setItem('username', data.nombreUsuario);
+              Swal.fire({
+                title: 'Inicio de sesión exitoso',
+                text: `Bienvenido ${data.nombreUsuario}`,
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Continuar',
+              }).then((result) => {
+                this.router.navigate(['/home']).then(val => {
+                  location.reload();
+                });
               });
-            });
-            
-            // sessionStorage.setItem('rol', data.rol.nombre);
-            
-          } else {
+
+              // sessionStorage.setItem('rol', data.rol.nombre);
+
+            } else {
+              this.bolUsuPassErr = true;
+              this.bolUsuPassMov = true;
+              Swal.fire(
+                'Inicio de sesión fallido',
+                `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos.`,
+                'error'
+              );
+            }
+          }
+          ,
+          (error: HttpErrorResponse) => {
             this.bolUsuPassErr = true;
             this.bolUsuPassMov = true;
             Swal.fire(
               'Inicio de sesión fallido',
-              `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos.`,
+              `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos`,
               'error'
             );
           }
-        } 
-        ,
-        (error: HttpErrorResponse) => {
-          this.bolUsuPassErr = true;
-          this.bolUsuPassMov = true;
-          Swal.fire(
-            'Inicio de sesión fallido',
-            `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos`,
-            'error'
-          );
-        }
-      );
-    }
+        );
+      }
     } else {
       //datos vacios muestra la alerta
       this.bolCamVacSesPc = true;
@@ -238,7 +241,7 @@ export class LoginRegisComponent {
   //     closeButton: true,
   //     enableHtml: true,
   //     toastClass:'my-custom-class'
-      
+
   //   });
 
   // }
@@ -362,4 +365,5 @@ export class LoginRegisComponent {
         Swal.showValidationMessage('Código de verificación enviado');
       });
   }
+
 }

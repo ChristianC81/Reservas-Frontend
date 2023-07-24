@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './adminpublicacion.component.html',
   styleUrls: ['./adminpublicacion.component.css']
 })
+
 export class AdminpublicacionComponent implements OnInit {
 
   salonesActivos: Salon[] = [];
