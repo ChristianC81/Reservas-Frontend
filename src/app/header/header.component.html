@@ -11,13 +11,13 @@
                 <li class="nav-item"><a class="nav-link" routerLink="/mis-salones" *ngIf="userLoged">Mis Salones</a>
                 </li>
             </ul>
-            <a class="btn btn-primary shadow" role="button" (click)="validateUserLogedAndRedirect()">Dar a conocer tu Salón Ya!!</a>
+            <a class="btn shadow" role="button" (click)="validateUserLogedAndRedirect()">Dar a conocer tu Salón Ya!!</a>
             <div class="user-section">
-                <button class="btn btn-primary shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg" *ngIf="!userLoged">
+                <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg" *ngIf="!userLoged">
                     Iniciar Sesión
                     <!-- <mat-icon>account_circle</mat-icon> Icono de usuario -->
                 </button>
-                <button class="btn btn-primary shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
+                <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
                   <mat-icon>account_circle</mat-icon> <!-- Icono de usuario -->
                 </button>
                 <!-- Menú de Usuario -->
