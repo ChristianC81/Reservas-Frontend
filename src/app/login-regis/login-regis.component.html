@@ -16,7 +16,7 @@
 
       <button type="button" class="submit" (click)="verificarSesioPc()">Iniciar Sesion</button>
       <label class="alertCamVac" *ngIf="bolCamVacSesPc">Llene todos los campos</label>
-      <p class="forgot-pass">Forgot password? Proximamente ヽ(^o^)丿</p>
+      <p class="forgot-pass">Forgot password? Próximamente ヽ(^o^)丿</p>
       <div class="cajaImgGen">
         <div class="cajaImg">
           <img src="/assets/img/facebook.png" *ngIf="!loggedIn" (click)="signInWithFB()" alt="">
@@ -28,7 +28,7 @@
       <div class="img">
         <div class="img__text m--up">
           <h2>Eres Nuevo?</h2>
-          <p>Resgistrate y descubre la belleza de cuenca</p>
+          <p>Regístrate y descubre la belleza de la ciudad de Cuenca</p>
         </div>
         <div class="img__text m--in">
           <h2>Ya tienes una cuenta?</h2>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form sign-up">
-        <h2>Registrate!</h2>
+        <h2>Regístrate!</h2>
 
         <label>
           <span>Usuario</span>
@@ -54,9 +54,9 @@
           <span>Correo</span>
           <input type="text" [(ngModel)]="emailReg" name="emaReg" />
           <label class="alertReg" *ngIf="bolEmaReg">Correo Registrado</label>
-          <label class="alertReg" *ngIf="bolValiGmail">Correo no valido</label>
+          <label class="alertReg" *ngIf="bolValiGmail">Correo no válido</label>
         </label>
-        <button type="button" class="submit" (click)="validarRegistroSinFac()">Registrate</button>
+        <button type="button" class="submit" (click)="validarRegistroSinFac()">Regístrate</button>
         <label class="alertCamVac" *ngIf="bolRegVac">Llene todos los campos</label>
         <div class="cajaImgGen">
           <div class="cajaImg">
@@ -81,7 +81,7 @@
 
         </div>
         <span class="lblAlertMovil" *ngIf="bolUsuPassMov">Contraseña o Gmail incorrecto</span>
-        <span class="lblAlertMovil" *ngIf="bolUsuVacMov">Campos vacios</span>
+        <span class="lblAlertMovil" *ngIf="bolUsuVacMov">Campos vacíos</span>
         <div class="from__section">
 
           <button type="button" class="submit" (click)="verificarSesioPc()">Iniciar Sesión</button>
@@ -104,7 +104,7 @@
           <span class="lblMovil">Correo</span>
           <input type="email" class="form__input" [(ngModel)]="emailReg" name="emaReg">
           <label *ngIf="bolEmaRegMov">Correo Registrado</label>
-          <label *ngIf="bolValiGmailMov">Correo no valido</label>
+          <label *ngIf="bolValiGmailMov">Correo no válido</label>
         </div>
         <span *ngIf="bolRegVacMov" class="alertCamVacReg">Llene todos los campos</span>
         <div class="from__section">

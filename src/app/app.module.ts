@@ -16,9 +16,7 @@ import { ServiLoginRegService } from '../service/servi-login-reg.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { PublicacionComponent } from './publicacion/publicacion.component';
-import { RegistrosComponent } from './registros/registros.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormComponentRegistro } from './registros/form.component';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { AdminheaderComponent } from './administrador/adminheader/adminheader.component';
 import { AdminpublicacionComponent } from './administrador/adminpublicacion/adminpublicacion.component';
@@ -45,8 +43,6 @@ import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reser
     InicioComponent,
     LoginRegisComponent,
     PublicacionComponent,
-    RegistrosComponent,
-    FormComponentRegistro,
     AdminheaderComponent,
     AdminpublicacionComponent,
     AdminusuarioComponent,

@@ -181,9 +181,9 @@
                 </div>
                 <div class="col-md-6">
 
-                        <label for="categoria" class="form-label">Categoria</label>
+                        <label for="categoria" class="form-label">Categoría</label>
                         <select class="form-control" [(ngModel)]="SalonDto.categoria.categoria" name="categoria" required>
-                            <option value="" selected disabled>Seleccione una categoria</option>
+                            <option value="" selected disabled>Seleccione una categoría</option>
                             <option *ngFor="let opcion of ListaCategoria" [value]="opcion.categoria">{{ opcion.categoria }}</option>
                         </select>
                     

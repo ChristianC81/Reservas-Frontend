@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginRegisComponent } from './login-regis/login-regis.component';
 import { PublicacionComponent } from './publicacion/publicacion.component';
-import { RegistrosComponent } from './registros/registros.component';
-import { FormComponentRegistro } from './registros/form.component';
 import { FormComponentPubli } from './publicacion/form.component';
 import { AdmininicioComponent } from './administrador/admininicio/admininicio.component';
 import { AdminusuarioComponent } from './administrador/adminusuario/adminusuario.component';
@@ -22,8 +20,6 @@ const routes: Routes = [
   { path: 'publicaciones', component: PublicacionesComponent},
   { path: 'mis-salones', component: MisSalonesComponent},
   { path: 'salon', component: PublicacionComponent },
-  { path: 'registro', component: RegistrosComponent },
-  { path: 'registro/form', component: FormComponentRegistro },
   { path: 'admininicio', component: AdmininicioComponent },
   { path: 'admininicio/usuarios', component: AdminusuarioComponent },
   { path: 'admininicio/publicaciones', component: AdminpublicacionComponent},

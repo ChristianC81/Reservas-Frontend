@@ -16,18 +16,18 @@
                         <label class="labelDatosIngreIndi">Correo</label>
                     </div>
 
-                    <label class="alertClass" *ngIf="bolNomVac">Nombre no valido</label>
+                    <label class="alertClass" *ngIf="bolNomVac">Nombre no válido</label>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                         <input #contNom type="email" name="regUsu" placeholder="Nombre" [(ngModel)]="modeloPersona.nombre"/>
                         
                         <label class="labelDatosIngreIndi">Nombre </label> 
                     </div>
-                    <label class="alertClass" *ngIf="bolApeVac">Apellidos no validos</label>
+                    <label class="alertClass" *ngIf="bolApeVac">Apellidos no válidos</label>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                         <input type="text" name="regApe" placeholder="Apellido1 Apellido2" #contApe [(ngModel)]="modeloPersona.apellido" />
                         <label class="labelDatosIngreIndi">Apellido</label>
                     </div>
-                    <label class="alertClass"  *ngIf="bolCeduVac">Cédula no valida</label>
+                    <label class="alertClass"  *ngIf="bolCeduVac">Cédula no válida</label>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
                         <input type="text" name="regCedu" #contCedu [(ngModel)]="modeloPersona.dniPasaporte"/>
                         <label class="labelDatosIngreIndi">Cédula</label>
@@ -35,14 +35,14 @@
                     <div class="row clearfix separacion">
                         
                         <div class="col_half">
-                            <label class="alertClassDoble" *ngIf="bolTelVac">Telefono no valido</label>
+                            <label class="alertClassDoble" *ngIf="bolTelVac">Teléfono no válido</label>
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                                 <input type="text" name="regTel" placeholder="opcional" #contTele [(ngModel)]="modeloPersona.telefono" />
                                 <label class="labelDatosIngreDoble">Telefono</label>
                             </div>
                         </div>
                         <div class="col_half">
-                            <label class="alertClassDoble" *ngIf="bolMovVac">Móvil no valido</label>
+                            <label class="alertClassDoble" *ngIf="bolMovVac">Móvil no válido</label>
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                                 <input type="text" name="regMov" #contMov required [(ngModel)]="modeloPersona.celular"/>
                                 <label class="labelDatosIngreDoble">Móvil</label>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="row clearfix">
                         <label class="alertClass" *ngIf="bolConRepVac" >Las contraseñas no coinciden</label>
-                        <label class="alertClass" *ngIf="bolConForm">La contraseña de tener al menos 6 y máximo de 12 caracteres además de contener una letra mayúscula, una minuscula, un número y un simobolo -/:()&@</label>
+                        <label class="alertClass" *ngIf="bolConForm">La contraseña de tener al menos 6 y máximo de 12 caracteres además de contener una letra mayúscula, una minuscula, un número y un simoolo -/:()&@</label>
                         <div class="col_half">
                             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                                 <input type="password" name="regContra"  #contContra [(ngModel)]="modeloUsuario.contrasenia"/>
