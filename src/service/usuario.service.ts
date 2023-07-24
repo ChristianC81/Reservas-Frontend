@@ -28,12 +28,14 @@ export class UsuarioService {
       .get(this.url.concat('/activos'))
       .pipe(map((data) => data as Usuario[]));
   }
+
   //Listar todos los usuarios inactivos
   getUsuariosInactivos(): Observable<Usuario[]> {
     return this.http
       .get(this.url.concat('/inactivos'))
       .pipe(map((data) => data as Usuario[]));
   }
+  
   //Actualizar el estado del usuario
   getUpdateEstado(id: number, usu: Usuario): Observable<number> {
     const url = `${this.url}/actualizarest/${id}`;
