@@ -27,9 +27,14 @@ export class SalonService {
   }
 
   getPublicacionesByUsuario(email: string): Observable<any> {
-    return this.http.get(this.baseUrl.concat("/listPublicacionesByUser/"+ email)).pipe(
+    return this.http.get(this.baseUrl.concat("/listPublicacionesByUser/" + email)).pipe(
       map(response => response as PublicacionDto[])
     );
+  }
+
+  eliminarSalon(id: number): Observable<Salon> {
+    const url = `${this.baseUrl}/eliminar/${id}`;
+    return this.http.delete<Salon>(url);
   }
 
   createSalon(salon: SalonDto, emailUser: String): Observable<any> {
@@ -41,9 +46,7 @@ export class SalonService {
     return this.http.get<Salon>(`${this.baseUrl}/${id}`);
   }
 
-  eliminarSalon(id: number): Observable<Salon> {
-    return this.http.delete<Salon>(`${this.baseUrl}/${id}`);
-  }
+
 
   subirFoto(archivo: File, id: any): Observable<Salon> {
     let formData = new FormData();
@@ -60,7 +63,7 @@ export class SalonService {
   }
 
   // POST IMAGE
-  postImage(imagen: string[], idSalon: number) : Observable<any>{
+  postImage(imagen: string[], idSalon: number): Observable<any> {
     return this.http.post<any>(this.baseUrl + '/postImage', imagen, {
       params: {
         idSalon: idSalon
