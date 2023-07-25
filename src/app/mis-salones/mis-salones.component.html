@@ -32,10 +32,11 @@
                                 {{publicacion.salonDto.descripcion}}
                             </p>
                             <p class="text-muted">Reviews (24)</p>
+                            <a>
+                                <button class="btn btn-danger btn-sm" (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
+                            </a>
+                            <br>
                         </div>
-                        <a style="color: #e23a19">
-                            <button (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
-                          </a>
                     </div>
                 </div>
             </div>
