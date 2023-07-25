@@ -70,8 +70,8 @@ export class LoginRegisComponent {
         this.serviLoginRegService.checkAvailableEmail(user.email).subscribe((data) => {
           console.log(user.email)
           //verifico si el correo no existe para mandar a registrar
-          console.log(data +"asfdsfasdfaf")
-          if (data) {
+         
+          if (!data) {
             //registrado mando a principal
             alert('registrado');
           } else {

@@ -59,9 +59,9 @@
                     class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
                     <h4 class="fw-bold">Usuarios Activos</h4>
                     <div class="input-group input-group-sm w-auto">
-                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchText"
-                            (ngModelChange)="searchUsuarios()" />
-                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuarios()">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchTextAct"
+                            (ngModelChange)="searchUsuariosAct(usuariosActivos)" placeholder="Usuario"/>
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuariosAct(usuariosActivos)">
                             <svg class="bi bi-search mb-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                 fill="currentColor" viewBox="0 0 16 16">
                                 <path
@@ -123,9 +123,9 @@
                     class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
                     <h4 class="fw-bold">Usuarios Inactivos</h4>
                     <div class="input-group input-group-sm w-auto">
-                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchText"
-                            (ngModelChange)="searchUsuarios()" />
-                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuarios()">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchTextInc"
+                        (ngModelChange)="searchUsuariosInc(usuariosInactivos)" placeholder="Usuario"/>
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuariosInc(usuariosInactivos)">
                             <svg class="bi bi-search mb-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                 fill="currentColor" viewBox="0 0 16 16">
                                 <path
