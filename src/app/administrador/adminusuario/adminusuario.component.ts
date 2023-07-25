@@ -37,9 +37,11 @@ export class AdminusuarioComponent implements OnInit {
   private cargarUsuNum() {
     let obsUsuActivos = this.usuarioService.getNumUsu(true);
     let obsUsuInactivos = this.usuarioService.getNumUsu(false);
-
+  
     forkJoin([obsUsuActivos, obsUsuInactivos]).subscribe(
+      
       ([usuActivos, usuInactivos]) => {
+    
         this.usuActivos = usuActivos;
         this.usuInactivos = usuInactivos;
         this.totUsuarios = this.usuActivos + this.usuInactivos;
