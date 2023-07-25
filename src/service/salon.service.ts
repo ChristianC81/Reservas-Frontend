@@ -61,11 +61,7 @@ export class SalonService {
 
   // POST IMAGE
   postImage(imagen: string[], idSalon: number) : Observable<any>{
-    return this.http.post<any>(this.baseUrl + '/postImage', imagen, {
-      params: {
-        idSalon: idSalon
-      }
-    });
+    return this.http.post<any>(`${this.baseUrl}/postImage/${idSalon}`, imagen);
   }
 
 

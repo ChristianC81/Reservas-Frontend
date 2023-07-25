@@ -232,7 +232,7 @@
                 </div>
             </form>
         </div>
-
+      
         <div class="col-md-6">
             <input type="file" (change)="onFilesSelected($event)" accept="image/*" multiple>
             <div class="image-container">
@@ -240,6 +240,8 @@
                     <img [src]="image" class="selected-image">
                 </div>
             </div>
+        <br>
+            <button (click)="createImageSalon()" class="btn btn-success btn-sm" role="button">SUBIR FOTO</button>
         </div>
     </div>
     <form ngNativeValidate (ngSubmit)="createcomplemento()">

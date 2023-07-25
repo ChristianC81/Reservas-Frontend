@@ -53,6 +53,7 @@ export class FormComponentPubli implements OnInit {
   complemento: Complemento = new Complemento();
   public titulo: string = 'Publica tu Salón AHORA !!';
   ultimoId: number;
+  idSalonComp: number;
 
   ListaCategoria: CategoriaDto[] = [];
 
@@ -95,6 +96,7 @@ export class FormComponentPubli implements OnInit {
       .subscribe((categoria: CategoriaDto[]) => (this.ListaCategoria = categoria));
   }
 
+  // Imagenes
   selectedImages: string[] = [];
   selectedImage: string[] = [];
 
@@ -163,17 +165,8 @@ export class FormComponentPubli implements OnInit {
           `Salon ${salon.nombre} guardado con exito`,
           'success'
         );
-        this.router.navigate(['/mis-salones']);
-        // this.salonService
-        //   .postImage(this.selectedImage, salon.idSalon)
-        //   .subscribe(
-        //     (data) => {
-        //       alert('SE PUBLICO LA FOTO');
-        //     },
-        //     (err) => {
-        //       alert('ERROR AL SUBIR LA FOTO');
-        //     }
-        //   );
+        //this.router.navigate(['/mis-salones']);
+        this.idSalonComp = salon.idSalon;
       }, (err) =>{
         Swal.fire(
           'Publicación de salón',
@@ -184,6 +177,19 @@ export class FormComponentPubli implements OnInit {
       );
   }
 
+  createImageSalon(): void {
+    this.salonService
+      .postImage(this.selectedImage, this.idSalonComp)
+      .subscribe(
+        (data) => {
+          alert('SE PUBLICO LA FOTO');
+        },
+        (err) => {
+          alert('SE PUBLICO LA FOTO');
+          console.log(err);
+        }
+      );
+  }   
   //creacion del complemento
   public createcomplemento(): void {
     // agregamos el complemto al array de complementos

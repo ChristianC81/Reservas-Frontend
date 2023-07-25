@@ -1,6 +1,7 @@
 import { Calificacion } from "./Calificacion";
 import { Complemento } from "./Complemento";
 import { Usuario } from "./Usuario";
+import { Multimedia } from "./Multimedia";
 export class Salon {
 
   salonId: number = 0;
@@ -15,6 +16,10 @@ export class Salon {
   salonLatitud: number = 0;
   salonPrecio: number = 0;
   salonEstado: string = "";
+  
+   // Representa la relación @OneToMany con Multimedia
+   multimediaBySalon: Multimedia[] = [];
+
   //
   calId: Calificacion;
   comId: Complemento;
