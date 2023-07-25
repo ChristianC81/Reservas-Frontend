@@ -11,6 +11,7 @@ import { AdmingestionComponent } from './administrador/admingestion/admingestion
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { MisSalonesComponent } from './mis-salones/mis-salones.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admininicio/gestion', component: AdmingestionComponent},
   { path: 'salon/publicar', component: FormComponentPubli },
   { path: 'regisUsu', component: RegistroUsuarioComponent },
+  { path: 'editprofile', component: EditProfileComponent },
 ];
 
 @NgModule({
