@@ -26,21 +26,7 @@ export class AdmingestionComponent {
     if(!localStorage.getItem('username')){
       this.router.navigate(['loginReg']);
     }
-    this.usuarioService.getUsuariosActivos().subscribe(
-      usuarios => {
-        this.usuariosActivos = usuarios;
-        this.usuActivos = this.usuariosActivos.length; // Asignar la cantidad de usuarios activos
-        this.totUsuarios = this.usuActivos + this.usuInactivos; // Actualizar la cantidad total de usuarios
-      }
-    );
-        
-    this.usuarioService.getUsuariosInactivos().subscribe(
-      usuarios => {
-        this.usuariosInactivos = usuarios;
-        this.usuInactivos = this.usuariosInactivos.length; // Asignar la cantidad de usuarios inactivos
-        this.totUsuarios = this.usuActivos + this.usuInactivos; // Actualizar la cantidad total de usuarios
-      }
-    );
+
     
    
   }

@@ -90,7 +90,7 @@
                                     <td style="text-align: left; vertical-align: middle;">
                                         {{estadoSt(usuarioact.estado)}}</td>
                                     <td class="text-center action-buttons">
-                                        <button (click)="desactivarUsuario(usuarioact)"
+                                        <button (click)="actiDesacUsu(false,usuarioact)"
                                             class="btn btn-danger btn-sm">Desactivar</button>
                                     </td>
                                 </tr>
@@ -154,7 +154,7 @@
                                     <td style="text-align: left; vertical-align: middle;">
                                         {{estadoSt(usuarioinact.estado)}}</td>
                                    <td class="text-center action-buttons">
-                                        <button (click)="activarUsuario(usuarioinact)"
+                                        <button (click)="actiDesacUsu(true,usuarioinact)"
                                         class="btn btn-primary btn-sm">Activar</button>
                                     </td>
                                 </tr>
