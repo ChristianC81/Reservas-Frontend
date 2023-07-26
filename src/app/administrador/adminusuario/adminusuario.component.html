@@ -3,6 +3,7 @@
         <div class="text-center">
             <h1 class="fw-bold">Gestión de Usuarios</h1>
             <a class="btn shadow" role="button" routerLink="/admininicio">Inicio</a>
+            <a class="btn shadow" role="button" routerLink="/home">Cerrar Sesión</a>
         </div>
         <br>
     </div>
@@ -59,9 +60,9 @@
                     class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
                     <h4 class="fw-bold">Usuarios Activos</h4>
                     <div class="input-group input-group-sm w-auto">
-                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchText"
-                            (ngModelChange)="searchUsuarios()" />
-                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuarios()">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchTextAct"
+                            (ngModelChange)="searchUsuariosAct(usuariosActivos)" placeholder="Usuario"/>
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuariosAct(usuariosActivos)">
                             <svg class="bi bi-search mb-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                 fill="currentColor" viewBox="0 0 16 16">
                                 <path
@@ -90,7 +91,7 @@
                                     <td style="text-align: left; vertical-align: middle;">
                                         {{estadoSt(usuarioact.estado)}}</td>
                                     <td class="text-center action-buttons">
-                                        <button (click)="desactivarUsuario(usuarioact)"
+                                        <button (click)="actiDesacUsu(false,usuarioact)"
                                             class="btn btn-danger btn-sm">Desactivar</button>
                                     </td>
                                 </tr>
@@ -123,9 +124,9 @@
                     class="card-header d-flex flex-wrap justify-content-center align-items-center justify-content-sm-between gap-3">
                     <h4 class="fw-bold">Usuarios Inactivos</h4>
                     <div class="input-group input-group-sm w-auto">
-                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchText"
-                            (ngModelChange)="searchUsuarios()" />
-                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuarios()">
+                        <input class="form-control form-control-sm" type="text" [(ngModel)]="searchTextInc"
+                        (ngModelChange)="searchUsuariosInc(usuariosInactivos)" placeholder="Usuario"/>
+                        <button class="btn btn-outline-primary btn-sm" type="button" (click)="searchUsuariosInc(usuariosInactivos)">
                             <svg class="bi bi-search mb-1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                 fill="currentColor" viewBox="0 0 16 16">
                                 <path
@@ -154,7 +155,7 @@
                                     <td style="text-align: left; vertical-align: middle;">
                                         {{estadoSt(usuarioinact.estado)}}</td>
                                    <td class="text-center action-buttons">
-                                        <button (click)="activarUsuario(usuarioinact)"
+                                        <button (click)="actiDesacUsu(true,usuarioinact)"
                                         class="btn btn-primary btn-sm">Activar</button>
                                     </td>
                                 </tr>

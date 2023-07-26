@@ -204,10 +204,12 @@ export class RegistroUsuarioComponent implements OnInit {
         this.bolApeVac = true;
       }
 
-      console.log("llego")
+    
 
       //si todo esta correcto registrar
       if (this.contador === 0) {
+
+       
         this.service.registrarPersona(this.modeloPersona).subscribe((data) => {
           console.log("PASA REGISTRO DE PERSONA", data)
           this.service.registrarUsuario(data.idPersona, this.modeloUsuario.email, this.modeloUsuario.nombreUsuario, this.modeloUsuario.contrasenia)

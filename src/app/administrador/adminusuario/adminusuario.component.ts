@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/modelo/Usuario';
 import { UsuarioService } from 'src/service/usuario.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-adminusuario',
   templateUrl: './adminusuario.component.html',
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 
 export class AdminusuarioComponent implements OnInit {
   //Variable para el filtro de busqueda
-  searchText: string = '';
+  searchTextInc: string = '';
+  searchTextAct: string = '';
 
   //Variables para mostrar la cantidad de usuarios
   totUsuarios: number;
@@ -22,110 +24,99 @@ export class AdminusuarioComponent implements OnInit {
   usuarios: Usuario[] = [];
   usuariosActivos: Usuario[] = [];
   usuariosInactivos: Usuario[] = [];
+  usuariosActivosCop: Usuario[] = [];
+  usuariosInactivosCop: Usuario[] = [];
 
-  constructor(private usuarioService: UsuarioService, private router: Router ) { }
+  constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
-   
-    this.usuarioService.getUsuariosActivos().subscribe(
-      usuarios => {
-        this.usuariosActivos = usuarios;
-        this.usuActivos = this.usuariosActivos.length; // Asignar la cantidad de usuarios activos
-        this.totUsuarios = this.usuActivos + this.usuInactivos; // Actualizar la cantidad total de usuarios
-      }
-    );
-        
-    this.usuarioService.getUsuariosInactivos().subscribe(
-      usuarios => {
-        this.usuariosInactivos = usuarios;
-        this.usuInactivos = this.usuariosInactivos.length; // Asignar la cantidad de usuarios inactivos
-        this.totUsuarios = this.usuActivos + this.usuInactivos; // Actualizar la cantidad total de usuarios
-      }
-    );
-
-    this.usuarioService.getUsuarios().subscribe(
-      usuarios => {
-        this.usuarios = usuarios;
-      }
-    );
+    //mostrar contador de usuarios
+    this.cargarUsuNum();
+    this.cargarUsuEst();
   }
 
-  //Metodo para desactivar el usuario
-  desactivarUsuario(usu: Usuario) {
-    usu.estado = false;
-    this.usuarioService.getUpdateEstado(usu.idUsuario, usu).subscribe(
-      data => {
-        Swal.fire('Administración', 'Usuario Desactivado', 'info').then(() => {
-          // Recargar la página después de mostrar el mensaje
-          setTimeout(function() {
-            // Recargar la página
-            location.reload();
-          }, 2);
-        });
+  //cargar los usuario activos y inactivos diferentes de administradores
+
+  private cargarUsuNum() {
+    let obsUsuActivos = this.usuarioService.getNumUsu(true);
+    let obsUsuInactivos = this.usuarioService.getNumUsu(false);
+
+    forkJoin([obsUsuActivos, obsUsuInactivos]).subscribe(
+
+      ([usuActivos, usuInactivos]) => {
+
+        this.usuActivos = usuActivos;
+        this.usuInactivos = usuInactivos;
+        this.totUsuarios = this.usuActivos + this.usuInactivos;
       },
       error => {
         console.log(error);
-        // Manejar el error de forma adecuada
-      }
-    );
+      });
   }
 
-  //Metodo para activar el usuario
-  activarUsuario(usu: Usuario) {
-    usu.estado = true;
-    this.usuarioService.getUpdateEstado(usu.idUsuario, usu).subscribe(
-      data => {
-        Swal.fire('Administración', 'Usuario Activo', 'success').then(() => {
-          // Recargar la página después de mostrar el mensaje
-          setTimeout(function() {
-            // Recargar la página
-            location.reload();
-          }, 2);
-        });
-      },
-      error => {
-        console.log(error);
-        // Manejar el error de forma adecuada
+  //cargo los datos como nombre gmail etc 
+  private cargarUsuEst() {
+    this.usuarioService.getUsuEstado(true).subscribe(data => {
+
+      this.usuariosActivos = data;
+      this.usuariosActivosCop=data;
+    });
+
+
+    this.usuarioService.getUsuEstado(false).subscribe(data => {
+
+      this.usuariosInactivos = data;
+      this.usuariosInactivosCop=data;
+    });
+  }
+
+  //cambio el estado de los usuarios
+  actiDesacUsu(estado: boolean, usu: Usuario) {
+
+    usu.estado = estado;
+    usu.contrasenia = "";
+    this.usuarioService.userUpdateState(usu).subscribe(data => {
+
+      if (data.idUsuario != null) {
+        window.location.reload();
       }
-    );
+
+    });
   }
-   //Metodo para activar el usuario
-   cambiarRol(usu: Usuario) {
-    
-    this.usuarioService.getUpdateEstado(usu.idUsuario, usu).subscribe(
-      data => {
-        Swal.fire('Administración', 'Usuario Activo', 'success').then(() => {
-          // Recargar la página después de mostrar el mensaje
-          setTimeout(function() {
-            // Recargar la página
-            location.reload();
-          }, 2);
-        });
-      },
-      error => {
-        console.log(error);
-        // Manejar el error de forma adecuada
-      }
-    );
-  }
-  editarUsuario(usu: Usuario) {
-  }
-  eliminarUsuario(usu: Usuario) {
-  }
-  
-  searchUsuarios() {
-    if (this.searchText.trim() !== '') {
-      this.usuarios = this.usuarios.filter(usuario =>
-        usuario.nombreUsuario.toLowerCase().includes(this.searchText.toLowerCase()) ||
+
+
+
+
+
+  searchUsuariosInc(arrayUsu: Usuario[]) {
+ 
+
+    if (this.searchTextInc.trim() !== '') {
+      this.usuariosInactivos=this.usuariosInactivosCop.filter(usuario =>
+        usuario.nombreUsuario.toLowerCase().includes(this.searchTextInc.toLowerCase())
         // usuario.persona.persEmail.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        usuario.rol.nombre.toLowerCase().includes(this.searchText.toLowerCase())
+
       );
     } else {
-      this.usuarioService.getUsuarios().subscribe(
-        usuarios => {
-          this.usuarios = usuarios;
-        }
+    
+      this.usuariosInactivos=this.usuariosInactivosCop.slice();
+    
+    }
+  }
+
+  searchUsuariosAct(arrayUsu: Usuario[]) {
+ 
+
+    if (this.searchTextAct.trim() !== '') {
+      this.usuariosActivos=this.usuariosActivosCop.filter(usuario =>
+        usuario.nombreUsuario.toLowerCase().includes(this.searchTextAct.toLowerCase())
+        // usuario.persona.persEmail.toLowerCase().includes(this.searchText.toLowerCase()) ||
+
       );
+    } else {
+    
+      this.usuariosActivos=this.usuariosActivosCop.slice();
+    
     }
   }
 
@@ -136,5 +127,5 @@ export class AdminusuarioComponent implements OnInit {
       return 'Inactivo';
     }
   }
-  
+
 }

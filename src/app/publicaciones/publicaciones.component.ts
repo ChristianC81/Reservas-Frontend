@@ -15,6 +15,7 @@ export class PublicacionesComponent {
   publicaciones: PublicacionDto[];
   detalle  = false;
   publicacionSelect :any = null;
+  salones: Salon[] = []
 
   constructor(private salonService: SalonService,private router: Router) { }
 

@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
 import { MatMenuModule } from '@angular/material/menu'; // Import 'mat-menu' component from Angular Material
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginRegisComponent } from './login-regis/login-regis.component';
 import { ServiLoginRegService } from '../service/servi-login-reg.service';
@@ -34,6 +36,7 @@ import { MisSalonesComponent } from './mis-salones/mis-salones.component';
 import { PublicacionesDetalleComponent } from './publicaciones/publicaciones-detalle/publicaciones-detalle.component';
 import { SalonDetalleComponent } from './mis-salones/salon-detalle/salon-detalle.component';
 import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reservas.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reser
     PublicacionesDetalleComponent,
     SalonDetalleComponent,
     ModalReservasComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,8 @@ import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reser
     ToastrModule.forRoot(),
     MatMenuModule,
     MatIconModule,
+    MatInputModule,
+    FormsModule,
 
   ],
   providers: [ServiLoginRegService,

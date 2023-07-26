@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container" *ngIf="!detalle && publicacionSelect == null">
     <section class="backgroundMain ">
         <div class="container py-5">
@@ -26,11 +27,15 @@
                                 </li>
                                 <li class="text-muted text-right">${{publicacion.salonDto.precioSalon}}</li>
                             </ul>
-                            <a class="h2 text-decoration-none text-dark">{{publicacion.salonDto.nombre}}</a>
+                            <p class="h2 text-decoration-none text-dark">{{publicacion.salonDto.nombre}}</p>
+                            
                             <p class="card-text">
                                 {{publicacion.salonDto.descripcion}}
                             </p>
-                            <p class="text-muted">Reviews (24)</p>
+                            <p class="card-text">
+                                {{publicacion.salonDto.direccion}}
+                            </p>
+                            <p class="text-muted">Calificación ({{publicacion.salonDto.calificacion}} ✰)</p>
                         </div>
                     </div>
                 </div>

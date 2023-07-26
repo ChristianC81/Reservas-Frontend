@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="container">
+    <br>
+    <div class="row text-left py-3">
+        <div class="col-lg-6 m-auto" >
+            <h1 class="h2">Perfil de </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="./assets/img/userr.png" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-6">
+            <form>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="username" placeholder="Usuar234" name="username"
+                        [(ngModel)]="userData.username" required>
+                    <label for="username">Nombre de usuario:</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+                        [(ngModel)]="userData.email" required>
+                    <label for="email">Correo electrónico:</label>
+                </div>
+                <br>
+                <div class="form-floating"> <input type="text" class="form-control" id="firstName"
+                        placeholder="name@example.com" name="firstName" [(ngModel)]="userData.firstName" required>
+                    <label for="firstName">Nombre:</label>
+                </div>
+                <br>
+                <div class="form-floating"> <input type="text" class="form-control" id="lastName"
+                        placeholder="name@example.com" name="lastName" [(ngModel)]="userData.lastName" required>
+                    <label for="lastName">Apellido:</label>
+                </div>
+                <br>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn btn-success me-md-2" type="submit" (click)="onSubmit()">Editar perfil</button>
+                    <button class="btn btn-danger btn-sm" type="button"(click)="onCancel()" >Cancelar</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>

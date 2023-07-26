@@ -1,151 +1,258 @@
+<app-header></app-header>
 <div _ngcontent-ygo-c128 class="container">
-    <div _ngcontent-ygo-c128 class="modal-body">
-        <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
-            <div class="modal-header text-center">
-                <h3 class="text-center" ><b>Detalle del Salón {{salon.nombre}}</b></h3>
+  <div _ngcontent-ygo-c128 class="modal-body">
+    <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
+      <br /><br />
+      <div class="modal-header text-center">
+        <h3 class="text-center">
+          <b>Detalle del Salón {{ salon.nombre }}</b>
+        </h3>
+      </div>
+      <br/>
+      <div class="card-footer">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <b>Dirección: </b>{{ salon.direccion }}
+          </li>
+          <li class="list-group-item">
+            <b>Capacidad: </b>{{ salon.capacidad }}
+          </li>
+          <li class="list-group-item">
+            <b>Descripción: </b>{{ salon.descripcion }}
+          </li>
+          <li class="list-group-item">
+            <b>Disponibilidad: </b>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                *ngIf="!salon.disponibilidad"
+                disabled
+              />
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                *ngIf="salon.disponibilidad"
+                checked
+                disabled
+              />
             </div>
-            <div class="card-footer">
-                <ul class="list-group">
-                    <li class="list-group-item"><b>Dirección: </b>{{salon.direccion}}</li>
-                    <li class="list-group-item"><b>Capacidad: </b>{{salon.capacidad}}</li>
-                    <li class="list-group-item"><b>Descripción: </b>{{salon.descripcion}}</li>
-                    <li class="list-group-item">
-                        <b>Disponibilidad: </b>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
-                                *ngIf="!salon.disponibilidad" disabled/>
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
-                                *ngIf="salon.disponibilidad" checked disabled/>
-                        </div>
-                    </li>
-                    <li class="list-group-item"><b>Precio: </b>{{salon.precioSalon}}</li>
-                    <li class="list-group-item"><b>Calificacion: </b>{{salon.calificacion}}</li>
-                    <!-- <li class="list-group-item"><b>Garantía: </b>{{salon.garantiaDanos}}</li> -->
-                </ul>
-            </div>
-            <br />
-            <div class="card text-center">
-                <div class="modal-header text-center">
-                    <h3 class="text-center"><b>Listado de Complementos</b></h3>
-                </div>
-                <br />
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>NOMBRE</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>CANTIDAD</th>
-                            <th>PRECIO UNITARIO</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let group of salon.complementos">
-                            <td>{{group.nombre }}</td>
-                            <td>{{ group.descripcion }}</td>
-                            <td>{{ group.cantidadBase }}</td>
-                            <td>{{ group.precioUnitario }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br />
-            <div class="card-footer">
-                <div class="botones">
-                    <div class="row">
-                        <div class="col d-grid gap-2">
-                            <button type="button" class="btn btn-success" (click)="validateUserLogedAndShowModalView()">
-                                Reservar <i class="pi pi-check"></i>
-                            </button>
-                        </div>
-                        <div class="col d-grid gap-2">
-                            <button type="button" class="btn btn-primary" (click)="cancel()">Volver</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
+          </li>
+          <li class="list-group-item">
+            <b>Precio: </b>{{ salon.precioSalon }}
+          </li>
+          <li class="list-group-item">
+            <b>Calificacion: </b>{{ salon.calificacion }}
+          </li>
+          <!-- <li class="list-group-item"><b>Garantía: </b>{{salon.garantiaDanos}}</li> -->
+        </ul>
+      </div>
+      <br />
+      <div class="card text-center">
+        <br /><br />
+        <div class="modal-header text-center">
+          <h3 class="text-center"><b>Listado de Complementos</b></h3>
         </div>
+        <br />
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th>DESCRIPCIÓN</th>
+              <th>CANTIDAD</th>
+              <th>PRECIO UNITARIO</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let group of salon.complementos">
+              <td>{{ group.nombre }}</td>
+              <td>{{ group.descripcion }}</td>
+              <td>{{ group.cantidadBase }}</td>
+              <td>{{ group.precioUnitario }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br /><br /><br />
+      <div class="card-footer">
+        <div class="botones">
+          <div class="row">
+            <div class="col d-grid gap-2">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="validateUserLogedAndShowModalView()"
+              >
+                Reservar <i class="pi pi-check"></i>
+              </button>
+            </div>
+            <div class="col d-grid gap-2">
+              <button type="button" class="btn btn-primary" (click)="cancel()">
+                Volver
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<div class="ventana-emergente" [ngClass]="{'visible': modalView}">
-    <div _ngcontent-ygo-c128 class="container">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Reservas</h5>
-            </div>
-            <div class="modal-body">
-                <div class=" row">
-                    <div class="col-auto">
-                        <label for="cantidad" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="cantidad" [value]="cantidad" [(ngModel)]="cantidad">
-                    </div>
-                    <div class="col-auto">
-                        <label for="estadoPago" class="form-label">Estado de Pago</label>
-                        <input type="text" readonly  class="form-control" id="estadoPago" value="Pendiente">
-                    </div>
-                    <div class="col-auto">
-                        <label for="observacion" class="form-label">Observaciones</label>
-                        <input type="text" class="form-control" id="observacion" [value]="observacion" [(ngModel)]="observacion">
-                    </div>
-                </div>
-                <br>    
-                <div class="mb-3 row" style="margin: 5px 5px;">
-                    <h3>Detalle del Pedido</h3>
-                </div>
-                <div class="row" style="margin: 5px 5px;">
-                    <div class="col-auto">
-                        <label class="form-label" for="complemento" >Seleccion el Complemento</label>
-                        <select class="form-control" [(ngModel)]="codComplement" name="complemento" required (change)="agregarDetalle($event)" style="width: 300px;">
-                            <option *ngFor="let opcion of salon.complementos" [value]="opcion.idComplemento">{{ opcion.nombre }}</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <label for="cantidadDetalle" class="form-label">Catidad del complemento</label>
-                        <input type="number" class="form-control" id="cantidadDetalle" [value]="cantidadDetalle" [(ngModel)]="cantidadDetalle">
-                    </div>
-                    <div class="col-auto">
-                        <label for="precioUnitario" class="form-label">Precio Unitario</label>
-                        <input type="number" readonly class="form-control" id="precioUnitario" [value]="precioUnitario">
-                    </div>
-                    <div class="col-auto" style="max-width: 10px 5px;">
-                        <button type="submit" class="btn btn-primary" (click)="agregarLista()">Agregar</button>
-                    </div>
-                </div>
-                <div class="mb-3 row" style="margin: 5px 5px;">
-                    <label for="preciototal" class="col-sm-2 col-form-label">Precio Total</label>
-                    <div class="col-sm-10">
-                        <input type="number" readonly  class="form-control" id="preciototal" [value]="preciototal">
-                    </div>
-                </div>
-                <div class="mb-3 row" style="margin: 5px 5px;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>COMPLEMENTO</th>
-                                <th>CANTIDAD</th>
-                                <th>PRECIO UNITARIO</th>
-                            </tr>
-                        </thead>
-    
-                        <tbody>
-                            <tr *ngFor="let detalle of listDetalle">
-                                <td>{{detalle.nombreComplemento}}</td>
-                                <td>{{detalle.cantidad }}</td>
-                                <td>{{ detalle.precioUnitario }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer" style="margin: 5px 5px;">
-                <button type="button" class="btn btn-danger" (click)="modalView = false">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="guardarReserva()" style="margin-left: 5px;">Guardar</button>
-            </div>
+<div class="ventana-emergente" [ngClass]="{ visible: modalView }">
+  <div _ngcontent-ygo-c128 class="container">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reservas</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-auto">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input
+              type="number"
+              class="form-control"
+              id="cantidad"
+              [value]="cantidad"
+              [(ngModel)]="cantidad"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="estadoPago" class="form-label">Estado de Pago</label>
+            <input
+              type="text"
+              readonly
+              class="form-control"
+              id="estadoPago"
+              value="Pendiente"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="observacion" class="form-label">Observaciones</label>
+            <input
+              type="text"
+              class="form-control"
+              id="observacion"
+              [value]="observacion"
+              [(ngModel)]="observacion"
+            />
+          </div>
         </div>
-    </div>
-</div>
+        <br />
+        <div class="mb-3 row" style="margin: 5px 5px">
+          <h3>Detalle del Pedido</h3>
+        </div>
+        <div class="row" style="margin: 5px 5px">
+          <div class="col-auto">
+            <label class="form-label" for="complemento"
+              >Seleccion el Complemento</label
+            >
+            <select
+              class="form-control"
+              [(ngModel)]="codComplement"
+              name="complemento"
+              required
+              (change)="agregarDetalle($event)"
+              style="width: 300px"
+            >
+              <option
+                *ngFor="let opcion of salon.complementos"
+                [value]="opcion.idComplemento"
+              >
+                {{ opcion.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <label for="cantidadDetalle" class="form-label"
+              >Catidad del complemento</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="cantidadDetalle"
+              [value]="cantidadDetalle"
+              [(ngModel)]="cantidadDetalle"
+            />
+          </div>
+          <div class="col-auto">
+            <label for="precioUnitario" class="form-label"
+              >Precio Unitario</label
+            >
+            <input
+              type="number"
+              readonly
+              class="form-control"
+              id="precioUnitario"
+              [value]="precioUnitario"
+            />
+          </div>
+          <div class="col-auto" style="max-width: 10px 5px">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="agregarLista()"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+        <div class="mb-3 row" style="margin: 5px 5px">
+          <label for="preciototal" class="col-sm-2 col-form-label"
+            >Precio Total</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              readonly
+              class="form-control"
+              id="preciototal"
+              [value]="preciototal"
+            />
+          </div>
+        </div>
+        <div class="mb-3 row" style="margin: 5px 5px">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>COMPLEMENTO</th>
+                <th>CANTIDAD</th>
+                <th>PRECIO UNITARIO</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <tr *ngFor="let detalle of listDetalle">
+                <td>{{ detalle.nombreComplemento }}</td>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ detalle.precioUnitario }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer" style="margin: 5px 5px">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="modalView = false"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="guardarReserva()"
+          style="margin-left: 5px"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

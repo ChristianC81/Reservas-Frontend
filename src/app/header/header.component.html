@@ -1,7 +1,8 @@
 <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
     <div class="container"><a class="navbar-brand d-flex align-items-center" href="/">
-        <img class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon bg-white" style=" height: 40px; width: 40px;" src="assets/images/LogoRvC.png">
-    <span>Reserv Company</span></a><button data-bs-toggle="collapse" class="navbar-toggler"
+            <img class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon bg-white"
+                style=" height: 40px; width: 40px;" src="assets/images/LogoRvC.png">
+            <span>Reserv Company</span></a><button data-bs-toggle="collapse" class="navbar-toggler"
             data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -13,19 +14,21 @@
             </ul>
             <a class="btn shadow" role="button" (click)="validateUserLogedAndRedirect()">Dar a conocer tu Salón Ya!!</a>
             <div class="user-section">
-                <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg" *ngIf="!userLoged">
+                <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg"
+                    *ngIf="!userLoged">
                     Iniciar Sesión
                     <!-- <mat-icon>account_circle</mat-icon> Icono de usuario -->
                 </button>
-                <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
-                  <mat-icon>account_circle</mat-icon> <!-- Icono de usuario -->
+                <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button
+                    [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
+                    <mat-icon>account_circle</mat-icon> <!-- Icono de usuario -->
                 </button>
                 <mat-menu #menuUsuario="matMenu">
-                  <!-- Menú de Usuario <button mat-menu-item>Ver Perfil {{userName}}</button>
-                  <button mat-menu-item>Editar Perfil</button> -->
-                  <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+                    <br>
+                    <button mat-menu-item routerLink="/editprofile">Ver Perfil {{userName}}</button>
+                    <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
                 </mat-menu>
-              </div>
+            </div>
         </div>
     </div>
 </nav>

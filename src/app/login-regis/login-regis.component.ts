@@ -68,9 +68,10 @@ export class LoginRegisComponent {
       //verifico que exista el usuario
       if (user != null) {
         this.serviLoginRegService.checkAvailableEmail(user.email).subscribe((data) => {
+          console.log(user.email)
           //verifico si el correo no existe para mandar a registrar
-
-          if (data) {
+         
+          if (!data) {
             //registrado mando a principal
             alert('registrado');
           } else {
@@ -184,6 +185,7 @@ export class LoginRegisComponent {
       } else {  //datos
         this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
           async (data) => {
+          
             if (data !== null) {
               localStorage.setItem('emailUserLoged', data.email);
               localStorage.setItem('username', data.nombreUsuario);
@@ -194,6 +196,7 @@ export class LoginRegisComponent {
                 showCancelButton: false,
                 confirmButtonText: 'Continuar',
               }).then((result) => {
+                console.log(data)
                 this.router.navigate(['/home']).then(val => {
                   location.reload();
                 });
