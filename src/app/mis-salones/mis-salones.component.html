@@ -1,49 +1,66 @@
 <app-header></app-header>
 <div class="container" *ngIf="!detalle && publicacionSelect === null">
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">MIS SALONES</h1>
-                    <p>
-                        Aquí puede visualizar todos los salones que usted a publicado.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones">
-                    <div class="card h-100">
-                        <a (click)="seleccionarPublicacion(publicacion)">
-                            <img src="./assets/images/salon7.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">${{publicacion.salonDto.precioSalon}}</li>
-                            </ul>
-                            <p class="h2 text-decoration-none text-dark">{{publicacion.salonDto.nombre}}</p>
-                            <p class="card-text">
-                                {{publicacion.salonDto.descripcion}}
-                            </p>
-                            <p class="text-muted">Calificación ({{publicacion.salonDto.calificacion}} ✰)</p>
-                            <a>
-                                <button class="btn btn-danger btn-sm" (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
-                            </a>
-                            <br>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section class="bg-light">
+    <div class="container py-5">
+      <div class="row text-center py-3">
+        <div class="col-lg-6 m-auto">
+          <h1 class="h1">MIS SALONES</h1>
+          <p>Aquí puede visualizar todos los salones que usted a publicado.</p>
         </div>
-    </section>
+      </div>
+      <div class="row">
+        <div
+          class="col-12 col-md-4 mb-4"
+          *ngFor="let publicacion of publicaciones"
+        >
+          <div class="card h-100">
+            <a (click)="seleccionarPublicacion(publicacion)">
+              <img
+                src="./assets/images/salon7.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+            </a>
+            <div class="card-body">
+              <ul class="list-unstyled d-flex justify-content-between">
+                <li>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-warning fa fa-star"></i>
+                  <i class="text-muted fa fa-star"></i>
+                  <i class="text-muted fa fa-star"></i>
+                </li>
+                <li class="text-muted text-right">
+                  ${{ publicacion.salonDto.precioSalon }}
+                </li>
+              </ul>
+              <p class="h2 text-decoration-none text-dark">
+                {{ publicacion.salonDto.nombre }}
+              </p>
+              <p class="card-text">
+                {{ publicacion.salonDto.descripcion }}
+              </p><br/>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="eliminarSalon(publicacion.salonDto.idSalon)"
+                >
+                  ELIMINAR
+                </button>
+              </div>
+
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 
 <div class="container" *ngIf="detalle && publicacionSelect !== null">
-    <app-salon-detalle [publicacionSelect]="publicacionSelect" (close)="close($event)"></app-salon-detalle>
+  <app-salon-detalle
+    [publicacionSelect]="publicacionSelect"
+    (close)="close($event)"
+  ></app-salon-detalle>
 </div>
