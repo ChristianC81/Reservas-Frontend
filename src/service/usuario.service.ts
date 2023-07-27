@@ -9,12 +9,12 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UsuarioService {
-  
+
   private url: string = 'http://localhost:8080/api/usuario';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   //Listar todos los usuarios
   getUsuarios(): Observable<Usuario[]> {
@@ -30,16 +30,20 @@ export class UsuarioService {
     return this.http.put<number>(url, usu);
   }
 
-  getNumUsu(estado: Boolean): Observable<number>{
+  getNumUsu(estado: Boolean): Observable<number> {
     return this.http.post<number>(this.url + "/countUs", estado);
   }
-  
-  getUsuEstado(estado:boolean):Observable<Usuario[]>{
-    return this.http.post<Usuario[]>(this.url+"/userState",estado);
+
+  getUsuEstado(estado: boolean): Observable<Usuario[]> {
+    return this.http.post<Usuario[]>(this.url + "/userState", estado);
   }
 
-  userUpdateState(usu:Usuario):Observable<Usuario>{
-    return this.http.post<Usuario>(this.url+"/userUpdateState",usu);
+  userUpdateState(usu: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(this.url + "/userUpdateState", usu);
   }
 
+  // Obtener un usuario por su ID
+  getUsuario(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}/${id}`);
+  }
 }

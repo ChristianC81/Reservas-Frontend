@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/service/usuario.service';// Reemplaza 'tu_servicio_de_usuarios' con el nombre correcto de tu servicio
-
+import { Usuario } from '../modelo/Usuario';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -11,10 +11,19 @@ export class EditProfileComponent implements OnInit {
   originalUserData: any = {};
   userLoged: boolean = false;
   userName: string = '';
+  usuario: Usuario = new Usuario();
 
   constructor(private userService: UsuarioService) { }
 
   ngOnInit(): void {
+    // Obtener el ID del usuario desde el LocalStorage
+    const userId = Number(localStorage.getItem('userId'));
+
+    // Obtener los datos del usuario desde el servidor
+    this.userService.getUsuario(userId).subscribe((user: Usuario) => {
+      this.userData = { ...user };
+      this.originalUserData = { ...user };
+    });
     // Lógica para obtener los datos del usuario actual y cargarlos en el formulario
     /*const userId = 1  //Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
     this.userService.getUserById(userId).subscribe((user: any) => {
@@ -49,6 +58,11 @@ export class EditProfileComponent implements OnInit {
   onCancel(): void {
     // Restablecer los valores del formulario a los valores originales
     //this.userData = { ...this.originalUserData };
+  }
+
+  editarUsuario() {
+  }
+  cambiarContrasena() {
   }
 }
 
