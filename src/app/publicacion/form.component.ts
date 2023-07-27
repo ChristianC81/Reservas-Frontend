@@ -177,6 +177,7 @@ export class FormComponentPubli implements OnInit {
         );
         this.idSalonComp = salon.idSalon;
         this.createImageSalon(this.idSalonComp); // Mover esta línea aquí
+        this.router.navigate(['/mis-salones']);
       }, (err) => {
         Swal.fire(
           'Publicación de salón',
@@ -184,8 +185,7 @@ export class FormComponentPubli implements OnInit {
           'error'
         );
       }
-      );
-      this.router.navigate(['/mis-salones']);
+      );   
   }
   
 

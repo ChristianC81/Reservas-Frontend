@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+  idPersona: number;
   nombreUsuario: string = '';
   emailUser: string = '';
   contrasenia: string = '';
@@ -33,11 +34,13 @@ export class EditProfileComponent implements OnInit {
   obtenerUsuario() {
   this.userService.getUsuarioEmail(this.email).subscribe((user: Usuario) => {
       this.usuario= user;
+      this.idPersona= this.usuario.persona.idPersona;
     });
   }
   onSubmit(): void {
     const userId = this.usuario.idUsuario; // Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
     
+    console.log("usuario", this.usuario.persona.idPersona);
     if(this.nombreUsuario == ''){
       this.nombreUsuario = this.usuario.nombreUsuario;
     }
@@ -45,6 +48,8 @@ export class EditProfileComponent implements OnInit {
     if(this.emailUser == ''){
       this.emailUser = this.usuario.email;
     }
+    this.usuario.estado = true;
+
     this.usuario.email = this.emailUser;
     if(this.contrasenia == ''){
       this.contrasenia = this.usuario.contrasenia;
@@ -52,11 +57,19 @@ export class EditProfileComponent implements OnInit {
     if(this.contrasenia == this.repcontrasenia){
       this.usuario.contrasenia = this.contrasenia;
     }
+    this.usuario.persona.idPersona = this.idPersona;
+    
+    this.usuario.rol.idRol = 2;
 
     this.userService.updateUser(userId, this.usuario).subscribe((response: any) => {
+      // Controlamos las nuevas asignaciones de los valores del almacenamiento local
+      localStorage.setItem('emailUserLoged', this.usuario.email);
+      localStorage.setItem('username', this.usuario.nombreUsuario);
+  
       // Aquí puedes manejar la respuesta del servidor si lo deseas
       console.log('Usuario actualizado con éxito');
       Swal.fire('ACTUALIZACIÓN', 'Usuario actualizado con éxito', 'success');
+      location.reload();
     });
   }
   editarUsuario() {
