@@ -6,4 +6,5 @@ export class PublicacionDto {
     salonDto: SalonDto;
     userDto: UserDto;
     multimedia: Multimedia[];
+    images: string[];
 }

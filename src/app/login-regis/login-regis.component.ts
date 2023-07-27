@@ -70,7 +70,7 @@ export class LoginRegisComponent {
         this.serviLoginRegService.checkAvailableEmail(user.email).subscribe((data) => {
           console.log(user.email)
           //verifico si el correo no existe para mandar a registrar
-         
+
           if (!data) {
             //registrado mando a principal
             alert('registrado');
@@ -167,26 +167,13 @@ export class LoginRegisComponent {
 
     if (this.modeloUsuarioSesPc.email != '' && this.modeloUsuarioSesPc.contrasenia != '') {
 
-      if (this.modeloUsuarioSesPc.email == 'admin' && this.modeloUsuarioSesPc.contrasenia == 'admin') {
-        this.bolUsuPassErr = false;
-        this.bolUsuPassMov = false;
-      
-        Swal.fire({
-          title: 'Inicio de sesión exitoso',
-          text: `Bienvenido Administrador`,
-          icon: 'success',
-          showCancelButton: false,
-          confirmButtonText: 'Continuar',
-        }).then((resulta) => {
-          this.router.navigate(['/admininicio']).then(valt => {
-            location.reload();
-          });
-        });
-      } else {  //datos
-        this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
-          async (data) => {
-          
-            if (data !== null) {
+      //datos
+      this.serviLoginRegService.iniSesion(this.modeloUsuarioSesPc).subscribe(
+        async (data) => {
+
+          if (data !== null) {
+       
+            if (data.estado) {
               localStorage.setItem('emailUserLoged', data.email);
               localStorage.setItem('username', data.nombreUsuario);
               Swal.fire({
@@ -196,36 +183,49 @@ export class LoginRegisComponent {
                 showCancelButton: false,
                 confirmButtonText: 'Continuar',
               }).then((result) => {
-                console.log(data)
-                this.router.navigate(['/home']).then(val => {
-                  location.reload();
-                });
+                if (data.rol.idRol == 2) {
+                  this.router.navigate(['/home']).then(val => {
+                    location.reload();
+                  });
+                } else {
+                  this.router.navigate(['/admininicio']).then(val => {
+                    location.reload();
+                  });
+                }
+
               });
-
-              // sessionStorage.setItem('rol', data.rol.nombre);
-
-            } else {
-              this.bolUsuPassErr = true;
-              this.bolUsuPassMov = true;
+            }else{
               Swal.fire(
                 'Inicio de sesión fallido',
-                `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos.`,
+                `Cuenta suspendida`,
                 'error'
               );
             }
-          }
-          ,
-          (error: HttpErrorResponse) => {
+
+            // sessionStorage.setItem('rol', data.rol.nombre);
+
+          } else {
             this.bolUsuPassErr = true;
             this.bolUsuPassMov = true;
             Swal.fire(
               'Inicio de sesión fallido',
-              `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos`,
+              `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos.`,
               'error'
             );
           }
-        );
-      }
+        }
+        ,
+        (error: HttpErrorResponse) => {
+          this.bolUsuPassErr = true;
+          this.bolUsuPassMov = true;
+          Swal.fire(
+            'Inicio de sesión fallido',
+            `Ocurrió un error al iniciar sesión, verifique que los datos con los que intenta acceder sean correctos`,
+            'error'
+          );
+        }
+      );
+
     } else {
       //datos vacios muestra la alerta
       this.bolCamVacSesPc = true;

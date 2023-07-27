@@ -2,10 +2,13 @@
   <div _ngcontent-ygo-c128 class="modal-body">
     <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
       <br /><br />
+      <h3 class="text-center">
+        <b>Salón {{ salon.nombre }}</b>
+      </h3>
       <div class="modal-header text-center">
-        <h3 class="text-center">
-          <b>Detalle del Salón {{ salon.nombre }}</b>
-        </h3>
+        <div *ngFor="let image of images; let i = index" class="carousel-item" [class.active]="i == 0">
+          <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+        </div>
       </div>
       <br />
       <div class="card-footer">

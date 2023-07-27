@@ -41,9 +41,5 @@ export class UsuarioService {
   userUpdateState(usu:Usuario):Observable<Usuario>{
     return this.http.post<Usuario>(this.url+"/userUpdateState",usu);
   }
-  //createSalon(salon: SalonDto, emailUser: String): Observable<any> {
-    //const URLcrearSalon: string = `${this.baseUrl}/crear?emailPublicador=${emailUser}`;
-    //return this.http.post<any>(URLcrearSalon, salon);
-  //}
 
 }

@@ -11,12 +11,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones">
+                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones; let idx = index">
                     <div class="card h-100">
-                        <a (click)="seleccionarPublicacion(publicacion)">
-                            <img src="./assets/images/salon7.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body cards">
+                        <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel" (click)="seleccionarPublicacion(publicacion)">
+                         <!-- <div class="carousel-indicators">
+                            <button *ngFor="let image of publicacion.images; let i = index" type="button" data-bs-target="'#carouselExampleIndicators' + idx" [attr.data-bs-slide-to]="i" [class.active]="i == 0" [attr.aria-current]="i == 0" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+                          </div>-->
+                          <div class="carousel-inner">
+                            <div *ngFor="let image of publicacion.images; let i = index" class="carousel-item" [class.active]="i == 0">
+                              <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+                            </div>
+                          </div>
+                         <!-- <button class="carousel-control-prev" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        -->
+                        </div>
+
+                        <div class="card-body cards" (click)="seleccionarPublicacion(publicacion)">
                             <ul class="list-unstyled d-flex justify-content-between">
                                 <li>
                                     <i class="text-warning fa fa-star"></i>

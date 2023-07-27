@@ -63,14 +63,18 @@ export class SalonService {
   }
 
   // POST IMAGE
-  postImage(imagen: string[], idSalon: number): Observable<any> {
-    return this.http.post<any>(this.baseUrl + '/postImage', imagen, {
-      params: {
-        idSalon: idSalon
-      }
-    });
-  }
+  postImage(imagen: File[], idSalon: number) : Observable<any>{
+    let formData = new FormData();
+    for(let i = 0; i < imagen.length; i++) {
+        formData.append("imagen", imagen[i], imagen[i].name);
+    }
+    return this.http.post<any>(`${this.baseUrl}/postImage/${idSalon}`, formData);
+}
 
+  //GET IMAGE
+getImages(idSalon: number): Observable<string[]> {
+  return this.http.get<string[]>(`${this.baseUrl}/getImages/${idSalon}`);
+}
 
   //Métodos para el administrador
 

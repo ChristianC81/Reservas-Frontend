@@ -8,6 +8,7 @@ import { DetallePedidoDto } from 'src/app/modelo/dto/DetallePedidoDto';
 import { ComplementoDto } from '../../modelo/dto/ComplementoDto';
 import { Toast } from 'ngx-toastr';
 
+import { SalonService } from 'src/service/salon.service';
 @Component({
   selector: 'app-publicaciones-detalle',
   templateUrl: './publicaciones-detalle.component.html',
@@ -32,15 +33,16 @@ export class PublicacionesDetalleComponent implements OnInit {
   listDetalle :DetallePedidoDto[] = [];
   complementoSelec: ComplementoDto = {} as ComplementoDto;
   codComplement: any = null;
+  images: string[] = []; // Aquí debes insertar las imágenes en formato base64
 
-
-  constructor(private service: PedidoService) { }
+  constructor(private service: PedidoService, private salonService: SalonService) { }
 
   ngOnInit(): void {
     if(this.publicacionSelect == null){
       this.radioValue = false;
     }else{
       this.salon = this.publicacionSelect.salonDto;
+      this.getImages(this.salon.idSalon);
     }
   }
 
@@ -148,5 +150,16 @@ export class PublicacionesDetalleComponent implements OnInit {
       Swal.fire('Reservas', 'Para reservar un salón debe iniciar sesión.', 'warning');
       this.modalView = false;
     }
+  }
+
+  getImages(idSalon: number) {
+    this.salonService.getImages(idSalon).subscribe(
+      (images: string[]) => {
+        this.images = images;
+      },
+      (error) => {
+        Swal.fire('Error al obtener las imágenes', 'error');
+      }
+    );
   }
 }
