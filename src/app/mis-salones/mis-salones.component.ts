@@ -59,6 +59,16 @@ export class MisSalonesComponent {
     this.salonService.getPublicacionesByUsuario(email).subscribe(
       (listPublicaciones: PublicacionDto[]) => {
         this.publicaciones = listPublicaciones;
+        for (let publicacion of this.publicaciones) {
+          this.salonService.getImages(publicacion.salonDto.idSalon).subscribe(
+            (images: string[]) => {
+              publicacion.images = images;
+            },
+            (error) => {
+              Swal.fire('Error al obtener las imágenes', 'error');
+            }
+          );
+        }
       },
       (error) => {
         console.error(

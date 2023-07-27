@@ -35,3 +35,24 @@
 .contenido button {
   margin-top: 10px;
 }
+
+.frameImage{
+  width: 100%;
+  height: 408px;
+  border: 1px solid  #9999991c;
+  background-color: #9999991c;
+  padding-top: 67.5%;
+}
+.selected-image {
+  max-width: 86%;
+  max-height: 100%;
+  object-fit: contain;
+  margin-left: 7%;
+  margin-top: -85%;
+}
+.posicionBtnPublicar{
+  margin-left: 105%;
+  margin-top: -100%;
+  width: 170px;
+}
+
