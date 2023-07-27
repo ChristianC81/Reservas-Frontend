@@ -42,17 +42,18 @@
 
 .frameImage{
   width: 100%;
-  height: 408px;
+  height: 413px;
   border: 1px solid  #9999991c;
   background-color: #9999991c;
-  padding-top: 67.5%;
+  padding-top: 60.5%;
+  font-size: 85%;
 }
 .selected-image {
-  max-width: 86%;
+  max-width: 75%;
   max-height: 100%;
   object-fit: contain;
-  margin-left: 7%;
-  margin-top: -85%;
+  margin-left: 13%;
+  margin-top: -94%;
 }
 .posicionBtnPublicar{
   margin-left: 105%;
