@@ -12,6 +12,8 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { MisSalonesComponent } from './mis-salones/mis-salones.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+//import { formC } from './edit-profile/edit-profile.component';
+import { FormComponent } from './mis-salones/salon/form.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
   { path: 'salon/publicar', component: FormComponentPubli },
   { path: 'regisUsu', component: RegistroUsuarioComponent },
   { path: 'editprofile', component: EditProfileComponent },
+  { path: 'salon/editar', component: FormComponent },
 ];
 
 @NgModule({

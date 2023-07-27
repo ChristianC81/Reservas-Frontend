@@ -1,0 +1,141 @@
+<app-header></app-header>
+<div class="container">
+  <br>
+    <div class="row text-center py-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">ACTUALIZACIÓN DEL SALÓN</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form class="row g-3" ngNativeValidate (ngSubmit)="create()" *ngIf="salon != null">
+                <div class="col-md-12">
+                    <label for="inputNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="SalonDto.nombre" name="nombre"
+                        required pattern="[ A-Za-z0-9]+" placeholder="Ingrese el nombre" title="Nombre incorrecto">
+                </div>
+                <div class="col-md-12">
+                    <label for="inputAddress" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+                        [(ngModel)]="SalonDto.direccion" name="direccion">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPrecio" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="inputPrecio" [(ngModel)]="SalonDto.precioSalon"
+                        name="precioSalon">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCapacidad" class="form-label">Garantía Daños</label>
+                    <input type="number" class="form-control" id="inputCapacidad" [(ngModel)]="SalonDto.garantiaDanos"
+                        name="garantiaDanos">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCapacidad" class="form-label">Capacidad de personas</label>
+                    <input type="number" class="form-control" id="inputCapacidad" [(ngModel)]="SalonDto.capacidad"
+                        name="capacidad">
+                </div>
+                <div class="col-md-6">
+
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select class="form-control" [(ngModel)]="SalonDto.categoria.categoria" name="categoria" required>
+                        <option value="" selected disabled>Seleccione una categoría</option>
+                        <option *ngFor="let opcion of ListaCategoria" [value]="opcion.categoria">{{ opcion.categoria }}
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlDescripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="exampleFormControlDescripcion" rows="3"
+                        [(ngModel)]="SalonDto.descripcion" name="descripcion"></textarea>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-table">
+                        <label class="form-check-label">
+                            <h2 class="titulo">Complementos</h2>
+                        </label>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary btn-sm me-md-2" type="button"
+                                (click)="mostrarVentanaEmergente()"><i class="bi bi-file-earmark-plus"></i></button>
+                            <button class="btn btn-danger btn-sm" type="button"><i class="bi bi-trash"></i></button>
+                        </div>
+                        <br /><br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Prec. Unitario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let complemento of SalonDto.complementos; index">
+                                    <td>1</td>
+                                    <td>{{ complemento.nombre }}</td>
+                                    <td>{{ complemento.descripcion }}</td>
+                                    <td>{{ complemento.cantidadBase }}</td>
+                                    <td>{{ complemento.precioUnitario }}</td>
+                                </tr>
+                            </tbody>
+                            <br /><br />
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-success btn-sm " role="button">ACTUALIZAR SALÓN</button>
+                            </div>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="titulo">Foto del salón</h2>
+            <input class="btn  frameImage" type="file" (change)="onFilesSelected($event)" accept="image/*" multiple>
+            <div class="image-container">
+                <div *ngFor="let image of selectedImages">
+                    <img [src]="image" class="selected-image">
+                </div>
+            </div>
+            <br>
+        </div>
+      </div>
+        <form ngNativeValidate (ngSubmit)="createcomplemento()">
+            <div class="ventana-emergente" [ngClass]="{'visible': ventanaEmergenteVisible}">
+                <div class="contenido">
+                    <h2>Complemento</h2>
+
+                <div class="form-group">
+                    <label for="" class="custom-file-label">Nombre:</label>
+                    <input type="text" id="nombre" class="form-control" [(ngModel)]="complementoDto.nombre"
+                        minlength="3" name="nombre" placeholder="Ingrese el nombre" title="Nombre incorrecto" />
+                </div>
+                <div class="form-group">
+                    <label for="" class="custom-file-label">Descripción:</label>
+                    <input type="text" id="descripcion" class="form-control" [(ngModel)]="complementoDto.descripcion"
+                        name="capacidad" placeholder="Ingrese la descripción" title="Descripción incorrecto" />
+                </div>
+                <div class="form-group">
+                    <label for="" class="custom-file-label">Cantidad:</label>
+                    <input type="number" id="cantidadbase" class="form-control"
+                        [(ngModel)]="complementoDto.cantidadBase" name="cantidadbase"
+                        placeholder="Ingrese la cantidad base" />
+                </div>
+                <div class="form-group">
+                    <label for="" class="custom-file-label">Precio Unitario:</label>
+                    <input type="number" id="preciounitario" class="form-control"
+                        [(ngModel)]="complementoDto.precioUnitario" name="preciounitario"
+                        placeholder="Ingrese el precio unitario" />
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn btn-danger btn-sm" type="button"
+                        (click)="ocultarVentanaEmergente()">Cancelar</button>
+                    <button class="btn btn-success me-md-2" type="submit" (click)="ocultarVentanaEmergente()">Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<br /><br /><br />
