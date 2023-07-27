@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Salon } from '../modelo/Salon';
-import { SalonService } from '../../service/salon.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriaDto } from 'src/app/modelo/CategoriaDto';
+import { Complemento } from 'src/app/modelo/Complemento';
+import { Salon } from 'src/app/modelo/Salon';
+import { SalonDto } from 'src/app/modelo/SalonDto';
+import { ComplementoDto } from 'src/app/modelo/dto/ComplementoDto';
+import { ComplementoService } from 'src/service/complemento.service';
+import { GrupocomplementoService } from 'src/service/grupocomplemento.service';
+import { SalonService } from 'src/service/salon.service';
 import Swal from 'sweetalert2';
-import { Complemento } from '../modelo/Complemento';
-import { ComplementoService } from '../../service/complemento.service';
-import { GrupocomplementoService } from '../../service/grupocomplemento.service';
-import { SalonDto } from '../modelo/SalonDto';
-import { CategoriaDto } from '../modelo/CategoriaDto';
-import { ComplementoDto } from '../modelo/dto/ComplementoDto';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.css']
 })
-export class FormComponentPubli implements OnInit {
+export class FormComponent implements OnInit {
 
-
+  
   SalonDto: SalonDto = {
     idSalon: 0,
     nombre: '',
@@ -185,7 +185,7 @@ export class FormComponentPubli implements OnInit {
         );
       }
       );
-      this.router.navigate(['/mis-salones']);
+      //this.router.navigate(['/mis-salones']);
   }
   
 
@@ -211,7 +211,9 @@ export class FormComponentPubli implements OnInit {
       );
   }
   
+  //creacion del complemento
   public createcomplemento(): void {
+    // agregamos el complemto al array de complementos
     var complemento = {
       idComplemento: this.complementoDto.idComplemento,
       nombre: this.complementoDto.nombre,
@@ -220,18 +222,15 @@ export class FormComponentPubli implements OnInit {
       cantidadRestante: this.complementoDto.cantidadRestante,
       precioUnitario: this.complementoDto.precioUnitario,
       estado: this.complementoDto.estado,
-    };
-  
+    }
     this.SalonDto.complementos.push(complemento);
-    Swal.fire('Datos de Complemento Agregado', 'Complemento guardado con éxito', 'success').then((result) => {
-      if (result.isConfirmed) {
-        this.ocultarVentanaEmergente();
-        this.complementoDto = new ComplementoDto(); //limpiar
-      }
-    });
+    Swal.fire(
+      'Datos de Complemento Agregado',
+      `Complemento guardado con exito`,
+      'success'
+    );
   }
-  
-  
+
   mostrarDatos() {
     this.complementoService.ListarNombresComplementos().subscribe(
       (nombres: string[]) => {

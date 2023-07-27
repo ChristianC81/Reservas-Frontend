@@ -37,6 +37,7 @@ import { PublicacionesDetalleComponent } from './publicaciones/publicaciones-det
 import { SalonDetalleComponent } from './mis-salones/salon-detalle/salon-detalle.component';
 import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reservas.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FormComponent } from './mis-salones/salon/form.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     SalonDetalleComponent,
     ModalReservasComponent,
     EditProfileComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

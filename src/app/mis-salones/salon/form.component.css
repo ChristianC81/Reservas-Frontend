@@ -1,0 +1,63 @@
+/* Estilos para los botones redondos */
+.btn-rounded {
+    border-radius: 50%;
+  }
+  
+  .ventana-emergente {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .ventana-emergente.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contenido {
+    background-color: #eef4ec;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%
+  }
+  
+  .contenido-600 {
+    width: 500px;
+  }
+  
+  .contenido h2 {
+    margin-top: 0;
+  }
+  
+  .contenido button {
+    margin-top: 10px;
+  }
+  
+  .frameImage{
+    width: 100%;
+    height: 408px;
+    border: 1px solid  #9999991c;
+    background-color: #9999991c;
+    padding-top: 67.5%;
+  }
+  .selected-image {
+    max-width: 86%;
+    max-height: 100%;
+    object-fit: contain;
+    margin-left: 7%;
+    margin-top: -85%;
+  }
+  .posicionBtnPublicar{
+    margin-left: 105%;
+    margin-top: -100%;
+    width: 170px;
+  }
+  
+  

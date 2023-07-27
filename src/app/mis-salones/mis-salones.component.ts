@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PublicacionDto } from '../modelo/dto/PublicacionDto';
 import { SalonService } from 'src/service/salon.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Salon } from '../modelo/Salon';
-
+import { SalonDto } from '../modelo/SalonDto';
+import { CategoriaDto } from '../modelo/CategoriaDto';
+import { ComplementoDto } from '../modelo/dto/ComplementoDto';
 @Component({
   selector: 'app-mis-salones',
   templateUrl: './mis-salones.component.html',
@@ -12,18 +14,58 @@ import { Salon } from '../modelo/Salon';
 })
 export class MisSalonesComponent {
 
+  SalonDto: SalonDto = {
+    idSalon: 0,
+    nombre: '',
+    direccion: '',
+    capacidad: 0,
+    disponibilidad: false,
+    descripcion: '',
+    precioSalon: 0,
+    calificacion: 0,
+    estado: false,
+    garantiaDanos: 0,
+    complementos: [],
+    categoria: new CategoriaDto(),
+  };
+
+  CategoriaDto: CategoriaDto = {
+    idCategoria: 0,
+    categoria: '',
+    estado: true,
+  };
+
+  complementoDto: ComplementoDto = {
+    idComplemento: 0,
+    nombre: '',
+    descripcion: '',
+    cantidadBase: 0,
+    cantidadRestante: 0,
+    precioUnitario: 0,
+    estado: true,
+  };
+
   publicaciones: PublicacionDto[];
-  detalle  = false;
-  publicacionSelect :any = null;
+  detalle = false;
+  publicacionSelect: any = null;
   salones: Salon[] = []
 
-  constructor(private salonService: SalonService,private router: Router) { }
+  idSalonComp: number;
+  ListaCategoria: CategoriaDto[] = [];
+
+  constructor(private salonService: SalonService, private router: Router) {
+    this.SalonDto.categoria = {} as CategoriaDto
+  }
 
   ngOnInit() {
-    if(!localStorage.getItem('username')){
+    if (!localStorage.getItem('username')) {
       this.router.navigate(['loginReg']);
     }
     this.getPublicacionesByUser();
+  }
+
+  editarSalon() {
+      this.router.navigate(['/salon/editar'])
   }
 
   eliminarSalon(salonId: number) {
@@ -53,6 +95,26 @@ export class MisSalonesComponent {
     })
   }
 
+  eliminarSalon2(salonId: number) {
+    this.salonService.eliminarSalon(salonId).subscribe(
+      salones => {
+        this.salonService.getPublicaciones().subscribe(
+          response => this.salones = response
+        )
+      })
+  }
+
+  ventanaEmergenteVisible: boolean = false;
+
+  mostrarVentanaEmergente() {
+    this.ventanaEmergenteVisible = true;
+  }
+
+  ocultarVentanaEmergente() {
+    this.ventanaEmergenteVisible = false;
+  }
+
+
   //Listar los nombres de los complementos
   getPublicacionesByUser() {
     let email = localStorage.getItem("emailUserLoged") as string;
@@ -79,14 +141,14 @@ export class MisSalonesComponent {
     );
   }
 
-  seleccionarPublicacion(data: any){
-    if(data){
+  seleccionarPublicacion(data: any) {
+    if (data) {
       this.publicacionSelect = data;
       this.detalle = true;
     }
   }
 
-  close(event:any){
+  close(event: any) {
     this.detalle = event;
     this.publicacionSelect = null;
   }

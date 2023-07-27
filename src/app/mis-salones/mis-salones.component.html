@@ -13,16 +13,18 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones; let idx = index">
                     <div class="card h-100">
-                        <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel" (click)="seleccionarPublicacion(publicacion)">
-                         <!-- <div class="carousel-indicators">
+                        <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel"
+                            (click)="seleccionarPublicacion(publicacion)">
+                            <!-- <div class="carousel-indicators">
                             <button *ngFor="let image of publicacion.images; let i = index" type="button" data-bs-target="'#carouselExampleIndicators' + idx" [attr.data-bs-slide-to]="i" [class.active]="i == 0" [attr.aria-current]="i == 0" [attr.aria-label]="'Slide ' + (i + 1)"></button>
                           </div>-->
-                          <div class="carousel-inner">
-                            <div *ngFor="let image of publicacion.images; let i = index" class="carousel-item" [class.active]="i == 0">
-                              <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+                            <div class="carousel-inner">
+                                <div *ngFor="let image of publicacion.images; let i = index" class="carousel-item"
+                                    [class.active]="i == 0">
+                                    <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+                                </div>
                             </div>
-                          </div>
-                         <!-- <button class="carousel-control-prev" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="prev">
+                            <!-- <button class="carousel-control-prev" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                           </button>
@@ -47,9 +49,15 @@
                             <p class="card-text">
                                 {{publicacion.salonDto.descripcion}}
                             </p>
-                            <a>
-                                <button class="btn btn-danger btn-sm" (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
-                            </a>
+                            <div class="d-flex justify-content-between">
+                                <a>
+                                    <button class="btn btn-danger btn-sm"
+                                        (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-primary btn-sm" (click)="editarSalon()">EDITAR</button>
+                                </a>
+                            </div>
                             <br>
                         </div>
                     </div>
