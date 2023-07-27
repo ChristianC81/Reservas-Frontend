@@ -64,10 +64,6 @@ export class MisSalonesComponent {
     this.getPublicacionesByUser();
   }
 
-  editarSalon() {
-      this.router.navigate(['/salon/editar'])
-  }
-
   eliminarSalon(salonId: number) {
     Swal.fire({
       title: '¿Estas seguro de eliminar este Salón?',
@@ -83,16 +79,22 @@ export class MisSalonesComponent {
       if (result.value) {
         this.salonService.eliminarSalon(salonId).subscribe(
           salones => {
+            this.router.navigate(['/mis-salones']);
             this.salonService.getPublicaciones().subscribe(
               response => this.salones = response
             )
+            this.router.navigate(['/mis-salones']);
             Swal.fire(
               'Eliminado!',
               'El Salón ha sido eliminado con exito'
             )
+            this.router.navigate(['/mis-salones']);
           })
+        this.router.navigate(['/mis-salones']);
       }
+      this.router.navigate(['/mis-salones']);
     })
+    this.router.navigate(['/mis-salones']);
   }
 
   eliminarSalon2(salonId: number) {
@@ -101,8 +103,11 @@ export class MisSalonesComponent {
         this.salonService.getPublicaciones().subscribe(
           response => this.salones = response
         )
+        this.router.navigate(['/salon/editar'])
       })
   }
+
+
 
   ventanaEmergenteVisible: boolean = false;
 

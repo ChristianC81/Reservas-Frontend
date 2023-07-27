@@ -17,6 +17,8 @@ import Swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
+  salones: SalonDto;
+  userLoged: boolean = true;
   
   SalonDto: SalonDto = {
     idSalon: 0,
@@ -66,6 +68,10 @@ export class FormComponent implements OnInit {
   ) {
     this.SalonDto.categoria = {} as CategoriaDto;
     this.SalonDto.complementos = [];
+  }
+
+  volver() {
+    this.router.navigate(['/mis-salones']);
   }
 
   ngOnInit(): void {
@@ -154,7 +160,7 @@ export class FormComponent implements OnInit {
   if (this.selectedImage.length === 0) {
     Swal.fire(
       'Error',
-      'Debe subir al menos una imagen antes de publicar.',
+      'Debe subir al menos una imagen antes de actualzar.',
       'error'
     );
     return;
@@ -171,21 +177,21 @@ export class FormComponent implements OnInit {
       )
       .subscribe((salon) => {
         Swal.fire(
-          'Datos del Salón Guardado',
-          `Salon ${salon.nombre} guardado con exito`,
+          'Datos del Salón Actualizado',
+          `Salon ${salon.nombre} actualizado con exito`,
           'success'
         );
         this.idSalonComp = salon.idSalon;
         this.createImageSalon(this.idSalonComp); // Mover esta línea aquí
       }, (err) => {
         Swal.fire(
-          'Publicación de salón',
+          'Actualización de salón',
           err.error,
           'error'
         );
       }
       );
-      //this.router.navigate(['/mis-salones']);
+      this.router.navigate(['/mis-salones']);
   }
   
 
