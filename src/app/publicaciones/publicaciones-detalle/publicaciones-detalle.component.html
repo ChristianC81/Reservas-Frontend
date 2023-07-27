@@ -143,13 +143,18 @@
             />
           </div>
           <div class="col-auto">
-            <label for="observacion" class="form-label">Observaciones</label>
+            <label for="observacion" class="form-label"
+              >Acotaciones Reserva</label
+            >
             <input
               type="text"
               class="form-control"
               id="observacion"
               [value]="observacion"
               [(ngModel)]="observacion"
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+              title="Solo se permiten caracteres alfabéticos"
+              required
             />
           </div>
         </div>
@@ -188,6 +193,7 @@
               id="cantidadDetalle"
               [value]="cantidadDetalle"
               [(ngModel)]="cantidadDetalle"
+              min="0"
             />
           </div>
           <div class="col-auto">
