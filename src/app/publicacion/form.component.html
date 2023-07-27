@@ -11,96 +11,51 @@
     <div class="col-md-6">
       <form class="row g-3" ngNativeValidate (ngSubmit)="create()">
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            [(ngModel)]="SalonDto.nombre"
-            name="nombre"
-            required
-            pattern="[A-Za-zÁ-ÿ\s]+"
-            title="Nombre incorrecto"
-          />
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="SalonDto.nombre" name="nombre" required
+            pattern="[A-Za-zÁ-ÿ\s]+" title="Nombre incorrecto" />
           <label for="nombre">Nombre del Salón</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="inputAddress"
-            [(ngModel)]="SalonDto.direccion"
-            name="direccion"
-          />
+          <input type="text" class="form-control" id="inputAddress" [(ngModel)]="SalonDto.direccion" name="direccion" />
           <label for="inputAddress">Dirección</label>
         </div>
 
         <div class="col-md-6">
           <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputPrecio"
-              [(ngModel)]="SalonDto.precioSalon"
-              name="precioSalon"
-              pattern="^\d+(\.\d+)?$"
-              title="Solo se permiten números y números decimales no negativos."
-              oninput="this.setCustomValidity('')"
-              oninvalid="this.setCustomValidity('Ingrese un precio válido.')"
-              required
-            />
+            <input type="text" class="form-control" id="inputPrecio" [(ngModel)]="SalonDto.precioSalon"
+              name="precioSalon" pattern="^\d+(\.\d+)?$"
+              title="Solo se permiten números y números decimales no negativos." oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Ingrese un precio válido.')" required />
             <label for="inputPrecio">Precio</label>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputCapacidad"
-              [(ngModel)]="SalonDto.garantiaDanos"
-              name="garantiaDanos"
-              pattern="^\d+(\.\d+)?$"
-              title="Solo se permiten números y números decimales no negativos."
-              oninput="this.setCustomValidity('')"
-              oninvalid="this.setCustomValidity('Ingrese un precio de garantía válido.')"
-              required
-            />
+            <input type="text" class="form-control" id="inputCapacidad" [(ngModel)]="SalonDto.garantiaDanos"
+              name="garantiaDanos" pattern="^\d+(\.\d+)?$"
+              title="Solo se permiten números y números decimales no negativos." oninput="this.setCustomValidity('')"
+              oninvalid="this.setCustomValidity('Ingrese un precio de garantía válido.')" required />
             <label for="inputCapacidad">Garantía Daños</label>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-floating mb-3">
-            <input
-              type="number"
-              class="form-control"
-              id="inputCapacidad"
-              [(ngModel)]="SalonDto.capacidad"
-              name="capacidad"
-              min="0"
-              required
-            />
+            <input type="number" class="form-control" id="inputCapacidad" [(ngModel)]="SalonDto.capacidad"
+              name="capacidad" min="0" required />
             <label for="inputCapacidad">Capacidad de personas</label>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-floating mb-3">
-            <select
-              class="form-control"
-              [(ngModel)]="SalonDto.categoria.categoria"
-              name="categoria"
-              required
-            >
+            <select class="form-control" [(ngModel)]="SalonDto.categoria.categoria" name="categoria" required>
               <option value="" selected disabled>
                 Seleccione una categoría
               </option>
-              <option
-                *ngFor="let opcion of ListaCategoria"
-                [value]="opcion.categoria"
-              >
+              <option *ngFor="let opcion of ListaCategoria" [value]="opcion.categoria">
                 {{ opcion.categoria }}
               </option>
             </select>
@@ -109,14 +64,8 @@
         </div>
 
         <div class="form-floating mb-3">
-          <textarea
-            class="form-control"
-            id="txtAreaDescripcion"
-            rows="5"
-            [(ngModel)]="SalonDto.descripcion"
-            name="descripcion"
-            style="resize: vertical; min-height: 100px"
-          ></textarea>
+          <textarea class="form-control" id="txtAreaDescripcion" rows="5" [(ngModel)]="SalonDto.descripcion"
+            name="descripcion" style="resize: vertical; min-height: 100px"></textarea>
           <label for="txtAreaDescripcion">Descripción</label>
         </div>
 
@@ -124,11 +73,7 @@
           <div class="form-table">
             <label class="form-check-label"> Complementos </label>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button
-                class="btn btn-primary btn-sm me-md-2"
-                type="button"
-                (click)="mostrarVentanaEmergente()"
-              >
+              <button class="btn btn-primary btn-sm me-md-2" type="button" (click)="mostrarVentanaEmergente()">
                 <i class="bi bi-file-earmark-plus"></i>
               </button>
               <button class="btn btn-danger btn-sm" type="button">
@@ -158,11 +103,7 @@
             </table>
             <br /><br />
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-              <button
-                type="submit"
-                class="btn btn-success btn-sm"
-                role="button"
-              >
+              <button type="submit" class="btn btn-success btn-sm" role="button">
                 PUBLICAR SALÓN
               </button>
             </div>
@@ -172,13 +113,7 @@
     </div>
 
     <div class="col-md-6">
-      <input
-        class="btn frameImage"
-        type="file"
-        (change)="onFilesSelected($event)"
-        accept="image/*"
-        multiple
-      />
+      <input class="btn frameImage" type="file" (change)="onFilesSelected($event)" accept="image/*" multiple />
       <div class="image-container">
         <div *ngFor="let image of selectedImages">
           <img [src]="image" class="selected-image" />
@@ -188,86 +123,42 @@
     </div>
   </div>
   <form ngNativeValidate (ngSubmit)="createcomplemento()">
-    <div
-      class="ventana-emergente"
-      [ngClass]="{ visible: ventanaEmergenteVisible }"
-    >
+    <div class="ventana-emergente" [ngClass]="{ visible: ventanaEmergenteVisible }">
       <div class="contenido contenido-600">
         <h2>Complemento</h2>
 
         <div class="form-floating">
-          <input
-            type="text"
-            id="nombre"
-            class="form-control"
-            [(ngModel)]="complementoDto.nombre"
-            minlength="3"
-            name="nombre"
-            required
-            pattern="[A-Za-zÁ-ÿ\s]+"
-            title="Nombre incorrecto"
-            style="resize: horizontal; max-width: 500px"
-          />
+          <input type="text" id="nombre" class="form-control" [(ngModel)]="complementoDto.nombre" minlength="3"
+            name="nombre" required pattern="[A-Za-zÁ-ÿ\s]+" title="Nombre incorrecto"
+            style="resize: horizontal; max-width: 500px" />
           <label for="nombre">Nombre:</label>
         </div>
         <br />
         <div class="form-floating">
-          <input
-            type="text"
-            id="descripcion"
-            class="form-control"
-            [(ngModel)]="complementoDto.descripcion"
-            name="descripcion"
-            style="resize: horizontal; max-width: 500px"
-          />
-          <label for="descripcion" class="custom-file-label"
-            >Ingrese la Descripción</label
-          >
+          <input type="text" id="descripcion" class="form-control" [(ngModel)]="complementoDto.descripcion"
+            name="descripcion" style="resize: horizontal; max-width: 500px" />
+          <label for="descripcion" class="custom-file-label">Ingrese la Descripción</label>
         </div>
         <br />
         <div class="form-floating">
-          <input
-            type="number"
-            class="form-control"
-            id="cantidadbase"
-            [(ngModel)]="complementoDto.cantidadBase"
-            name="cantidadbase"
-            min="0"
-            required
-            title="Ingrese una cantidad válida"
-            style="resize: horizontal; max-width: 500px"
-          />
+          <input type="number" class="form-control" id="cantidadbase" [(ngModel)]="complementoDto.cantidadBase"
+            name="cantidadbase" min="0" required title="Ingrese una cantidad válida"
+            style="resize: horizontal; max-width: 500px" />
           <label for="cantidadbase">Cantidad Base</label>
         </div>
         <br />
 
         <div class="form-floating">
-          <input
-            type="text"
-            id="preciounitario"
-            class="form-control"
-            [(ngModel)]="complementoDto.precioUnitario"
-            name="preciounitario"
-            pattern="^\d+(\.\d+)?$"
-            title="Precio incorrecto"
-            required
-            style="max-width: 500px"
-          />
+          <input type="text" id="preciounitario" class="form-control" [(ngModel)]="complementoDto.precioUnitario"
+            name="preciounitario" pattern="^\d+(\.\d+)?$" title="Precio incorrecto" required style="max-width: 500px" />
           <label for="preciounitario">Ingrese el precio unitario</label>
         </div>
         <br />
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-          <button
-            class="btn btn-danger btn-sm"
-            type="button"
-            (click)="ocultarVentanaEmergente()"
-          >
+          <button class="btn btn-danger btn-sm" type="button" (click)="ocultarVentanaEmergente()">
             Cancelar
           </button>
-          <button
-            class="btn btn-success me-md-2"
-            type="submit"
-          >
+          <button class="btn btn-success me-md-2" type="submit">
             Guardar
           </button>
         </div>

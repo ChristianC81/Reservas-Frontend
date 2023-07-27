@@ -17,6 +17,8 @@ import Swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
+  salones: SalonDto;
+  userLoged: boolean = true;
   
   SalonDto: SalonDto = {
     idSalon: 0,
@@ -66,6 +68,10 @@ export class FormComponent implements OnInit {
   ) {
     this.SalonDto.categoria = {} as CategoriaDto;
     this.SalonDto.complementos = [];
+  }
+
+  volver() {
+    this.router.navigate(['/mis-salones']);
   }
 
   ngOnInit(): void {

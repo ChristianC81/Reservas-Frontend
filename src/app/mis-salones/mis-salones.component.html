@@ -49,15 +49,15 @@
                             <p class="card-text">
                                 {{publicacion.salonDto.descripcion}}
                             </p>
-                            <div class="d-flex justify-content-between">
-                                <a>
-                                    <button class="btn btn-danger btn-sm"
-                                        (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
-                                </a>
-                                <a>
-                                    <button class="btn btn-primary btn-sm" (click)="editarSalon()">EDITAR</button>
-                                </a>
-                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a>
+                                <button class="btn btn-danger btn-sm"
+                                    (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
+                            </a>
+                            <a>
+                                <button class="btn btn-primary btn-sm" (click)="editarSalon()">EDITAR</button>
+                            </a>
                             <br>
                         </div>
                     </div>

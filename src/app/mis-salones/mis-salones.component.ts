@@ -95,15 +95,6 @@ export class MisSalonesComponent {
     })
   }
 
-  eliminarSalon2(salonId: number) {
-    this.salonService.eliminarSalon(salonId).subscribe(
-      salones => {
-        this.salonService.getPublicaciones().subscribe(
-          response => this.salones = response
-        )
-      })
-  }
-
   ventanaEmergenteVisible: boolean = false;
 
   mostrarVentanaEmergente() {
