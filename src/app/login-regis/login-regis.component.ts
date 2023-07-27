@@ -295,7 +295,7 @@ export class LoginRegisComponent {
               Swal.fire({
                 title: 'Verificación',
                 input: 'number',
-                inputLabel: 'Revise el codigo en su bandeja del correo o spam',
+                inputLabel: 'Revise el código en su bandeja del correo o spam',
                 showCancelButton: true,
                 confirmButtonText: 'Aceptar',
                 cancelButtonText: 'Cancelar',
@@ -321,7 +321,7 @@ export class LoginRegisComponent {
                 }
               }).catch(
                 (error) => {
-                  Swal.fire('ENVIO DE CODIGO', 'ERROR AL ENVIAR EL CODIGO DE VERIFICACION', 'error');
+                  Swal.fire('ENVÍO DE CÓDIGO', 'ERROR AL ENVIAR EL CÓDIGO DE VERIFICACIÓN', 'error');
                 }
               );
 
@@ -356,7 +356,7 @@ export class LoginRegisComponent {
 
   enviarCodigoVerificacion() {
     this.modeloEmail.to = this.emailReg;
-    this.modeloEmail.subject = 'Codigo de verificación';
+    this.modeloEmail.subject = 'Código de verificación';
     this.codVer = this.vali.generarCodigoVeri();
     console.log(this.codVer);
     this.modeloEmail.text = this.codVer + '';
