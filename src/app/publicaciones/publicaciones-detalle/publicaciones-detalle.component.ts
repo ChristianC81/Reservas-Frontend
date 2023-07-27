@@ -6,7 +6,7 @@ import { UserDto } from '../../modelo/dto/UserDto';
 import { PedidoService } from '../../../service/pedido.service';
 import { DetallePedidoDto } from 'src/app/modelo/dto/DetallePedidoDto';
 import { ComplementoDto } from '../../modelo/dto/ComplementoDto';
-
+import { SalonService } from 'src/service/salon.service';
 @Component({
   selector: 'app-publicaciones-detalle',
   templateUrl: './publicaciones-detalle.component.html',
@@ -21,22 +21,26 @@ export class PublicacionesDetalleComponent implements OnInit {
   modalView = false;
   cantidad = 0;
   preciototal = 0;
+  preciototalReserva = 0;
   observacion = '';
+  fechainicio = '';
+  fechafin = '';
   currenDate = new Date();
   cantidadDetalle: number;
   precioUnitario: number;
   listDetalle :DetallePedidoDto[] = [];
   complementoSelec: ComplementoDto = {} as ComplementoDto;
   codComplement: any = null;
+  images: string[] = []; // Aquí debes insertar las imágenes en formato base64
 
-
-  constructor(private service: PedidoService) { }
+  constructor(private service: PedidoService, private salonService: SalonService) { }
 
   ngOnInit(): void {
     if(this.publicacionSelect == null){
       this.radioValue = false;
     }else{
       this.salon = this.publicacionSelect.salonDto;
+      this.getImages(this.salon.idSalon);
     }
   }
 
@@ -62,9 +66,12 @@ export class PublicacionesDetalleComponent implements OnInit {
     pedido.pedPreciototal = this.preciototal;
     pedido.pedSalon = this.salon.idSalon;
     pedido.pedEmailUsuario = this.publicacionSelect.userDto.email;
-    pedido.pedFechaInicio = this.currenDate.getFullYear() + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
+    pedido.pedFechaInicio = this.fechainicio;
+    pedido.pedFechaInicio = this.fechafin;
+    /*pedido.pedFechaInicio = this.currenDate.getFullYear() + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
     pedido.pedFechaFin =  this.currenDate.getFullYear(  ) + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
-    pedido.pedDetalle = this.listDetalle;
+    */
+   pedido.pedDetalle = this.listDetalle;
 
     this.service.create(pedido).subscribe(data => {
       
@@ -85,6 +92,7 @@ export class PublicacionesDetalleComponent implements OnInit {
     det.nombreComplemento = this.complementoSelec.nombre;
     det.precioUnitario = this.precioUnitario;
     this.preciototal = this.cantidadDetalle * this.complementoSelec.precioUnitario;
+    this.preciototalReserva = this.salon.precioSalon+(this.cantidadDetalle * this.complementoSelec.precioUnitario);
     this.listDetalle.push(det);
   }
 
@@ -116,5 +124,16 @@ export class PublicacionesDetalleComponent implements OnInit {
       Swal.fire('Reservas', 'Para reservar un salón debe iniciar sesión.', 'warning');
       this.modalView = false;
     }
+  }
+
+  getImages(idSalon: number) {
+    this.salonService.getImages(idSalon).subscribe(
+      (images: string[]) => {
+        this.images = images;
+      },
+      (error) => {
+        Swal.fire('Error al obtener las imágenes', 'error');
+      }
+    );
   }
 }

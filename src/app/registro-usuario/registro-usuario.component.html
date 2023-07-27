@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="form_wrapper">
   <div class="form_container">
     <div class="title_container">
@@ -6,92 +7,108 @@
     <div class="row clearfix">
       <div class="">
         <form>
-          <div class="input_field">
-            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="text" [(ngModel)]="user" name="userReg" disabled />
-            <label class="labelDatosIngreIndi">Usuario</label>
+          <!--USUARIO -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="user"
+              id="userReg"
+              name="userReg"
+              disabled
+            />
+            <label for="userReg">Nombre de Usuario</label>
           </div>
-          <br />
-          <div class="input_field">
-            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="text" [(ngModel)]="gmail" name="gmailReg" disabled />
-            <label class="labelDatosIngreIndi">Correo</label>
+          <!--email -->
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="gmail"
+              id="gmailReg"
+              name="gmailReg"
+              disabled
+            />
+            <label for="gmailReg">Correo Electrónico</label>
           </div>
-          <br />
-
-          <label class="alertClass" *ngIf="bolNomVac">Nombre no válido</label>
-          <div class="input_field">
-            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+          <!--NOMBRE -->
+          <div class="form-floating mb-3">
             <input
               #contNom
               type="email"
-              name="regUsu"
-              placeholder="Nombre"
+              class="form-control"
               [(ngModel)]="modeloPersona.nombre"
+              id="regUsu"
+              name="regUsu"
+              required
             />
-
-            <label class="labelDatosIngreIndi">Nombre </label>
+            <label for="regUsu">Nombre</label>
           </div>
-          <br />
-          <label class="alertClass" *ngIf="bolApeVac"
-            >Apellidos no válidos</label
-          >
-          <div class="input_field">
-            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+          <label class="alertClass" *ngIf="bolNomVac">Nombre no válido</label>
+          <!--APELLIDOS -->
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
+              id="regApe"
               name="regApe"
-              placeholder="Apellido1 Apellido2"
               #contApe
               [(ngModel)]="modeloPersona.apellido"
             />
-            <label class="labelDatosIngreIndi">Apellido</label>
+            <label for="regApe">Apellidos</label>
           </div>
-          <br />
-          <label class="alertClass" *ngIf="bolCeduVac">Cédula no válida</label>
-          <div class="input_field">
-            <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+          <label class="alertClass" *ngIf="bolApeVac"
+            >Apellidos no válidos</label
+          >
+          <!--CEDULA -->
+          <div class="form-floating mb-3">
             <input
               type="text"
+              class="form-control"
+              id="regCedu"
               name="regCedu"
               #contCedu
               [(ngModel)]="modeloPersona.dniPasaporte"
             />
-            <label class="labelDatosIngreIndi">Cédula</label>
+            <label for="regCedu">Cl. Identidad</label>
           </div>
+          <label class="alertClass" *ngIf="bolCeduVac">Cédula no válida</label>
+          <!--TELEFONO -->
           <div class="row clearfix separacion">
             <div class="col_half">
-              <label class="alertClassDoble" *ngIf="bolTelVac"
-                >Teléfono no válido</label
-              >
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <div class="form-floating mb-3">
                 <input
                   type="text"
+                  class="form-control"
+                  id="regTel"
                   name="regTel"
                   placeholder="opcional"
                   #contTele
                   [(ngModel)]="modeloPersona.telefono"
                 />
-                <label class="labelDatosIngreDoble">Telefono</label>
+                <label for="regTel">Teléfono</label>
               </div>
+              <label class="alertClassDoble" *ngIf="bolTelVac"
+                >Teléfono no válido</label
+              >
             </div>
             <div class="col_half">
-              <label class="alertClassDoble" *ngIf="bolMovVac"
-                >Móvil no válido</label
-              >
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <div class="form-floating mb-3">
                 <input
                   type="text"
+                  class="form-control"
+                  id="regMov"
                   name="regMov"
                   #contMov
                   required
                   [(ngModel)]="modeloPersona.celular"
                 />
-                <label class="labelDatosIngreDoble">Móvil</label>
+                <label for="regMov">Móvil</label>
               </div>
             </div>
+            <label class="alertClassDoble" *ngIf="bolMovVac"
+                >Móvil no válido</label
+              >
           </div>
           <div class="row clearfix">
             <label class="alertClass" *ngIf="bolConRepVac"
@@ -103,60 +120,57 @@
               un simoolo -/:()&@</label
             >
             <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <div class="form-floating mb-3">
                 <input
                   type="password"
+                  class="form-control"
+                  id="regContra"
                   name="regContra"
                   #contContra
                   [(ngModel)]="modeloUsuario.contrasenia"
                 />
-                <label class="labelDatosIngreDoble">Contraseña</label>
+                <label for="regContra">Contraseña</label>
               </div>
             </div>
             <div class="col_half">
-              <div class="input_field">
-                <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <div class="form-floating mb-3">
                 <input
                   type="password"
+                  class="form-control"
+                  id="regRepContr"
                   name="regRepContr"
                   #contRepContra
                   required
                   [(ngModel)]="repContra"
                 />
-                <label class="labelDatosIngreDoble">Repita Contraseña</label>
+                <label for="regRepContr">Repita Contraseña</label>
               </div>
             </div>
             <div class="col_half">
-              <br />
-              <label class="alertClass" *ngIf="bolFecNac"
-                >No es mayor a 18 años</label
-              >
-              <div class="input_field">
-                <span class="ico"></span>
+              <div class="form-floating mb-3">
                 <input
                   type="date"
-                  class="calendario"
+                  class="form-control"
+                  id="regFechaNac"
                   name="regFechaNac"
                   #contFechaNac
                   [(ngModel)]="modeloPersona.fechaNac"
                 />
-                <label class="labelDatosFechaNac">Fecha Nacimiento</label>
+                <label for="regFechaNac">Fecha Nacimiento</label>
               </div>
+              <label class="alertClass" *ngIf="bolFecNac"
+                >No es mayor a 18 años</label
+              >
             </div>
           </div>
           <br />
 
           <div class="input_field checkbox_option">
             <input type="checkbox" id="cb1" />
-            <label for="cb1">I agree with terms and conditions</label>
+            <label for="cb1">Estoy de acuerdo con lo términos y condiciones</label>
           </div>
           <br />
-          <div class="input_field checkbox_option">
-            <input type="checkbox" id="cb2" />
-            <label for="cb2">I want to receive the newsletter</label>
-          </div>
-          <p class="alertClass" *ngIf="bolGenVac">Llene los campos</p>
+          <p class="alertClass" *ngIf="bolGenVac">Complete todos los campos</p>
           <br />
           <input
             class="button"

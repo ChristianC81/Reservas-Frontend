@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { SalonDto } from 'src/app/modelo/SalonDto';
 import Swal from 'sweetalert2';
-
+import { SalonService } from 'src/service/salon.service';
 @Component({
   selector: 'app-salon-detalle',
   templateUrl: './salon-detalle.component.html',
@@ -11,17 +11,19 @@ export class SalonDetalleComponent {
   @Input() publicacionSelect: any;
   @Output() close: any = new EventEmitter<boolean>();
   radioValue = true;
-  salon: SalonDto | null = null;
+  salon: SalonDto;
   currenDate = new Date();
   showReservas = false;
+  images: string[] = []; // Aquí debes insertar las imágenes en formato base64
 
-  constructor() {}
+  constructor(private salonService: SalonService) {}
 
   ngOnInit(): void {
     if (this.publicacionSelect == null) {
       this.radioValue = false;
     } else {
       this.salon = this.publicacionSelect.salonDto;
+      this.getImages(this.salon.idSalon);
     }
   }
 
@@ -45,5 +47,15 @@ export class SalonDetalleComponent {
     //obtener la data de reservas para ver en una tabla
     this.showReservas = true;
   }
-  
+
+  getImages(idSalon: number) {
+    this.salonService.getImages(idSalon).subscribe(
+      (images: string[]) => {
+        this.images = images;
+      },
+      (error) => {
+        Swal.fire('Error al obtener las imágenes', 'error');
+      }
+    );
+  }
 }

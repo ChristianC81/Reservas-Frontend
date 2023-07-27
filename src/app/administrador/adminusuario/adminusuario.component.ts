@@ -28,7 +28,17 @@ export class AdminusuarioComponent implements OnInit {
   usuariosInactivosCop: Usuario[] = [];
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
+  userLoged: boolean = false;
+  
 
+  logout() {
+ 
+    localStorage.removeItem('emailUserLoged');
+    localStorage.removeItem('username');
+    localStorage.removeItem('emailUserLogedAd');
+    this.userLoged=false;
+    this.router.navigate(['/']);
+  }
   ngOnInit(): void {
     //mostrar contador de usuarios
     this.cargarUsuNum();

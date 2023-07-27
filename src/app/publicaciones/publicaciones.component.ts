@@ -12,16 +12,18 @@ import { Router } from '@angular/router';
 })
 export class PublicacionesComponent {
 
+  images: string[] = []; // Aquí debes insertar las imágenes en formato base64
   publicaciones: PublicacionDto[];
   detalle  = false;
   publicacionSelect :any = null;
   salones: Salon[] = []
+  idSalon: number= 1;
 
   constructor(private salonService: SalonService,private router: Router) { }
 
   ngOnInit() {
- 
-    this.getPublicaciones();
+  this.getImages();
+  this.getPublicaciones();
   }
 
   //Listar los nombres de los complementos
@@ -29,14 +31,33 @@ export class PublicacionesComponent {
     this.salonService.getPublicaciones().subscribe(
       (listPublicaciones: PublicacionDto[]) => {
         this.publicaciones = listPublicaciones;
-        
+        for (let publicacion of this.publicaciones) {
+          this.salonService.getImages(publicacion.salonDto.idSalon).subscribe(
+            (images: string[]) => {
+              publicacion.images = images;
+            },
+            (error) => {
+              Swal.fire('Error al obtener las imágenes', 'error');
+            }
+          );
+        }
       },
       (error) => {
         Swal.fire('Error al obtener los salones', 'error');
       }
     );
   }
-
+  
+getImages() {
+  this.salonService.getImages(this.idSalon).subscribe(
+    (images: string[]) => {
+      this.images = images;
+    },
+    (error) => {
+      Swal.fire('Error al obtener las imágenes', 'error');
+    }
+  );
+}
   seleccionarPublicacion(data: any){
     if(data){
       this.publicacionSelect = data;

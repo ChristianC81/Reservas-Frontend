@@ -17,7 +17,7 @@ import { ComplementoDto } from '../modelo/dto/ComplementoDto';
 })
 export class FormComponentPubli implements OnInit {
 
-  
+
   SalonDto: SalonDto = {
     idSalon: 0,
     nombre: '',
@@ -53,6 +53,7 @@ export class FormComponentPubli implements OnInit {
   complemento: Complemento = new Complemento();
   public titulo: string = 'Publica tu Salón AHORA !!';
   ultimoId: number;
+  idSalonComp: number;
 
   ListaCategoria: CategoriaDto[] = [];
 
@@ -68,7 +69,7 @@ export class FormComponentPubli implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!localStorage.getItem('username')){
+    if (!localStorage.getItem('username')) {
       this.router.navigate(['loginReg']);
     }
     this.cargarSalon();
@@ -95,12 +96,14 @@ export class FormComponentPubli implements OnInit {
       .subscribe((categoria: CategoriaDto[]) => (this.ListaCategoria = categoria));
   }
 
+  // Imagenes
   selectedImages: string[] = [];
-  selectedImage: string[] = [];
+  selectedImage: File[] = [];
 
   onFilesSelected(event: any) {
     const files: FileList = event.target.files;
     this.readImages(files);
+    this.selectedImage = Array.from(files);
   }
 
   readImages(files: FileList) {
@@ -108,7 +111,6 @@ export class FormComponentPubli implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.selectedImages.push(e.target.result);
-        this.selectedImage.push(e.target.result); // BYTES
       };
       reader.readAsDataURL(files[i]);
       console.log(reader);
@@ -148,6 +150,16 @@ export class FormComponentPubli implements OnInit {
   }
 
   public create(): void {
+     // Verificar si se ha seleccionado alguna imagen
+  if (this.selectedImage.length === 0) {
+    Swal.fire(
+      'Error',
+      'Debe subir al menos una imagen antes de publicar.',
+      'error'
+    );
+    return;
+  }
+
     console.log(this.SalonDto);
     this.SalonDto.categoria = this.ListaCategoria.find(
       (categoria) => categoria?.categoria == this.SalonDto.categoria?.categoria
@@ -163,18 +175,9 @@ export class FormComponentPubli implements OnInit {
           `Salon ${salon.nombre} guardado con exito`,
           'success'
         );
-        this.router.navigate(['/mis-salones']);
-        // this.salonService
-        //   .postImage(this.selectedImage, salon.idSalon)
-        //   .subscribe(
-        //     (data) => {
-        //       alert('SE PUBLICO LA FOTO');
-        //     },
-        //     (err) => {
-        //       alert('ERROR AL SUBIR LA FOTO');
-        //     }
-        //   );
-      }, (err) =>{
+        this.idSalonComp = salon.idSalon;
+        this.createImageSalon(this.idSalonComp); // Mover esta línea aquí
+      }, (err) => {
         Swal.fire(
           'Publicación de salón',
           err.error,
@@ -182,8 +185,32 @@ export class FormComponentPubli implements OnInit {
         );
       }
       );
+      //this.router.navigate(['/mis-salones']);
   }
+  
 
+  createImageSalon(idSalon: number): void {
+    if (idSalon === undefined) {
+      Swal.fire(
+        'Error',
+        'No se pudo subir la imagen porque el ID del salón no se ha definido correctamente.',
+        'error'
+      );
+      return;
+    }
+  
+    this.salonService
+      .postImage(this.selectedImage, this.idSalonComp)
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+  
   //creacion del complemento
   public createcomplemento(): void {
     // agregamos el complemto al array de complementos
