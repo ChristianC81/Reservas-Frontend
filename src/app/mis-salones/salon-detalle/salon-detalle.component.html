@@ -1,4 +1,55 @@
 <div _ngcontent-ygo-c128 class="container">
+  <div _ngcontent-ygo-c128 class="modal-body">
+    <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
+      <br /><br />
+      <div class="modal-header text-center">
+        <h3 class="text-center">
+          <b>Detalle del Salón {{ salon.nombre }}</b>
+        </h3>
+      </div>
+      <br />
+      <div class="card-footer">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <b>Dirección: </b>{{ salon.direccion }}
+          </li>
+          <li class="list-group-item">
+            <b>Capacidad: </b>{{ salon.capacidad }}
+          </li>
+          <li class="list-group-item">
+            <b>Descripción: </b>{{ salon.descripcion }}
+          </li>
+          <li class="list-group-item">
+            <b>Disponibilidad: </b>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                *ngIf="!salon.disponibilidad"
+              />
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                *ngIf="salon.disponibilidad"
+                checked
+              />
+          </li>
+          <li class="list-group-item">
+            <b>Precio: </b>{{ salon.precioSalon }}
+          </li><!--
+          <li class="list-group-item">
+            <b>Garantía: </b>{{ salon.garantiaDanos }}
+          </li>-->
+        </ul>
+        <div class="card text-center">
+          <br /><br />
+          <div class="modal-header text-center">
+            <h3 class="text-center"><b>Lista de Complementos</b></h3>
+          </div>
+          <br />
     <div _ngcontent-ygo-c128 class="modal-body">
         <div _ngcontent-kqj-c128 class="card-header" *ngIf="salon != null">
             <br /><br />

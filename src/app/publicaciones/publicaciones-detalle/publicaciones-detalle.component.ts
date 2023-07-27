@@ -6,6 +6,8 @@ import { UserDto } from '../../modelo/dto/UserDto';
 import { PedidoService } from '../../../service/pedido.service';
 import { DetallePedidoDto } from 'src/app/modelo/dto/DetallePedidoDto';
 import { ComplementoDto } from '../../modelo/dto/ComplementoDto';
+import { Toast } from 'ngx-toastr';
+
 import { SalonService } from 'src/service/salon.service';
 @Component({
   selector: 'app-publicaciones-detalle',
@@ -59,32 +61,56 @@ export class PublicacionesDetalleComponent implements OnInit {
   }
 
   guardarReserva(){
+  const fechaHoy = new Date();
+  const fechaInicioReserva = new Date(this.fechainicio);
+  const fechaFinReserva = new Date(this.fechafin)
+  if ((fechaInicioReserva < fechaHoy)||(fechaFinReserva < fechaHoy)) {
+    //Toast.error('No puedes reservar en fechas pasadas a la actual');
+    Swal.fire('No puede reservar en fechas anteriores que la actual');
+    return;
+  }
+
     var pedido = new Pedido();
-    pedido.pedCantidad = this.cantidad;
+    pedido.pedCantidad = 1;
     pedido.pedEstadopago = false;
     pedido.pedObservacion = this.observacion;
     pedido.pedPreciototal = this.preciototal;
     pedido.pedSalon = this.salon.idSalon;
     pedido.pedEmailUsuario = this.publicacionSelect.userDto.email;
     pedido.pedFechaInicio = this.fechainicio;
-    pedido.pedFechaInicio = this.fechafin;
-    /*pedido.pedFechaInicio = this.currenDate.getFullYear() + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
-    pedido.pedFechaFin =  this.currenDate.getFullYear(  ) + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
-    */
-   pedido.pedDetalle = this.listDetalle;
+    pedido.pedFechaFin= this.fechafin;
+    pedido.pedDetalle = this.listDetalle;
 
     this.service.create(pedido).subscribe(data => {
       
-        Swal.fire('Reserva enviada exitosamente, el usuario se pondrá en contacto con usted pronto. Gracias por usar nuestro sistema.');
+        Swal.fire({
+          text:'Reserva enviada éxitosamente, el usuario se pondrá en contacto con usted pronto. Gracias por usar nuestro sistema.', 
+          icon: 'success'});
         this.cancel();
       
     }, (error: any) => {
-      Swal.fire('Ocurrió un error al enviar la solicitud de reserva. Intente nuevamente.');
+      Swal.fire({
+        text:'Ocurrió un error al enviar la solicitud de reserva. Intente nuevamente.',
+        icon:'error'});
     }
     );
   }
 
   agregarLista(){
+    if (this.cantidadDetalle <= 0) {
+      Swal.fire({
+        text: 'Cantidad no válida',
+        icon: 'warning'
+      });
+      return;
+    }
+    if (this.cantidadDetalle > this.complementoSelec.cantidadBase) {
+      Swal.fire({
+        text: 'La cantidad excede a la cantidad disponible',
+        icon: 'warning'
+      });
+      return;
+    }
     var det = new DetallePedidoDto();
     det.idDetalle = 0;
     det.cantidad = this.cantidadDetalle;

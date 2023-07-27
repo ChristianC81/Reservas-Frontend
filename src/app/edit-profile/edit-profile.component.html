@@ -2,8 +2,8 @@
 <div class="container">
     <br>
     <div class="row text-left py-3">
-        <div class="col-lg-6 m-auto" >
-            <h1 class="h2">Perfil de </h1>
+        <div class="col-lg-6 m-auto" *ngIf="userLoged" >
+            <h1 class="h2">Perfil de {{userName}} </h1>
         </div>
     </div>
 
@@ -47,14 +47,20 @@
                     <label for="email">Correo electrónico:</label>
                 </div>
                 <br>
-                <div class="form-floating"> <input type="text" class="form-control" id="firstName"
-                        placeholder="name@example.com" name="firstName" [(ngModel)]="userData.firstName" required>
-                    <label for="firstName">Nombre:</label>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Contraseña actual" name="currentPassword"
+                        [(ngModel)]="userData.currentPassword" required>
+                    <label for="currentPassword">Contraseña actual:</label>
                 </div>
                 <br>
-                <div class="form-floating"> <input type="text" class="form-control" id="lastName"
-                        placeholder="name@example.com" name="lastName" [(ngModel)]="userData.lastName" required>
-                    <label for="lastName">Apellido:</label>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="newPassword" placeholder="Nueva contraseña" name="newPassword"
+                        [(ngModel)]="userData.newPassword" required>
+                    <label for="newPassword">Nueva contraseña:</label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <a href="https://github.com/"> dcakdnmcklddsjc </a>
                 </div>
                 <br>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">

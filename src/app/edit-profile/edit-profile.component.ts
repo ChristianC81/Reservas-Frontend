@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/service/usuario.service';// Reemplaza 'tu_servicio_de_usuarios' con el nombre correcto de tu servicio
 import { Usuario } from '../modelo/Usuario';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -63,6 +64,23 @@ export class EditProfileComponent implements OnInit {
   editarUsuario() {
   }
   cambiarContrasena() {
+  // motrar el nombre del usuario
+  /*validateUserLoged() {
+    var email = localStorage.getItem('emailUserLoged');
+    this.userName = localStorage.getItem('username') as string;
+    console.log("email", email)
+    if (
+      null !== email &&
+      null !== this.userName &&
+      undefined !== email &&
+      undefined !== this.userName &&
+      "null" !== email &&
+      "null" !== this.userName 
+    ) {
+      this.userLoged = true;
+    } else {
+      this.userLoged = false;
+    }*/
   }
 }
 
