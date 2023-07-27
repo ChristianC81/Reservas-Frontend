@@ -13,55 +13,35 @@ export class EditProfileComponent implements OnInit {
   userLoged: boolean = false;
   userName: string = '';
   usuario: Usuario = new Usuario();
+  email: string='';
 
   constructor(private userService: UsuarioService) { }
 
+
   ngOnInit(): void {
-    // Obtener el ID del usuario desde el LocalStorage
-    const userId = Number(localStorage.getItem('userId'));
-
-    // Obtener los datos del usuario desde el servidor
-    this.userService.getUsuario(userId).subscribe((user: Usuario) => {
-      this.userData = { ...user };
-      this.originalUserData = { ...user };
-    });
-    // Lógica para obtener los datos del usuario actual y cargarlos en el formulario
-    /*const userId = 1  //Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
-    this.userService.getUserById(userId).subscribe((user: any) => {
-      this.userData = { ...user };
-      this.originalUserData = { ...user };
-    });*/
-  }
-
-  onSubmit(): void {
-    /* const modifiedFields: any = {};
-
-    // Identificar los campos modificados
-    for (const key in this.userData) {
-      if (this.userData[key] !== this.originalUserData[key]) {
-        modifiedFields[key] = this.userData[key];
-      }
-    }
-
-   if (Object.keys(modifiedFields).length === 0) {
-      console.log('No se han realizado cambios');
-      return;
-    }
-
-    // Lógica para enviar solo los campos modificados al backend
-    const userId = 1 // Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
-    this.userService.updateUser(userId, modifiedFields).subscribe((response: any) => {
-      // Aquí puedes manejar la respuesta del servidor si lo deseas
-      console.log('Usuario actualizado con éxito');
-    });*/
-  }
+     this.email= localStorage.getItem('emailUserLoged') as string;
+     this.obtenerUsuario();
+  } 
 
   onCancel(): void {
     // Restablecer los valores del formulario a los valores originales
     //this.userData = { ...this.originalUserData };
   }
 
+  obtenerUsuario() {
+  this.userService.getUsuarioEmail(this.email).subscribe((user: Usuario) => {
+      this.usuario= user;
+    });
+  }
+  onSubmit(): void {
+    const userId = this.usuario.idUsuario; // Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
+    this.userService.updateUser(userId, this.userData).subscribe((response: any) => {
+      // Aquí puedes manejar la respuesta del servidor si lo deseas
+      console.log('Usuario actualizado con éxito');
+    });
+  }
   editarUsuario() {
+
   }
   cambiarContrasena() {
   // motrar el nombre del usuario

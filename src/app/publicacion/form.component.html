@@ -172,7 +172,6 @@
     </div>
 
     <div class="col-md-6">
-      <h2 class="titulo">Foto del salón</h2>
       <input
         class="btn frameImage"
         type="file"
@@ -235,11 +234,10 @@
             name="cantidadbase"
             min="0"
             required
-            oninvalid="this.setCustomValidity('Ingrese una cantidad válida (solo números enteros positivos).')"
-            oninput="this.setCustomValidity('')"
+            title="Ingrese una cantidad válida"
             style="resize: horizontal; max-width: 500px"
           />
-          <label for="cantidadbase">Capacidad Base</label>
+          <label for="cantidadbase">Cantidad Base</label>
         </div>
         <br />
 
@@ -251,7 +249,7 @@
             [(ngModel)]="complementoDto.precioUnitario"
             name="preciounitario"
             pattern="^\d+(\.\d+)?$"
-            title="Solo se permiten números y números decimales no negativos."
+            title="Precio incorrecto"
             required
             style="max-width: 500px"
           />
@@ -269,7 +267,6 @@
           <button
             class="btn btn-success me-md-2"
             type="submit"
-            (click)="ocultarVentanaEmergente()"
           >
             Guardar
           </button>

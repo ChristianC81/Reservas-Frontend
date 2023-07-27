@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import Swal from 'sweetalert2';
 import { Pedido } from '../app/modelo/Pedido';
 
 
@@ -29,9 +28,6 @@ export class PedidoService {
   create(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(this.URLlistarPedidos + "/crear", pedido, {headers: this.httpHeaders})
   }
-
-
-
   getProducto(id: number):Observable<Pedido>{
     return this.http.get<Pedido>(`${this.URLlistarPedidos}/${id}`);
   }

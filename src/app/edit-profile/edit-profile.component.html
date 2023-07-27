@@ -16,17 +16,11 @@
                   </div>
                   <div class="col-md-8" >
                     <div class="card-body">
-                      <h4 class="card-title">Detalles de la cuenta</h4>
-                      <p class="card-text">Nombre de usuario</p>
-                      <h5 class="card-title"[(ngModel)]="usuario.nombreUsuario"></h5>
+                        <h4 class="card-title">Detalles de la cuenta</h4>
+                        <p class="card-text">Nombre de usuario</p>
+                        <h5 class="card-title">{{ usuario.nombreUsuario }}</h5> <!-- Muestra el nombre de usuario del usuario actual -->
                         <p class="card-text">Correo electrónico</p>
-                        <h5 class="card-title"[(ngModel)]="usuario.email"></h5>
-                        <p class="card-text">Número de teléfono</p>
-                        <h5 class="card-title">Nombre de usuario</h5>
-                        <p class="card-text">Dirección</p>
-                        <h5 class="card-title">Nombre de usuario</h5>
-                        <p class="card-text">Fecha de nacimiento</p>
-                        <h5 class="card-title">Nombre de usuario</h5>
+                        <h5 class="card-title">{{ usuario.email }}</h5> <!-- Muestra el correo electrónico del usuario actual -->
                       <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
@@ -37,25 +31,25 @@
             <form>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="username" placeholder="Usuar234" name="username"
-                        [(ngModel)]="userData.username" required>
+                      [(ngModel)]="userData.nombreUsuario" required> <!-- Vincula el campo de entrada a la propiedad nombreUsuario del objeto userData -->
                     <label for="username">Nombre de usuario:</label>
-                </div>
-                <br>
-                <div class="form-floating">
+                  </div>
+                  <br>
+                  <div class="form-floating">
                     <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
-                        [(ngModel)]="userData.email" required>
+                      [(ngModel)]="userData.email" required> <!-- Vincula el campo de entrada a la propiedad email del objeto userData -->
                     <label for="email">Correo electrónico:</label>
-                </div>
+                  </div>
                 <br>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="currentPassword" placeholder="Contraseña actual" name="currentPassword"
-                        [(ngModel)]="userData.currentPassword" required>
+                        [(ngModel)]="userData.currentPassword" required> <!-- Vincula el campo de entrada a la propiedad currentPassword del objeto userData -->
                     <label for="currentPassword">Contraseña actual:</label>
                 </div>
                 <br>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="newPassword" placeholder="Nueva contraseña" name="newPassword"
-                        [(ngModel)]="userData.newPassword" required>
+                        [(ngModel)]="userData.newPassword" required> <!-- Vincula el campo de entrada a la propiedad newPassword del objeto userData -->
                     <label for="newPassword">Nueva contraseña:</label>
                 </div>
                 <br>
@@ -64,7 +58,7 @@
                 </div>
                 <br>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button class="btn btn-success me-md-2" type="submit" (click)="onSubmit()">Editar perfil</button>
+                    <button class="btn btn-success me-md-2" type="submit" (click)="onSubmit()">Editar perfil</button> <!-- Llama al método onSubmit() cuando se hace clic en el botón -->
                     <button class="btn btn-danger btn-sm" type="button"(click)="onCancel()" >Cancelar</button>
                 </div>
             </form>

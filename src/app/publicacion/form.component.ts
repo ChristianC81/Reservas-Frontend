@@ -211,9 +211,7 @@ export class FormComponentPubli implements OnInit {
       );
   }
   
-  //creacion del complemento
   public createcomplemento(): void {
-    // agregamos el complemto al array de complementos
     var complemento = {
       idComplemento: this.complementoDto.idComplemento,
       nombre: this.complementoDto.nombre,
@@ -222,15 +220,18 @@ export class FormComponentPubli implements OnInit {
       cantidadRestante: this.complementoDto.cantidadRestante,
       precioUnitario: this.complementoDto.precioUnitario,
       estado: this.complementoDto.estado,
-    }
+    };
+  
     this.SalonDto.complementos.push(complemento);
-    Swal.fire(
-      'Datos de Complemento Agregado',
-      `Complemento guardado con exito`,
-      'success'
-    );
+    Swal.fire('Datos de Complemento Agregado', 'Complemento guardado con éxito', 'success').then((result) => {
+      if (result.isConfirmed) {
+        this.ocultarVentanaEmergente();
+        this.complementoDto = new ComplementoDto(); //limpiar
+      }
+    });
   }
-
+  
+  
   mostrarDatos() {
     this.complementoService.ListarNombresComplementos().subscribe(
       (nombres: string[]) => {
