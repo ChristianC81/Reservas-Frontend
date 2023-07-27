@@ -185,7 +185,7 @@ export class FormComponentPubli implements OnInit {
         );
       }
       );
-      //this.router.navigate(['/mis-salones']);
+      this.router.navigate(['/mis-salones']);
   }
   
 
