@@ -31,25 +31,25 @@
             <form>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="username" placeholder="Usuar234" name="username"
-                      [(ngModel)]="userData.nombreUsuario" required> <!-- Vincula el campo de entrada a la propiedad nombreUsuario del objeto userData -->
+                      [(ngModel)]="nombreUsuario" required> <!-- Vincula el campo de entrada a la propiedad nombreUsuario del objeto userData -->
                     <label for="username">Nombre de usuario:</label>
                   </div>
                   <br>
                   <div class="form-floating">
                     <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
-                      [(ngModel)]="userData.email" required> <!-- Vincula el campo de entrada a la propiedad email del objeto userData -->
+                      [(ngModel)]="emailUser" required> <!-- Vincula el campo de entrada a la propiedad email del objeto userData -->
                     <label for="email">Correo electrónico:</label>
                   </div>
                 <br>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="currentPassword" placeholder="Contraseña actual" name="currentPassword"
-                        [(ngModel)]="userData.currentPassword" required> <!-- Vincula el campo de entrada a la propiedad currentPassword del objeto userData -->
+                        [(ngModel)]="contrasenia" required> <!-- Vincula el campo de entrada a la propiedad currentPassword del objeto userData -->
                     <label for="currentPassword">Contraseña actual:</label>
                 </div>
                 <br>
                 <div class="form-floating">
                     <input type="password" class="form-control" id="newPassword" placeholder="Nueva contraseña" name="newPassword"
-                        [(ngModel)]="userData.newPassword" required> <!-- Vincula el campo de entrada a la propiedad newPassword del objeto userData -->
+                        [(ngModel)]="repcontrasenia" required> <!-- Vincula el campo de entrada a la propiedad newPassword del objeto userData -->
                     <label for="newPassword">Nueva contraseña:</label>
                 </div>
                 <br>

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/service/usuario.service';// Reemplaza 'tu_servicio_de_usuarios' con el nombre correcto de tu servicio
 import { Usuario } from '../modelo/Usuario';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  userData: any = {};
-  originalUserData: any = {};
+  nombreUsuario: string = '';
+  emailUser: string = '';
+  contrasenia: string = '';
+  repcontrasenia: string = '';
   userLoged: boolean = false;
   userName: string = '';
   usuario: Usuario = new Usuario();
@@ -35,9 +37,26 @@ export class EditProfileComponent implements OnInit {
   }
   onSubmit(): void {
     const userId = this.usuario.idUsuario; // Obtener el ID del usuario actual, por ejemplo, desde el token de autenticación ;
-    this.userService.updateUser(userId, this.userData).subscribe((response: any) => {
+    
+    if(this.nombreUsuario == ''){
+      this.nombreUsuario = this.usuario.nombreUsuario;
+    }
+    this.usuario.nombreUsuario = this.nombreUsuario;
+    if(this.emailUser == ''){
+      this.emailUser = this.usuario.email;
+    }
+    this.usuario.email = this.emailUser;
+    if(this.contrasenia == ''){
+      this.contrasenia = this.usuario.contrasenia;
+    }
+    if(this.contrasenia == this.repcontrasenia){
+      this.usuario.contrasenia = this.contrasenia;
+    }
+
+    this.userService.updateUser(userId, this.usuario).subscribe((response: any) => {
       // Aquí puedes manejar la respuesta del servidor si lo deseas
       console.log('Usuario actualizado con éxito');
+      Swal.fire('ACTUALIZACIÓN', 'Usuario actualizado con éxito', 'success');
     });
   }
   editarUsuario() {
