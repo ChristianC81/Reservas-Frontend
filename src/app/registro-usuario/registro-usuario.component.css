@@ -149,11 +149,11 @@ body {
 }
 
 .form_wrapper input[type=submit]:hover {
-  background: #e1a70a;
+  background: #d4c599;
 }
 
 .form_wrapper input[type=submit]:focus {
-  background: #e1a70a;
+  background: #d4c599;
 }
 
 .form_wrapper input[type=checkbox],
@@ -342,6 +342,7 @@ body {
   height: 30px;
 
 }
+
 .ico{
 
   border: 1px solid rgb(138, 142, 138);
@@ -566,4 +567,10 @@ transition: all 1s !important;
   .remember_me {
     padding-bottom: 20px;
   }
+}
+/* Estilos personalizados para el checkbox */
+.input_field.checkbox_option input[type="checkbox"] {
+  /* Ajusta el tamaño del checkbox aquí */
+  width: 30px;
+  height: 30px;
 }

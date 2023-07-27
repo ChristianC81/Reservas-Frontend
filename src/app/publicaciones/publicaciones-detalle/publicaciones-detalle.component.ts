@@ -21,7 +21,10 @@ export class PublicacionesDetalleComponent implements OnInit {
   modalView = false;
   cantidad = 0;
   preciototal = 0;
+  preciototalReserva = 0;
   observacion = '';
+  fechainicio = '';
+  fechafin = '';
   currenDate = new Date();
   cantidadDetalle: number;
   precioUnitario: number;
@@ -63,9 +66,12 @@ export class PublicacionesDetalleComponent implements OnInit {
     pedido.pedPreciototal = this.preciototal;
     pedido.pedSalon = this.salon.idSalon;
     pedido.pedEmailUsuario = this.publicacionSelect.userDto.email;
-    pedido.pedFechaInicio = this.currenDate.getFullYear() + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
+    pedido.pedFechaInicio = this.fechainicio;
+    pedido.pedFechaInicio = this.fechafin;
+    /*pedido.pedFechaInicio = this.currenDate.getFullYear() + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
     pedido.pedFechaFin =  this.currenDate.getFullYear(  ) + "-" + this.currenDate.getMonth() + "-" + this.currenDate.getDate();
-    pedido.pedDetalle = this.listDetalle;
+    */
+   pedido.pedDetalle = this.listDetalle;
 
     this.service.create(pedido).subscribe(data => {
       
@@ -86,6 +92,7 @@ export class PublicacionesDetalleComponent implements OnInit {
     det.nombreComplemento = this.complementoSelec.nombre;
     det.precioUnitario = this.precioUnitario;
     this.preciototal = this.cantidadDetalle * this.complementoSelec.precioUnitario;
+    this.preciototalReserva = this.salon.precioSalon+(this.cantidadDetalle * this.complementoSelec.precioUnitario);
     this.listDetalle.push(det);
   }
 
