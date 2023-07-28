@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class PublicacionesComponent {
 
-  images: string[] = []; // Aquí debes insertar las imágenes en formato base64
+  images: string[] = []; 
   publicaciones: PublicacionDto[];
   detalle = false;
   publicacionSelect: any = null;
@@ -53,7 +53,7 @@ export class PublicacionesComponent {
               });
             },
             (error) => {
-              Swal.fire('Error al obtener las imágenes', 'error');
+              console.log(error,'Error al obtener las imágenes');
             }
           );
         }
@@ -61,7 +61,7 @@ export class PublicacionesComponent {
         console.log("Resultado de la búsqueda:", this.salonesFiltrados);
       },
       (error) => {
-        Swal.fire('Error al obtener los salones', 'error');
+        console.log('Error al obtener los salones', error);
       }
     );
   }
@@ -78,13 +78,13 @@ export class PublicacionesComponent {
               publicacion.images = images;
             },
             (error) => {
-              Swal.fire('Error al obtener las imágenes', 'error');
+                 console.log(error,'Error al obtener las imágenes');
             }
           );
         }
       },
       (error) => {
-        Swal.fire('Error al obtener los salones', 'error');
+        console.log('Error al obtener los salones', error);
       }
     );
   }
@@ -99,7 +99,7 @@ export class PublicacionesComponent {
         this.images = images;
       },
       (error) => {
-        Swal.fire('Error al obtener las imágenes', 'error');
+        console.log(error,'Error al obtener las imágenes');
       }
     );
   }

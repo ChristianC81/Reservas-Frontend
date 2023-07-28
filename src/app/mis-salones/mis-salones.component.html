@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container" *ngIf="!detalle && publicacionSelect === null">
-    <section class="bg-light">
+    <section class="backgroundMain">
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
@@ -12,6 +12,8 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones; let idx = index">
+                    <br>
+                    <br>
                     <div class="card h-100">
                         <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel"
                             (click)="seleccionarPublicacion(publicacion)">
@@ -34,7 +36,7 @@
                           </button>
                         -->
                         </div>
-                        <div class="card-body" (click)="seleccionarPublicacion(publicacion)">
+                        <div class="card-body cards" (click)="seleccionarPublicacion(publicacion)">
                             <ul class="list-unstyled d-flex justify-content-between">
                                 <li>
                                     <i class="text-warning fa fa-star"></i>

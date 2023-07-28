@@ -132,7 +132,7 @@ export class MisSalonesComponent {
               publicacion.images = images;
             },
             (error) => {
-              Swal.fire('Error al obtener las imágenes', 'error');
+              console.log(error,'Error al obtener las imágenes');
             }
           );
         }
