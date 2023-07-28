@@ -3,3 +3,6 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Montserrat", sans-serif; }
+.fa-star {
+    display: none !important;
+}
