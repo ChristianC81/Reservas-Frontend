@@ -158,7 +158,8 @@ export class PublicacionesDetalleComponent implements OnInit {
         this.images = images;
       },
       (error) => {
-        Swal.fire('Error al obtener las imágenes', 'error');
+        console.log('Error al obtener las imágenes', 'error');
+        //Swal.fire('Error al obtener las imágenes', 'error');
       }
     );
   }

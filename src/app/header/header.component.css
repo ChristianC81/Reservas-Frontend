@@ -1,27 +1,169 @@
-   /* Estilos del botón */
-   .user-button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+* {
+    box-sizing: border-box;
 }
 
-/* Estilos del menú (oculto inicialmente) */
-.user-menu {
-    display: none;
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(219, 219, 219);
+    color: #000;
+}
+
+.brand-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    padding: 1rem;
+}
+
+.itemNav:hover {
+    background-color: #858383;
+    border-radius: 3rem;
+}
+
+.toggle-button {
     position: absolute;
-    top: 40px;
-    right: 10px;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-width: 150px;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
 }
 
-/* Estilos de los elementos del menú */
-.user-menu-item {
-    padding: 8px 12px;
-    cursor: pointer;
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: gray;
+    border-radius: 10px;
 }
+
+.toggle-button:hover{
+    cursor: pointer;
+    
+}
+/*propiedades para ser responsive y poner los iconos*/
+.cajaCont{
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+}
+
+.marcoLogo{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+
+}
+.marcoLogo img{
+    height: 100%;
+    width: 100%;
+    object-fit:contain;
+}
+
+/* quitar atributos de boton*/
+.hovPerf{
+    border: none;
+    background: none;
+}
+
+.cajaIco{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-top: 7px;
+    margin-left: 8px;
+}
+
+.cajaIco img{
+    height: 100%;
+    width: 100%;
+    object-fit:contain;
+}
+.menu-block {
+    
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-top: 10px;
+    margin-left: 8px;
+    color: #fff;
+    background:  #2463eb;
+    padding: 0.5rem 1.1rem;
+    border-radius: 3rem;
+    border: none;
+ 
+}
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
