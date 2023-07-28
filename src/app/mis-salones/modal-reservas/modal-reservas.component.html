@@ -14,6 +14,7 @@
                     <th>FECHA FIN</th>
                     <th>OBSERVACIONES</th>
                     <th>ESTADO</th>
+                    <th>ACCIONES</th>
                 </tr>
             </thead>
 
@@ -25,6 +26,8 @@
                     <td>{{ reserva.pedFechaFin }}</td>
                     <td>{{ reserva.pedObservacion }}</td>
                     <td>{{ reserva.estado }}</td>
+                    <td><button class="btn btn-success me-md-2" type="submit">Aceptar</button></td>
+                    <td><button class="btn btn-danger me-md-2" type="submit">Rechazar</button></td>
                 </tr>
             </tbody>
         </table>
