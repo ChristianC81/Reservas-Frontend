@@ -16,13 +16,13 @@
                   <div class="col-md-4">
                     <img src="./assets/img/userr.png" class="img-fluid rounded-start" alt="...">
                   </div>
-                  <div class="col-md-8" >
+                  <div class="col-md-8" *ngIf="usuarioObt">
                     <div class="card-body">
-                        <h4 class="card-title">Detalles de la cuenta</h4>
-                        <p class="card-text">Nombre de usuario</p>
-                        <h5 class="card-title">{{ usuario.nombreUsuario }}</h5> <!-- Muestra el nombre de usuario del usuario actual -->
-                        <p class="card-text">Correo electrónico</p>
-                        <h5 class="card-title">{{ usuario.email }}</h5> <!-- Muestra el correo electrónico del usuario actual -->
+                      <h4 class="card-title">Detalles de la cuenta</h4>
+                      <p class="card-text">Nombre de usuario</p>
+                      <h5 class="card-title">{{ usuarioObt.nombreUsuario }}</h5> <!-- Muestra el nombre de usuario del usuario actual -->
+                      <p class="card-text">Correo electrónico</p>
+                      <h5 class="card-title">{{ usuarioObt.email }}</h5> <!-- Muestra el correo electrónico del usuario actual -->
                       <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     </div>
                   </div>

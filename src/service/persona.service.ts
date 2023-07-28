@@ -26,4 +26,8 @@ export class PersonaService {
       .get(this.url.concat('/listar'))
       .pipe(map((data) => data as Persona[]));
   }
+
+  getUsuarioPersona(nombre: string){
+    return this.http.get<Persona>(`${this.url}/pernomusuario/${nombre}`);
+  }
 }
