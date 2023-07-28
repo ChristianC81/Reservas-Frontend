@@ -42,11 +42,17 @@ export class SalonService {
     return this.http.post<any>(URLcrearSalon, salon);
   }
 
+
   getSalon(id: number): Observable<Salon> {
     return this.http.get<Salon>(`${this.baseUrl}/${id}`);
   }
 
+  //listar salón por categoría 
+  getSalonxCat(categoria: string): Observable<Salon[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/catsalon/${categoria}`);
+  }
 
+  
 
   subirFoto(archivo: File, id: any): Observable<Salon> {
     let formData = new FormData();
@@ -63,18 +69,18 @@ export class SalonService {
   }
 
   // POST IMAGE
-  postImage(imagen: File[], idSalon: number) : Observable<any>{
+  postImage(imagen: File[], idSalon: number): Observable<any> {
     let formData = new FormData();
-    for(let i = 0; i < imagen.length; i++) {
-        formData.append("imagen", imagen[i], imagen[i].name);
+    for (let i = 0; i < imagen.length; i++) {
+      formData.append("imagen", imagen[i], imagen[i].name);
     }
     return this.http.post<any>(`${this.baseUrl}/postImage/${idSalon}`, formData);
-}
+  }
 
   //GET IMAGE
-getImages(idSalon: number): Observable<string[]> {
-  return this.http.get<string[]>(`${this.baseUrl}/getImages/${idSalon}`);
-}
+  getImages(idSalon: number): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/getImages/${idSalon}`);
+  }
 
   //Métodos para el administrador
 

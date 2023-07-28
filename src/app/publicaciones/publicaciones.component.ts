@@ -14,19 +14,60 @@ export class PublicacionesComponent {
 
   images: string[] = []; // Aquí debes insertar las imágenes en formato base64
   publicaciones: PublicacionDto[];
-  detalle  = false;
-  publicacionSelect :any = null;
-  salones: Salon[] = []
-  idSalon: number= 1;
+  detalle = false;
+  publicacionSelect: any = null;
+  salones: Salon[] = [];
+  idSalon: number = 1;
+  categoriaBusqueda: string;
+  salonesFiltrados: any[] = [];
 
-  constructor(private salonService: SalonService,private router: Router) { }
+
+  constructor(private salonService: SalonService, private router: Router) { }
 
   ngOnInit() {
-  this.getImages();
-  this.getPublicaciones();
+    this.getImages();
+    this.getPublicaciones();
   }
 
-  //Listar los nombres de los complementos
+  getSalonxCategoria() {
+    console.log("Evento ngSubmit activado");
+    if (!this.categoriaBusqueda || this.categoriaBusqueda.trim() === '') {
+      console.log('Ingresa una categoría válida antes de hacer la búsqueda.');
+      return;
+    }
+  
+    this.salonService.getSalonxCat(this.categoriaBusqueda).subscribe(
+      (salones: any[]) => {
+        console.log(this.categoriaBusqueda);
+        this.salonesFiltrados = [];
+  
+        // Obtener las imágenes de las publicaciones asociadas a cada salón
+        for (let salon of salones) {
+          this.salonService.getImages(salon.idSalon).subscribe(
+            (images: string[]) => {
+              this.salonesFiltrados.push({
+                salonDto: salon,
+                userDto: null,
+                multimedia: null,
+                images: images
+              });
+            },
+            (error) => {
+              Swal.fire('Error al obtener las imágenes', 'error');
+            }
+          );
+        }
+  
+        console.log("Resultado de la búsqueda:", this.salonesFiltrados);
+      },
+      (error) => {
+        Swal.fire('Error al obtener los salones', 'error');
+      }
+    );
+  }
+  
+  
+
   getPublicaciones() {
     this.salonService.getPublicaciones().subscribe(
       (listPublicaciones: PublicacionDto[]) => {
@@ -47,25 +88,29 @@ export class PublicacionesComponent {
       }
     );
   }
+
+  mostrarTodosLosCards(): boolean {
+    return this.categoriaBusqueda === '' || this.salonesFiltrados.length === 0;
+  }
   
-getImages() {
-  this.salonService.getImages(this.idSalon).subscribe(
-    (images: string[]) => {
-      this.images = images;
-    },
-    (error) => {
-      Swal.fire('Error al obtener las imágenes', 'error');
-    }
-  );
-}
-  seleccionarPublicacion(data: any){
-    if(data){
+  getImages() {
+    this.salonService.getImages(this.idSalon).subscribe(
+      (images: string[]) => {
+        this.images = images;
+      },
+      (error) => {
+        Swal.fire('Error al obtener las imágenes', 'error');
+      }
+    );
+  }
+  seleccionarPublicacion(data: any) {
+    if (data) {
       this.publicacionSelect = data;
       this.detalle = true;
     }
   }
 
-  close(event:any){
+  close(event: any) {
     this.detalle = event;
     this.publicacionSelect = null;
   }

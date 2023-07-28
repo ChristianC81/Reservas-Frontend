@@ -6,31 +6,30 @@
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">SALONES</h1>
                     <p>
-                        Para rentar un salón seleccione el salón y realice la reservación, en lo posterior el propietario del salón le dará respuesta.
+                        Para rentar un salón seleccione el salón y realice la reservación, en lo posterior el
+                        propietario del salón le dará respuesta.
                     </p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of publicaciones; let idx = index">
+                <div class="d-flex align-items-center mb-3">
+                    <input class="form-control me-2" type="search" placeholder="Buscar categoría" [(ngModel)]="categoriaBusqueda">
+                    <button class="btn btn-outline-success" type="button" (click)="getSalonxCategoria()">Buscar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4" *ngFor="let publicacion of (mostrarTodosLosCards() ? publicaciones : salonesFiltrados); let idx = index">
+                    <br>
+                    <br>
                     <div class="card h-100">
-                        <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel" (click)="seleccionarPublicacion(publicacion)">
-                         <!-- <div class="carousel-indicators">
-                            <button *ngFor="let image of publicacion.images; let i = index" type="button" data-bs-target="'#carouselExampleIndicators' + idx" [attr.data-bs-slide-to]="i" [class.active]="i == 0" [attr.aria-current]="i == 0" [attr.aria-label]="'Slide ' + (i + 1)"></button>
-                          </div>-->
-                          <div class="carousel-inner">
-                            <div *ngFor="let image of publicacion.images; let i = index" class="carousel-item" [class.active]="i == 0">
-                              <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+                        <div [id]="'carouselExampleIndicators' + idx" class="carousel slide" data-bs-ride="carousel"
+                            (click)="seleccionarPublicacion(publicacion)">
+                            <div class="carousel-inner">
+                                <div *ngFor="let image of publicacion.images; let i = index" class="carousel-item"
+                                    [class.active]="i == 0">
+                                    <img [src]="'data:image/jpeg;base64,' + image" class="d-block w-100" alt="...">
+                                </div>
                             </div>
-                          </div>
-                         <!-- <button class="carousel-control-prev" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="'#carouselExampleIndicators' + idx" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                        -->
                         </div>
 
                         <div class="card-body cards" (click)="seleccionarPublicacion(publicacion)">
@@ -45,7 +44,7 @@
                                 <li class="text-muted text-right">${{publicacion.salonDto.precioSalon}}</li>
                             </ul>
                             <p class="h2 text-decoration-none text-dark">{{publicacion.salonDto.nombre}}</p>
-                            
+
                             <p class="card-text">
                                 {{publicacion.salonDto.descripcion}}
                             </p>
@@ -55,13 +54,12 @@
                         </div>
                     </div>
                 </div>
-               
-                
             </div>
         </div>
     </section>
 </div>
 
 <div class="container" *ngIf="detalle && publicacionSelect !== null">
-    <app-publicaciones-detalle  [publicacionSelect]="publicacionSelect" (close)="close($event)"></app-publicaciones-detalle>
+    <app-publicaciones-detalle [publicacionSelect]="publicacionSelect"
+        (close)="close($event)"></app-publicaciones-detalle>
 </div>
