@@ -1,59 +1,37 @@
-<!--<nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/">
+<nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
             <img class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon bg-white"
                 style=" height: 40px; width: 40px;" src="assets/images/LogoRvC.png">
-            <span>Reserv Company</span></a><button data-bs-toggle="collapse" class="navbar-toggler"
-            data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+            <span>Reserv Company</span></a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"
+            (click)="toggleNavigation()"><span class="visually-hidden">Toggle navigation</span><span
                 class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse" [ngClass]="{'show': showNavigation}" id="navcol-1">
+            <ul class="navbar-nav mx-auto align-items-center">
                 <li class="nav-item"><a class="nav-link active" routerLink="/home">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="/publicaciones">Ver Publicaciones</a></li>
                 <li class="nav-item"><a class="nav-link" routerLink="/mis-salones" *ngIf="userLoged">Mis Salones</a>
                 </li>
             </ul>
-            <a class="btn shadow" role="button" (click)="validateUserLogedAndRedirect()">Dar a conocer tu Salón Ya!!</a>
-            <div class="user-section">
-                <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg"
-                    *ngIf="!userLoged">
-                    Iniciar Sesión
-                 
-                </button>
-                <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button
-                    [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
-                    <mat-icon>account_circle</mat-icon> 
-                </button>
-                <mat-menu #menuUsuario="matMenu">
-                    <br>
-                    <button mat-menu-item routerLink="/editprofile">Ver Perfil {{userName}}</button>
-                    <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
-                </mat-menu>
+            <div class="d-flex justify-content-between align-items-center" style="width: auto;"> <!-- Añade la clase d-flex y justify-content-between para justificar los elementos -->
+                <a class="btn shadow" role="button" (click)="validateUserLogedAndRedirect()" style="margin-right: 10px;">Dar a conocer tu Salón Ya!!</a> <!-- Añade un margen a la derecha para separar los elementos -->
+                <div class="user-section">
+                    <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg"
+                        *ngIf="!userLoged">
+                        Iniciar Sesión
+                    </button>
+                    <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button
+                        [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <mat-menu #menuUsuario="matMenu">
+                        <br>
+                        <button mat-menu-item routerLink="/editprofile">Ver Perfil {{userName}}</button>
+                        <button mat-menu-item (click)="logout()">Cerrar Sesión</button>
+                    </mat-menu>
+                </div>
             </div>
         </div>
     </div>
-</nav>-->
-
-<div class="cajaCont">
-    <nav class="navbar">
-        
-        <div class="brand-title"><div class="marcoLogo"><img src="assets/images/LogoRvC.png" alt=""></div>Reserv Company</div>
-        <a class="toggle-button" #toggle_button>
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </a>
-        <div class="navbar-links" #navbar_links>
-            <ul>
-                <li><a href="#" class="itemNav" routerLink="/home">Inicio</a></li>
-                <li><a href="#" class="itemNav" routerLink="/publicaciones">Ver Publicaciones</a></li>
-                <li><button href="#" class="menu-block" routerLink="/loginReg" *ngIf="!userLoged">Acceder</button></li>
-                <li><button href="#" class="menu-block" *ngIf="userLoged" routerLink="/mis-salones">Mis salones</button></li>
-                <li><button href="#" class="hovPerf" *ngIf="userLoged"title="Publicar salón"><div class="cajaIco"(click)="validateUserLogedAndRedirect()"><img src="assets/images/navbar/publicar.png" alt=""></div></button></li>
-                <li><button href="#" class="hovPerf" *ngIf="userLoged" routerLink="/editprofile" title="Perfil"><div class="cajaIco"><img src="assets/images/navbar/perfil.png" alt=""></div></button></li>
-                <li><button href="#" class="menu-block" *ngIf="userLoged" (click)="logout()">Salir</button></li>
-
-            </ul>
-        </div>
-    </nav>
-
-</div>
+</nav>

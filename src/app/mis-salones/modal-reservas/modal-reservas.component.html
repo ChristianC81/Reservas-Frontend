@@ -32,4 +32,65 @@
             </tbody>
         </table>
     </div>
+    <div class="card text-center">
+        <div class="modal-header text-center">
+            <h3 class="text-center"><b>Historial de Reservas</b></h3>
+        </div>
+        <br />
+        <h3 class="text-center"><b>Reservas Aceptadas</b></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>FECHA</th>
+                    <th>USUARIO</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                    <th>OBSERVACIONES</th>
+                    <th>ESTADO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let reserva of listReservas; index">
+                    <td>{{reserva.pedFechaEnvioSolicitud }}</td>
+                    <td>{{ reserva.pedEmailUsuario }}</td>
+                    <td>{{ reserva.pedFechaInicio }}</td>
+                    <td>{{ reserva.pedFechaFin }}</td>
+                    <td>{{ reserva.pedObservacion }}</td>
+                    <td>{{ reserva.estado }}</td>
+                    <td><button class="btn btn-success me-md-2" type="submit">Aceptar</button></td>
+                    <td><button class="btn btn-danger me-md-2" type="submit">Rechazar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <h3 class="text-center"><b>Reservas Rechazadas</b></h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>FECHA</th>
+                    <th>USUARIO</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                    <th>OBSERVACIONES</th>
+                    <th>ESTADO</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let reserva of listReservas; index">
+                    <td>{{reserva.pedFechaEnvioSolicitud }}</td>
+                    <td>{{ reserva.pedEmailUsuario }}</td>
+                    <td>{{ reserva.pedFechaInicio }}</td>
+                    <td>{{ reserva.pedFechaFin }}</td>
+                    <td>{{ reserva.pedObservacion }}</td>
+                    <td>{{ reserva.estado }}</td>
+                    <td><button class="btn btn-success me-md-2" type="submit">Aceptar</button></td>
+                    <td><button class="btn btn-danger me-md-2" type="submit">Rechazar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -15,6 +15,7 @@ export class HeaderComponent {
   userLoged: boolean = false;
   userName: string = '';
   showMenu: boolean = false;
+  showNavigation = false;
 
   constructor(private authService: AuthService, private router: Router,) { }
   //iniciarlizar variables para un header responsive
@@ -80,6 +81,11 @@ export class HeaderComponent {
     this.userLoged=false;
     this.router.navigate(['/']);
   }
+
+  toggleNavigation() {
+    this.showNavigation = !this.showNavigation;
+  }
+  
 }
 function getDiaSemana(date: Date) {
   let days = [
@@ -117,7 +123,6 @@ function getMes(date: Date) {
   ];
   const mes = meses[date.getMonth()];
   return mes;
-  
+    
 }
-
 
