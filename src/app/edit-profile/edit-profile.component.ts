@@ -70,7 +70,7 @@ export class EditProfileComponent implements OnInit {
       localStorage.setItem('emailUserLoged', this.usuarioNew.email);
       localStorage.setItem('username', this.usuarioNew.nombreUsuario);
       // Recargamos la página para que se muestren los nuevos valores en la barra de navegación
-      //location.reload();
+      location.reload();
     }, error => {
       console.error('Error al actualizar el usuario', error);
     });
