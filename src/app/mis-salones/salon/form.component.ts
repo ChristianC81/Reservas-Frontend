@@ -160,7 +160,7 @@ export class FormComponent implements OnInit {
   if (this.selectedImage.length === 0) {
     Swal.fire(
       'Error',
-      'Debe subir al menos una imagen antes de actualzar.',
+      'Debe subir al menos una imagen antes de actualizar.',
       'error'
     );
     return;

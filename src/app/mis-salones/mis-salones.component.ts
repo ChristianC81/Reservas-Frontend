@@ -7,12 +7,40 @@ import { Salon } from '../modelo/Salon';
 import { SalonDto } from '../modelo/SalonDto';
 import { CategoriaDto } from '../modelo/CategoriaDto';
 import { ComplementoDto } from '../modelo/dto/ComplementoDto';
+import { MultimediaService } from 'src/service/multimedia.service';
+import { MultimediaDto } from '../modelo/dto/MultimediaDto';
 @Component({
   selector: 'app-mis-salones',
   templateUrl: './mis-salones.component.html',
   styleUrls: ['./mis-salones.component.css']
 })
 export class MisSalonesComponent {
+
+  buttonLabel = '';
+  performDeleteAction = true;
+
+  onButtonClick(idSalon: number): void {
+    if (this.performDeleteAction) {
+      // Realizar acción de eliminar multimedia
+      this.eliminarMultimedia(idSalon);
+      this.eliminarSalon2(idSalon);
+
+    }
+  }
+
+  buttonLabel2 = '';
+  performDeleteAction2 = true;
+
+  onButtonClick2(idSalon: number): void {
+    if (this.performDeleteAction2) {
+      // Realizar acción de eliminar multimedia
+      this.eliminarMultimedia(idSalon);
+      this.eliminarSalon(idSalon);
+
+    }
+  }
+
+
 
   SalonDto: SalonDto = {
     idSalon: 0,
@@ -46,6 +74,7 @@ export class MisSalonesComponent {
   };
 
   publicaciones: PublicacionDto[];
+  multimedias: MultimediaDto[];
   detalle = false;
   publicacionSelect: any = null;
   salones: Salon[] = []
@@ -53,7 +82,7 @@ export class MisSalonesComponent {
   idSalonComp: number;
   ListaCategoria: CategoriaDto[] = [];
 
-  constructor(private salonService: SalonService, private router: Router) {
+  constructor(private multimediaService: MultimediaService, private salonService: SalonService, private router: Router) {
     this.SalonDto.categoria = {} as CategoriaDto
   }
 
@@ -77,26 +106,24 @@ export class MisSalonesComponent {
       buttonsStyling: true
     }).then((result) => {
       if (result.value) {
+        this.eliminarMultimedia(salonId)
         this.salonService.eliminarSalon(salonId).subscribe(
           salones => {
-            this.router.navigate(['/mis-salones']);
             this.salonService.getPublicaciones().subscribe(
               response => this.salones = response
             )
-            this.router.navigate(['/mis-salones']);
             Swal.fire(
               'Eliminado!',
               'El Salón ha sido eliminado con exito'
             )
-            this.router.navigate(['/mis-salones']);
-          })
-        this.router.navigate(['/mis-salones']);
-      }
-      this.router.navigate(['/mis-salones']);
-    })
-    this.router.navigate(['/mis-salones']);
-  }
 
+          })
+
+      }
+
+    })
+
+  }
   eliminarSalon2(salonId: number) {
     this.salonService.eliminarSalon(salonId).subscribe(
       salones => {
@@ -107,7 +134,14 @@ export class MisSalonesComponent {
       })
   }
 
-
+  eliminarMultimedia(salonId: number) {
+    this.multimediaService.eliminarMultimedia(salonId).subscribe(
+      salones => {
+        this.multimediaService.getMultimedias().subscribe(
+          response => this.salones = response
+        )
+      })
+  }
 
   ventanaEmergenteVisible: boolean = false;
 
@@ -132,7 +166,7 @@ export class MisSalonesComponent {
               publicacion.images = images;
             },
             (error) => {
-              console.log(error,'Error al obtener las imágenes');
+              console.log(error, 'Error al obtener las imágenes');
             }
           );
         }
