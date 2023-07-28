@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
+<!--<nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
     <div class="container"><a class="navbar-brand d-flex align-items-center" href="/">
             <img class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon bg-white"
                 style=" height: 40px; width: 40px;" src="assets/images/LogoRvC.png">
@@ -17,11 +17,11 @@
                 <button class="btn shadow" style="margin-left: 5px;" type="button" routerLink="/loginReg"
                     *ngIf="!userLoged">
                     Iniciar Sesión
-                    <!-- <mat-icon>account_circle</mat-icon> Icono de usuario -->
+                 
                 </button>
                 <button class="btn shadow btn-sm" style="margin-left: 5px; padding: 5px; padding-bottom:0px" mat-button
                     [matMenuTriggerFor]="menuUsuario" *ngIf="userLoged">
-                    <mat-icon>account_circle</mat-icon> <!-- Icono de usuario -->
+                    <mat-icon>account_circle</mat-icon> 
                 </button>
                 <mat-menu #menuUsuario="matMenu">
                     <br>
@@ -31,4 +31,29 @@
             </div>
         </div>
     </div>
-</nav>
+</nav>-->
+
+<div class="cajaCont">
+    <nav class="navbar">
+        
+        <div class="brand-title"><div class="marcoLogo"><img src="assets/images/LogoRvC.png" alt=""></div>Reserv Company</div>
+        <a class="toggle-button" #toggle_button>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links" #navbar_links>
+            <ul>
+                <li><a href="#" class="itemNav" routerLink="/home">Inicio</a></li>
+                <li><a href="#" class="itemNav" routerLink="/publicaciones">Ver Publicaciones</a></li>
+                <li><button href="#" class="menu-block" routerLink="/loginReg" *ngIf="!userLoged">Acceder</button></li>
+                <li><button href="#" class="menu-block" *ngIf="userLoged" routerLink="/mis-salones">Mis salones</button></li>
+                <li><button href="#" class="hovPerf" *ngIf="userLoged"title="Publicar salón"><div class="cajaIco"(click)="validateUserLogedAndRedirect()"><img src="assets/images/navbar/publicar.png" alt=""></div></button></li>
+                <li><button href="#" class="hovPerf" *ngIf="userLoged" routerLink="/editprofile" title="Perfil"><div class="cajaIco"><img src="assets/images/navbar/perfil.png" alt=""></div></button></li>
+                <li><button href="#" class="menu-block" *ngIf="userLoged" (click)="logout()">Salir</button></li>
+
+            </ul>
+        </div>
+    </nav>
+
+</div>

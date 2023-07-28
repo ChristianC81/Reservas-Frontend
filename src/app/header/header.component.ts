@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
@@ -17,9 +17,22 @@ export class HeaderComponent {
   showMenu: boolean = false;
 
   constructor(private authService: AuthService, private router: Router,) { }
+  //iniciarlizar variables para un header responsive
+  @ViewChild('toggle_button')toggle_button:ElementRef;
+  @ViewChild('navbar_links')navbar_links:ElementRef;
+  
+
 
   async ngOnInit() {
     this.validateUserLoged();
+  }
+//acciones para hacer responsive el nabvar
+  ngAfterViewInit() {
+    this.toggle_button.nativeElement.addEventListener('click',()=>{
+
+      this.navbar_links.nativeElement.classList.toggle('active');
+    });
+
   }
 
   elementoHabilitado(): boolean {
