@@ -193,7 +193,7 @@ export class LoginRegisComponent {
                   });
                 }
               });
-
+//
 
             }else{
               Swal.fire(
