@@ -357,7 +357,7 @@ configuracion boton
 }
 
 .lblMovil {
-    color: #d7d5d5;
+    color: #726e6e;
 }
 
 .lblAlertMovil {
@@ -446,7 +446,7 @@ configuracion boton
         border: none;
         border-bottom: 3px solid #111;
         background: transparent;
-        color: #fff;
+        color: #333;
     }
 
     .form-img {
