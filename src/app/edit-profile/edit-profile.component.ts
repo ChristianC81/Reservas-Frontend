@@ -56,7 +56,7 @@ export class EditProfileComponent implements OnInit {
      // Si los campos están vacíos, se mantienen los valores originales
      this.usuarioNew.nombreUsuario = this.nombreUsuario !== '' ? this.nombreUsuario : this.usuarioObt.nombreUsuario;
      this.usuarioNew.email = this.emailUser !== '' ? this.emailUser : this.usuarioObt.email;
-     this.usuarioNew.contrasenia = this.contrasenia !== '' && this.contrasenia === this.repcontrasenia ? this.contrasenia : this.usuarioObt.contrasenia;
+     this.usuarioNew.contrasenia = this.contrasenia;
  
      this.usuarioNew.estado = true;
      this.usuarioNew.persona.idPersona = this.personaObt.idPersona;
