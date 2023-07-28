@@ -49,16 +49,20 @@
                             <p class="card-text">
                                 {{publicacion.salonDto.descripcion}}
                             </p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <a>
-                                <button class="btn btn-danger btn-sm"
-                                    (click)="eliminarSalon(publicacion.salonDto.idSalon)">ELIMINAR</button>
-                            </a>
-                            <a>
-                                <button class="btn btn-primary btn-sm" (click)="eliminarSalon2(publicacion.salonDto.idSalon)">EDITAR</button>
-                            </a>
-                            <br>
+                            <div class="d-flex justify-content-end gap-2">
+                                <p class="align-right">
+                                    <button class="btn btn-light btn-sm"
+                                        (click)="eliminarSalon2(publicacion.salonDto.idSalon)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </p>
+                                <p class="align-right">
+                                    <button class="btn btn-dark btn-sm"
+                                        (click)="eliminarSalon(publicacion.salonDto.idSalon)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </p>
+                            </div>  
                         </div>
                     </div>
                 </div>
