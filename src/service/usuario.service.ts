@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../app/modelo/Usuario';
 import { map } from 'rxjs/operators';
+import { Email } from 'src/app/modelo/Email';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +56,7 @@ export class UsuarioService {
   updateUser(id: number, userData: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.url}/actualizar/${id}`, userData, { headers: this.httpHeaders });
   }
+
 
 
 }

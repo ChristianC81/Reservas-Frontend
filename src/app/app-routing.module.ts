@@ -13,6 +13,7 @@ import { PublicacionesComponent } from './publicaciones/publicaciones.component'
 import { MisSalonesComponent } from './mis-salones/mis-salones.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormComponent } from './mis-salones/salon/form.component';
+import { RecPasComponent } from './rec-pas/rec-pas.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'regisUsu', component: RegistroUsuarioComponent },
   { path: 'editprofile', component: EditProfileComponent },
   { path: 'salon/editar', component: FormComponent },
+  { path: 'recPass', component: RecPasComponent},
 ];
 
 @NgModule({

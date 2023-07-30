@@ -66,6 +66,7 @@ export class RegistroUsuarioComponent implements OnInit {
     if (this.lastName !== '' && this.firstName !== '') {
       this.modeloPersona.nombre = this.firstName;
       this.modeloPersona.apellido = this.lastName;
+    
     }
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');

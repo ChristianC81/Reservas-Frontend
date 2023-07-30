@@ -38,6 +38,8 @@ import { SalonDetalleComponent } from './mis-salones/salon-detalle/salon-detalle
 import { ModalReservasComponent } from './mis-salones/modal-reservas/modal-reservas.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormComponent } from './mis-salones/salon/form.component';
+import { NabRecuPassComponent } from './nab-recu-pass/nab-recu-pass.component';
+import { RecPasComponent } from './rec-pas/rec-pas.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { FormComponent } from './mis-salones/salon/form.component';
     ModalReservasComponent,
     EditProfileComponent,
     FormComponent,
+    NabRecuPassComponent,
+    RecPasComponent,
   ],
   imports: [
     BrowserModule,

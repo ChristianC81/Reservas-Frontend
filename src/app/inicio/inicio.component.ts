@@ -8,6 +8,7 @@ import { AppModule } from 'src/app/app.module';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { Router } from '@angular/router';
+import { Validaciones } from '../modelo/Validaciones';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -15,8 +16,9 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent  implements OnInit{
   constructor(private appModule: AppModule,private router: Router) { }
+  vali: Validaciones = new Validaciones();
   ngOnInit(): void {
-    
+
   }
   ventanaEmergenteVisible: boolean = false;
 

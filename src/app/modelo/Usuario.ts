@@ -7,18 +7,19 @@ export class Usuario {
     contrasenia: string;
     estado: boolean;
     email: string;
-
+    fechaPas: Date;
     //mando a la persona con su el mismo nombre de la base
     persona: Persona;
     rol: Rol;
      
-   constructor(idUsuario?: number, nombreUsuario?: string, contrasenia?: string, estado?: boolean, email?: string, usu_rol?: Rol, pers_id?: Persona) {
+   constructor(idUsuario?: number, nombreUsuario?: string, contrasenia?: string,fechaPas? :Date, estado?: boolean, email?: string, usu_rol?: Rol, pers_id?: Persona) {
         this.idUsuario = idUsuario || 0;
         this.nombreUsuario = nombreUsuario || "";
         this.contrasenia = contrasenia || "";
         this.estado = estado ? true : false;
         this.email = email || "",
         this.rol = usu_rol || new Rol;
+        this.fechaPas=fechaPas || new Date;
         this.persona = pers_id || new Persona;
     }
 }

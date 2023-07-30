@@ -1,0 +1,17 @@
+<app-nab-recu-pass></app-nab-recu-pass>
+
+  <div class="form">
+    <div class="forceColor"></div>
+    <div class="topbar">
+      <div class="spanColor"></div>
+      <label class="lblTitle">Gmail</label>
+      <input  class="input" id="password" placeholder="Gmail" [(ngModel)]="gmail.to"/>
+      <p class="alert">Gmail vacío</p>
+      <label class="lblTitle">Ingrese Código</label>
+      <input type="password" class="input" id="password" placeholder="Código Verificación"/>
+      <p class="alert">Código vacío</p>
+    </div>
+    <button class="submit" id="submit" >Generar Clave</button>
+    <button class="submit" id="submit" (click)="sendCode()" >Enviar Código</button>
+  </div>
+
