@@ -208,7 +208,12 @@
 }
 
 .lblTitle{
-  border: 2px solid green;
+  font-weight: bold;
+}
+
+.lblTitleCode{
+  margin-left: 7%;
+  color: #26c97d;
 }
 
 @media only screen and (max-width:900px){

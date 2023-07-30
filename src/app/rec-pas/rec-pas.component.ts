@@ -9,7 +9,15 @@ import { ServiLoginRegService } from 'src/service/servi-login-reg.service';
   styleUrls: ['./rec-pas.component.css']
 })
 export class RecPasComponent {
-  gmail:Email= new Email();
+  email:Email= new Email();
+  
+  correoConst:String ="";
+
+  protected btnSendCode: boolean = false;
+  protected gmailVac: boolean = false;
+  protected gmailNoVali: boolean = false;
+  protected codeVac: boolean = false;
+  protected lblSendCode:boolean= false;
   constructor(private serv: ServiLoginRegService, private router: Router) { }
 
 
@@ -17,10 +25,12 @@ export class RecPasComponent {
   //enviar a verificar email
  
   sendCode(){
-    this.serv.sentCodeReset(this.gmail).subscribe((data)=>{
+    this.correoConst=this.email.to;
+    this.serv.sentCodeReset(this.email).subscribe((data)=>{
       
       if(data){
-        alert("codigo enviado")
+        
+
       }else{
         alert("correo no encontrado")
       }
