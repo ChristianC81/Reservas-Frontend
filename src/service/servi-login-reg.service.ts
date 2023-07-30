@@ -64,8 +64,8 @@ export class ServiLoginRegService {
 
     //send code verification
 
-    sentCodeReset(e: Email) {
-      return this.http.post<String>(this.url + '/email/sendCodeReset', e);
+    sentCodeReset(e: Email)  {
+      return this.http.post<Email>(this.url + '/email/sendCodeReset', e);
     }
 
 }

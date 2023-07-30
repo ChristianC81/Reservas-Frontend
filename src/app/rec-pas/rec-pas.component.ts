@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Email } from '../modelo/Email';
 import { ServiLoginRegService } from 'src/service/servi-login-reg.service';
+import { Validaciones } from '../modelo/Validaciones';
 
 @Component({
   selector: 'app-rec-pas',
@@ -11,13 +12,15 @@ import { ServiLoginRegService } from 'src/service/servi-login-reg.service';
 export class RecPasComponent {
   email:Email= new Email();
   
-  correoConst:String ="";
+  correoConst:string ="";
 
   protected btnSendCode: boolean = false;
   protected gmailVac: boolean = false;
   protected gmailNoVali: boolean = false;
   protected codeVac: boolean = false;
   protected lblSendCode:boolean= false;
+  protected vali: Validaciones = new Validaciones();
+  protected bandera: number = 0;
   constructor(private serv: ServiLoginRegService, private router: Router) { }
 
 
@@ -25,17 +28,29 @@ export class RecPasComponent {
   //enviar a verificar email
  
   sendCode(){
-    this.correoConst=this.email.to;
-    this.serv.sentCodeReset(this.email).subscribe((data)=>{
-      
-      if(data){
-        
+    //validar correo no vacío
 
+    if(this.email.to==""){
+      this.gmailVac=true;
+    
+    }else{
+      this.gmailVac=false;
+      //validar formato correo
+      
+      if(this.vali.validarCorreo(this.email.to)){
+        this.correoConst=this.email.to;
+        this.gmailNoVali=false;
       }else{
-        alert("correo no encontrado")
+        this.gmailNoVali=true;
       }
 
-    });
+    }
+   
   }
+  /*
+this.correoConst=this.email.to;
+    this.serv.sentCodeReset(this.email).subscribe((data)=>{
+      
 
+    });*/
 }
