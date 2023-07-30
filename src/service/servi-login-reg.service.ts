@@ -10,7 +10,7 @@ import { Email } from '../app/modelo/Email';
   providedIn: 'root',
 })
 export class ServiLoginRegService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private url = 'http://localhost:8080/api';
 
@@ -62,10 +62,14 @@ export class ServiLoginRegService {
     return this.http.post<Usuario>(this.url + '/usuario/login', usu);
   }
 
-    //send code verification
+  //send code verification
 
-    sentCodeReset(e: Email)  {
-      return this.http.post<Email>(this.url + '/email/sendCodeReset', e);
-    }
+  sentCodeReset(e: Email) {
+    return this.http.post<Email>(this.url + '/email/sendCodeReset', e);
+  }
+
+  resetPass(e: Email):Observable <Email>{
+    return this.http.post<Email>(this.url + '/email/resetPas', e);
+  }
 
 }

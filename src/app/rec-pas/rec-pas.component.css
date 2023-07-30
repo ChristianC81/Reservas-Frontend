@@ -228,7 +228,10 @@
 
 .multiline-label {
   white-space: pre-line;
+  user-select: text!important;
+  position: relative!important;
 }
+
 
 @media only screen and (max-width:900px){
   .form{

@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent },
   { path: 'salon/editar', component: FormComponent },
   { path: 'recPass', component: RecPasComponent},
+  
 ];
 
 @NgModule({

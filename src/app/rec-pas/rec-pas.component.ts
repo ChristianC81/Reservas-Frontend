@@ -16,7 +16,7 @@ export class RecPasComponent {
 
   correoConst: string = "";
   protected codeIntr: string = "";
-  protected textPasNew:String ="";
+  protected textPasNew: String = "";
   protected btnSendCode: boolean = true;
   protected btnGenerarCla: boolean = false;
   protected gmailVac: boolean = false;
@@ -25,10 +25,10 @@ export class RecPasComponent {
   protected lblSendCode: boolean = false;
   protected packCode: boolean = false;
   protected inputGmail: boolean = false;
-  protected blocBtnCodeVer:boolean=false;
-  protected lblNuevaPass:boolean=false;
+  protected blocBtnCodeVer: boolean = false;
+  protected lblNuevaPass: boolean = false;
   //alerta de muchos intentos o cambiado recientemente
-  protected lblAlertWait:boolean=false;
+  protected lblAlertWait: boolean = false;
 
   protected vali: Validaciones = new Validaciones();
   protected bandera: number = 0;
@@ -92,18 +92,36 @@ export class RecPasComponent {
   }
 
   protected StyelBtbCode() {
-    this.lblcodeVac=false;
+    this.lblcodeVac = false;
 
-    if (this.codeIntr!="") {
+    if (this.codeIntr != "") {
       this.tries++;
       if (this.tries <= 3) {
-        
-        if ("asdf"== this.codeIntr) {
+
+        if (this.cod == this.codeIntr) {
           this.inputCodeHtm.nativeElement.classList.add('alerCodeSucesFul');
-          this.btnGenerarCla=false;
+          this.btnGenerarCla = false;
           //clave comprovacion correcta
-          alert(this.cod)
-          this.textPasNew="Su contraseña es:\n"+this.cod;
+          this.serv.resetPass(this.email).subscribe((data) => {
+         
+            switch (data.text) {
+              case "1":
+                this.textPasNew="Contraseña actualizada recientemente\n o a realizado muchos intentos pruebe mas tarde";
+                break;
+              case "2":
+                this.textPasNew="Intente de nuevo";
+                break;
+
+              default:
+                this.textPasNew="Su nueva contraseña es:\n"+data.text;
+                break;
+
+            }
+          });
+
+
+
+          //this.textPasNew="Su contraseña es:\n"+this.cod;
 
         } else {
           switch (this.tries) {
@@ -121,14 +139,14 @@ export class RecPasComponent {
               this.btnCodeVerHtm.nativeElement.textContent = "Demasiados intentos";
               this.btnCodeVerHtm.nativeElement.classList.add('recover');
               this.inputCodeHtm.nativeElement.classList.add('disabled');
-              this.blocBtnCodeVer=true;
+              this.blocBtnCodeVer = true;
               break;
           }
         }
 
       }
-    }else{
-      this.lblcodeVac=true
+    } else {
+      this.lblcodeVac = true
     }
 
   }
