@@ -140,6 +140,13 @@ export class RecPasComponent {
               this.btnCodeVerHtm.nativeElement.classList.add('recover');
               this.inputCodeHtm.nativeElement.classList.add('disabled');
               this.blocBtnCodeVer = true;
+              this.serv.blockPass(this.email).subscribe((data) => {
+                
+                if(data==1){
+                  alert("bloqueado")
+                }
+                
+              });
               break;
           }
         }

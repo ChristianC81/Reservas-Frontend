@@ -71,5 +71,8 @@ export class ServiLoginRegService {
   resetPass(e: Email):Observable <Email>{
     return this.http.post<Email>(this.url + '/email/resetPas', e);
   }
-
+  
+  blockPass(e:Email){
+    return this.http.post<number>(this.url+'/usuario/blockUpdatePass',e);
+  }
 }
