@@ -161,7 +161,7 @@
   border-top-left-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-bottom-left-radius: 6px;
-  background-color: #ff2b4b;
+  background-color: #ff2b4b ;
 }
 
 .topbar.error+.submit {
@@ -207,6 +207,16 @@
 
 }
 
+.alerCodeEror{
+  transition: all 2s;
+  background-color: rgba(255, 43, 75, 0.3) !important;
+}
+
+.alerCodeSucesFul{
+  transition: all 2s;
+  background-color: rgba(40, 233, 52, 0.3) !important;
+  border: 2px solid #26c97d !important;
+}
 .lblTitle{
   font-weight: bold;
 }

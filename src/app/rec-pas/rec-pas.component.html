@@ -6,16 +6,16 @@
       
       <div class="spanColor"></div>
       <label class="lblTitle">Gmail</label>
-      <input  class="input"  [(ngModel)]="email.to" placeholder="Gmail"/>
+      <input  class="input" [ngStyle]="{ 'background-color': inputGmail ? '#ddd' : '#fff' }" [(ngModel)]="email.to" placeholder="Gmail"[disabled]="inputGmail" />
       <p class="alert" *ngIf="gmailVac">Gmail vacío</p>
       <p class="alert" *ngIf="gmailNoVali">Correo no valido</p>
-      <label class="lblTitle">Ingrese Código</label>
-      <input class="input"  placeholder="Código Verificación"/>
-      <p class="alert" *ngIf="codeVac">Código vacío</p>
+      <label class="lblTitle" *ngIf="packCode">Ingrese Código</label>
+      <input class="input"  placeholder="Código Verificación" *ngIf="packCode" #inputCode  [(ngModel)]="codeIntr" />
+      <p class="alert" *ngIf="lblcodeVac">Código vacío</p>
 
     </div>
-    <button class="submit" id="submit" >Generar Clave</button>
+    <button class="submit" id="submit" *ngIf="btnGenerarCla" #btnCodeVer [disabled]="blocBtnCodeVer">Ingresar código</button>
     <label class="lblTitleCode" *ngIf="lblSendCode">Revise el código en su bandeja o spam</label>
-    <button class="submit" id="submit" (click)="sendCode()" >Enviar Código</button>
+    <button class="submit" id="submit" (click)="sendCode()" *ngIf="btnSendCode" >Enviar Código</button>
   </div>
 
