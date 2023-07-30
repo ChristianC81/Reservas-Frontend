@@ -14,8 +14,9 @@
       <p class="alert" *ngIf="lblcodeVac">Código vacío</p>
 
     </div>
-    <button class="submit" id="submit" *ngIf="btnGenerarCla" #btnCodeVer [disabled]="blocBtnCodeVer">Ingresar código</button>
+    <button class="submit" id="submit" *ngIf="btnGenerarCla" #btnCodeVer [disabled]="blocBtnCodeVer" (click)="StyelBtbCode()">Ingresar código</button>
     <label class="lblTitleCode" *ngIf="lblSendCode">Revise el código en su bandeja o spam</label>
     <button class="submit" id="submit" (click)="sendCode()" *ngIf="btnSendCode" >Enviar Código</button>
+    <label class="multiline-label">{{ textPasNew }}</label>
   </div>
 

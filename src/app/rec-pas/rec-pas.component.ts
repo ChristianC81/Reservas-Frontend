@@ -16,15 +16,19 @@ export class RecPasComponent {
 
   correoConst: string = "";
   protected codeIntr: string = "";
+  protected textPasNew:String ="";
   protected btnSendCode: boolean = true;
-  protected btnGenerarCla: boolean = true;
+  protected btnGenerarCla: boolean = false;
   protected gmailVac: boolean = false;
   protected gmailNoVali: boolean = false;
   protected lblcodeVac: boolean = false;
   protected lblSendCode: boolean = false;
-  protected packCode: boolean = true;
+  protected packCode: boolean = false;
   protected inputGmail: boolean = false;
   protected blocBtnCodeVer:boolean=false;
+  protected lblNuevaPass:boolean=false;
+  //alerta de muchos intentos o cambiado recientemente
+  protected lblAlertWait:boolean=false;
 
   protected vali: Validaciones = new Validaciones();
   protected bandera: number = 0;
@@ -32,10 +36,10 @@ export class RecPasComponent {
   private cod: string = "";
   constructor(private serv: ServiLoginRegService, private router: Router) { }
   ngAfterViewInit() {
-    this.btnCodeVerHtm.nativeElement.addEventListener(
+    /*this.btnCodeVerHtm.nativeElement.addEventListener(
       'click',
       this.StyelBtbCode.bind(this)
-    );
+    );*/
   }
 
 
@@ -44,7 +48,7 @@ export class RecPasComponent {
 
   //enviar a verificar email
 
-  sendCode() {
+  protected sendCode() {
     this.gmailNoVali = false;
     this.gmailVac = false;
     //validar correo no vacío
@@ -87,13 +91,19 @@ export class RecPasComponent {
 
   }
 
-  private StyelBtbCode() {
+  protected StyelBtbCode() {
     this.lblcodeVac=false;
 
     if (this.codeIntr!="") {
       this.tries++;
       if (this.tries <= 3) {
-        if (this.cod == this.codeIntr) {
+        
+        if ("asdf"== this.codeIntr) {
+          this.inputCodeHtm.nativeElement.classList.add('alerCodeSucesFul');
+          this.btnGenerarCla=false;
+          //clave comprovacion correcta
+          alert(this.cod)
+          this.textPasNew="Su contraseña es:\n"+this.cod;
 
         } else {
           switch (this.tries) {
