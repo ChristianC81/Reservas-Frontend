@@ -40,7 +40,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormComponent } from './mis-salones/salon/form.component';
 import { NabRecuPassComponent } from './nab-recu-pass/nab-recu-pass.component';
 import { RecPasComponent } from './rec-pas/rec-pas.component';
-import { CaruselComponent } from './carusel/carusel.component';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +67,7 @@ import { CaruselComponent } from './carusel/carusel.component';
     FormComponent,
     NabRecuPassComponent,
     RecPasComponent,
-    CaruselComponent,
+ 
   ],
   imports: [
     BrowserModule,
