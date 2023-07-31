@@ -16,7 +16,9 @@ export class ModalReservasComponent {
 
   @Input() publicacionSelect: PublicacionDto;
   salon: SalonDto | null = null;
-  listReservas: Pedido[];
+  listReservasPen: Pedido[];
+  listReservasAcep: Pedido[];
+  listReservasCan: Pedido[];
   protected email: Email = new Email();
   constructor(private reservasService: PedidoService, private serEmail: ServiLoginRegService,) { }
 
@@ -40,11 +42,23 @@ export class ModalReservasComponent {
            }
          )
  */
-        this.reservasService.getPedidosBySalon(this.salon.idSalon, emailUserLoged).subscribe(
+        this.reservasService.getPedidosBySalonState(this.salon.idSalon, "PENDIENTE",emailUserLoged).subscribe(
           (reservas: Pedido[]) => {
-            this.listReservas = reservas;
+            this.listReservasPen = reservas;
           }
         )
+
+        this.reservasService.getPedidosBySalonState(this.salon.idSalon, "ACEPTADO",emailUserLoged).subscribe(
+          (reservas: Pedido[]) => {
+            this.listReservasAcep = reservas;
+          }
+        )
+
+       /* this.reservasService.getPedidosBySalonState(this.salon.idSalon, "RECHAZADO",emailUserLoged).subscribe(
+          (reservas: Pedido[]) => {
+            this.listReservasCan = reservas;
+          }
+        )*/
 
       }
     }
