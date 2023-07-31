@@ -13,7 +13,7 @@ export class ModalReservasComponent {
 
   @Input() publicacionSelect: PublicacionDto;
   salon: SalonDto | null = null;
-  listReservas: Pedido []; 
+  listReservas: Pedido[];
 
   constructor(private reservasService: PedidoService) { }
 
@@ -26,11 +26,11 @@ export class ModalReservasComponent {
     }
   }
 
-  getReservas(){
+  getReservas() {
     //obtener la data de reservas para ver en una tabla
-    if(null !== this.salon){
+    if (null !== this.salon) {
       let emailUserLoged = localStorage.getItem("emailUserLoged")?.toString();
-      if(undefined !== emailUserLoged){
+      if (undefined !== emailUserLoged) {
         this.reservasService.getPedidosBySalon(this.salon.idSalon, emailUserLoged).subscribe(
           (reservas: Pedido[]) => {
             this.listReservas = reservas;
@@ -40,4 +40,13 @@ export class ModalReservasComponent {
     }
   }
 
+  updateState(ped: Pedido, estate:boolean) {
+   
+    this.reservasService.updateStatePedido(ped.pedId,true).subscribe((data) => {
+        //si el pedido se confirmo enviar email
+        
+
+    });
+
+  }
 }

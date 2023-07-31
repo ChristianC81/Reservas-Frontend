@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { Pedido } from '../app/modelo/Pedido';
+import { ComplementoDto } from 'src/app/modelo/dto/ComplementoDto';
 
 
 @Injectable({
@@ -34,4 +35,10 @@ export class PedidoService {
   eliminar(id: number): Observable<Pedido>{
     return this.http.delete<Pedido>(`${this.URLlistarPedidos}/${id}`);
   }
+
+
+  updateStatePedido(id:number, estate:boolean){
+    return this.http.get<any>(`${this.URLlistarPedidos}/aceptarOrechazarPedidoBySalon/${id}/${estate}`);
+  } 
+
 }
