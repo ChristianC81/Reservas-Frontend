@@ -14,6 +14,7 @@ import { MisSalonesComponent } from './mis-salones/mis-salones.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormComponent } from './mis-salones/salon/form.component';
 import { RecPasComponent } from './rec-pas/rec-pas.component';
+import { CaruselComponent } from './carusel/carusel.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent },
   { path: 'salon/editar', component: FormComponent },
   { path: 'recPass', component: RecPasComponent},
-  
+  { path: 'carul', component: CaruselComponent},
 ];
 
 @NgModule({
