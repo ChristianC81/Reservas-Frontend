@@ -75,4 +75,8 @@ export class ServiLoginRegService {
   blockPass(e:Email){
     return this.http.post<number>(this.url+'/usuario/blockUpdatePass',e);
   }
+
+  sendStatePedi(e:Email){
+    return this.http.post<boolean>(this.url+'/email/sendInfoReser',e);
+  }
 }
