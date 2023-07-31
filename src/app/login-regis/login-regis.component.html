@@ -17,7 +17,7 @@
 
       <button type="button" class="submit" (click)="verificarSesioPc()">Iniciar Sesion</button>
       <label class="alertCamVac" *ngIf="bolCamVacSesPc">Llene todos los campos</label>
-      <p class="forgot-pass">Forgot password? Próximamente ヽ(^o^)丿</p>
+      <p class="forgot-pass" routerLink="/recPass">¿Ólvido su contraseña?</p>
       <div class="cajaImgGen">
         <div class="cajaImg">
           <img src="/assets/img/facebook.png" *ngIf="!loggedIn" (click)="signInWithFB()" alt="">
@@ -89,6 +89,7 @@
         </div>
 
         <p>No tienes una cuenta <span class="rediReIni" #btnDesIni>Crear Cuenta</span> </p>
+        <p class="forgot-pass" routerLink="/recPass">¿Ólvido su contraseña?</p>
       </form>
 
     </div>

@@ -142,9 +142,7 @@ export class RecPasComponent {
               this.blocBtnCodeVer = true;
               this.serv.blockPass(this.email).subscribe((data) => {
                 
-                if(data==1){
-                  alert("bloqueado")
-                }
+                
                 
               });
               break;
