@@ -54,11 +54,11 @@ export class ModalReservasComponent {
           }
         )
 
-       /* this.reservasService.getPedidosBySalonState(this.salon.idSalon, "RECHAZADO",emailUserLoged).subscribe(
+        this.reservasService.getPedidosBySalonState(this.salon.idSalon, "RECHAZADO",emailUserLoged).subscribe(
           (reservas: Pedido[]) => {
             this.listReservasCan = reservas;
           }
-        )*/
+        )
 
       }
     }
@@ -66,7 +66,7 @@ export class ModalReservasComponent {
 
   updateState(ped: Pedido, estate: boolean) {
 
-    this.reservasService.updateStatePedido(ped.pedId, true).subscribe((data) => {
+    this.reservasService.updateStatePedido(ped.pedId, estate).subscribe((data) => {
       //si el pedido se confirmo enviar email
       this.email.to = ped.pedEmailUsuario;
       this.email.subject = "Su reserva a sido " + (estate ? "aceptado" : "rechazada");
@@ -91,6 +91,8 @@ export class ModalReservasComponent {
             title: 'Mensaje enviado',
             text: 'Notificación envida correctamente.',
           });
+
+          window.location.reload();
         }
 
       });
